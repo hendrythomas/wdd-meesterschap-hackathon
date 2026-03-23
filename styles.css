@@ -10,13 +10,25 @@ html {
   --cyan: #44aabd;
   --link: #292f6b;
   --link-hover: #212656;
+
+  scroll-timeline: --main-timeline;
 }
 
 body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main {
+  position: fixed;
+  width: 200px;
+  height: 100px;
+  box-shadow: 0 0 0 2px green inset;
 }
 
 .graphics {
-  --container-w: 100vw;
+  --container-w: clamp(200px, 100vh, 100vw);
   position: relative;
   width:  var(--container-w);
   height: 100%;
@@ -29,8 +41,8 @@ body {
 
   .satellite {
     right:  50%;
-    bottom: 50%;
-    transform: translate(50%, 50%);
+    top: 20px;
+    transform: translate(50%, 0);
     width:  calc(0.4 * var(--container-w));
     height: calc(0.4 * var(--container-w));
     box-shadow: 0 0 0 2px red inset;
@@ -43,7 +55,30 @@ body {
     width:  calc(1 * var(--container-w));
     height: calc(1 * var(--container-w));
     box-shadow: 0 0 0 2px blue inset;
-    border-radius: 100%;
+    /* border-radius: 100%; */
+    animation: spin 5s linear infinite;
+    /* todo: scroll animation grow & spin */
+  }
+}
+
+@keyframes grow {
+  0% {
+    transform:
+      translate(50%, 50%)
+      scale(0%);
+  }
+  100% {
+    transform:
+      translate(50%, 50%)
+      scale(100%);
+  }
+}
+
+@keyframes spin {
+  100% {
+    transform:
+      translate(50%, 50%)
+      rotate(360deg);
   }
 }
 
