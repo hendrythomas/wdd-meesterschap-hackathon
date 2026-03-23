@@ -1,4 +1,14 @@
 html {
+  --white: #ffffff;
+  --text-a: #ffffff;
+  --text-b: #222222;
+  --orange: #eb5d34;
+  --blue: #292f6b;
+  --darkblue: #181932;
+  --gray: #2c2d42;
+  --cyan: #44aabd;
+  --link: #292f6b;
+  --link-hover: #212656
 }
 
 body {
