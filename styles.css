@@ -57,16 +57,19 @@ body {
   width: 100vw;
   position: relative;
 
-  .satellite {
+  .satellite, .text {
   width: 20em;
   height: 5em;
   margin-top: 5em;
   margin-bottom: 2em;
   border: 2px solid green;
   background-color: cyan;
-  position: absolute;
-  transform: translateY(-24em);
-  /* top: 0; */
+  position: fixed;
+  /* transform: translateY(-24em); */
+  top: 29em;
+  left: 50%;
+  transform: translateX(-50%);
+  overflow: hidden;
 
   animation: SatelliteHide 1s linear;
   animation-timeline: scroll(root);
@@ -81,12 +84,23 @@ body {
   box-shadow: 0 0 0 2px red inset; */
 }
 
+.text {
+  background-color: transparent;
+  color: white;
+  border: none;
+  top: 35em;
+  text-align: left;
+
+  animation: texts 1s linear;
+  animation-timeline: scroll(root);
+}
+
 .globe {
   width: 40em;
   height: 40em;
   margin: 0 auto;
   z-index: 1000;
-  background-color: red;
+  background-color: lightblue;
   border-top: 10px solid yellow;
   border: 2px solid green;
   border-radius: 50%;
@@ -129,18 +143,50 @@ body {
   }
 } */
 
-/* @keyframes SatelliteHide {
+@keyframes SatelliteHide {
   0% {
-    transform: translate(0);
+    top: 29em;
   }
   50% {
-    transform: translate(100vw, 50vh);
+    top: 20em;
   }
   100% {
-    transform: translate(100vw, 50vh);
-    display: none;
+    top: 3em;
   }
-} */
+}
+
+@keyframes texts {
+  0% {
+    opacity: 0;
+    width: 5em;
+    top: 50em;
+    left: 50%;
+    text-align: center;
+  }
+  25% {
+    opacity: 0.8;
+    width: 10em;
+    top: 35em;
+    left: 50%;
+    text-align: center;
+  }
+  50% {
+    opacity: 1;
+    width: 20em;
+    top: 25em;
+    left: 50%;
+    text-align: left;
+  }
+  75% {
+    width: 20em;
+    top: 18em;
+    left: 50%;
+  }
+  100% {
+    top: 10em;
+    left: 110em;
+  }
+}
 
 @keyframes satteliteRotate {
   from {
