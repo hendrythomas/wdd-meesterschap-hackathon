@@ -109,7 +109,7 @@ body {
   /* animation: globeZoom 1s linear; */
 
 
-  animation: satteliteRotate linear;
+  animation: earthRotate linear;
   animation-timeline: scroll(root);
   /* position: absolute;
   bottom: -50%; */
@@ -188,7 +188,7 @@ body {
   }
 }
 
-@keyframes satteliteRotate {
+@keyframes earthRotate {
   from {
     transform: scale(1) rotate(0deg);
   }
