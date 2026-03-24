@@ -49,97 +49,6 @@ body {
     font-weight: 400;
     color: var(--orange);
   }
-
-  /* > nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 20em;
-    height: 30em;
-    background-color: white; */
-
-    > nav > .hamburgerMenu {
-      
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-end;
-
-      position: absolute;
-      position: fixed;
-      left: 0;
-      top: 0;
-      /* transform: translateY(50%); */
-      width: 5em;
-      height: 5em;
-      background-color: transparentk;
-      z-index: 9999;
-      overflow: hidden;
-
-      > #menuToggle {
-        width: 4em;
-        height: 4em;
-        position: absolute;
-        top: 1em;
-        right: 1em;
-        appearance: none;
-      }
-
-      > span {
-        position: absolute;
-        left: 1em;
-        top: 1em;
-        /* margin-top: 0.5em; */
-        width: 3.5em;
-        height: 0.75em;
-        background-color: white;
-        border-radius: 4px;
-        z-index: 10000;
-        /* margin-right: 0.5em; */
-        cursor: none;
-        pointer-events: none;
-      }
-      > span:nth-of-type(1) {
-        top: 1em;
-      }
-      > span:nth-of-type(2) {
-        top: 2em;
-      }
-      > span:nth-of-type(3) {
-        top: 3em;
-      }
-      > .menu {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 90%;
-        padding: 0;
-        margin: 0;
-        margin-top: 5em;
-        border: 2px solid blue;
-        background-color: red;
-        display: none;
-        overflow: hidden;
-      > li {
-        list-style: none;
-        /* margin: 1em 0; */
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        z-index: 99999;
-        
-      }
-    }
-  }
   }  
 
 
@@ -317,6 +226,10 @@ p {
       margin: 0 auto;
       z-index: 1000;
 
+      filter:
+        drop-shadow(0 0  5px white)
+        drop-shadow(0 0 10px white)
+        drop-shadow(0 0 15px white);
       background-image: url(../images/stars.svg);
       background-size: cover;
       background-position: center;
