@@ -26,7 +26,7 @@ body {
   width: 100vw;
   /* height: 100%; */
   /* border: 2px solid red; */
-  background-color: rgb(0, 0, 104);
+  background-color: var(--darkblue);
   overflow-x: hidden;
 
   > header {
@@ -105,15 +105,19 @@ body {
         cursor: none;
         pointer-events: none;
       }
+
       > span:nth-of-type(1) {
         top: 1em;
       }
+
       > span:nth-of-type(2) {
         top: 2em;
       }
+
       > span:nth-of-type(3) {
         top: 3em;
       }
+
       > .menu {
         display: flex;
         flex-direction: column;
@@ -128,22 +132,22 @@ body {
         background-color: red;
         display: none;
         overflow: hidden;
-      > li {
-        list-style: none;
-        /* margin: 1em 0; */
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        z-index: 99999;
-        
+      
+        > li {
+          list-style: none;
+          /* margin: 1em 0; */
+          display: flex;
+          justify-content: flex-start;
+          align-items: center;
+          padding: 0;
+          margin: 0;
+          width: 100%;
+          z-index: 99999;
+          
+        }
       }
-    }
-  }
+    } 
   }  
-
 
   > main {
   display: flex;
@@ -162,22 +166,6 @@ body {
   height: 15em;
   margin-top: 5em;
   margin-bottom: 2em;
-
-
-  /* border: 2px solid green; */
-  /* background-color: cyan; */
-
-
-
-  
-  /* Dit heb ik toegevoegd @Sela
-  & width & height aangepast */
-  /* background-image: url(../images/satellite.svg); */
-  /* background-repeat: no-repeat; */
-
-
-
-
   position: fixed;
   /* transform: translateY(-24em); */
   top: 0.5em;
@@ -203,15 +191,15 @@ body {
 h2 {
   font-family: 'Space Mono', sans-serif;
   color: var(--orange);
-
   font-size: clamp(1em, 10vw, 3em);
   font-weight: 100;
+
+  margin: 0 auto;
 }
 
 h3 {
   font-family: 'Space Mono', sans-serif;
   color: var(--orange);
-
   font-size: clamp(1.5em, 8vw, 2em);
   font-weight: 100;
 }
@@ -219,49 +207,45 @@ h3 {
 p {
   font-family: 'Space Grotesk', sans-serif;
   color: var(--white);
-
   font-size: clamp(0.3em, 2.5vw, 1em);
   letter-spacing: 0.05em;
 }
 
+/* Stylen van de sections met tekst @Sela*/
 .textstyling {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
 
-  margin: 20em auto;
-  margin-bottom: 50vh;
+  margin-bottom: 100vh;
   width: 100%;
   max-width: 40em;
+
   animation: textSlide 1s linear both;
   animation-timeline: view();
-
   animation-range: cover 0% cover 100%;
 
- > ul {
-  font-family: 'Space Grotesk', sans-serif;
-  color: var(--white);
+  > ul,
+  > ol {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--white);
 
-  font-size: clamp(0.3em, 2.5vw, 1em);
-  letter-spacing: 0.05em;
+    font-size: clamp(0.3em, 2.5vw, 1em);
+    letter-spacing: 0.05em;
 }
 
 > .missiongoals {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    width: 100%;
 
-    margin: 0 4em;    
+    gap: 30px;
   }
 
   > .launchingsteps{
     padding-left: 1em;
   }
 }
-
-
-/* Stylen van de sections met tekst @Sela*/
 
 /* .text {
   background-color: transparent;
@@ -280,20 +264,11 @@ p {
   margin: 0 auto;
   z-index: 1000;
 
-
-
-  /* Dit heb ik toegevoegd @Sela */
   background-image: url(../images/earth.svg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
-
-
-
-
-  /* border-top: 10px solid yellow; */
-  border: 2px solid green;
   border-radius: 50%;
   position: fixed;
   display: flex;
@@ -526,6 +501,14 @@ p {
   background-repeat: no-repeat;
 }
 
+
+
+
+
+
+
+
+
 /*********************/
 /* Black Hole Effect */
 /*********************/
@@ -536,26 +519,56 @@ p {
   transition: transform 0.05s linear;
 }
 
-/******************/
-/* Cat Easter egg */
-/******************/
-#cat {
-  position: fixed;
+
+
+
+
+/*********************/
+/* h1 verschijn effect */
+/*********************/
+/* Bron: https://codepen.io/BRacicot/pen/Nryjpa */
+
+.decode-text {
+  width: 100%;
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  text-align: center;
+}
+
+.space {
+  display: inline-block;
+  width: 20px;
+}
+
+.text-animation {
+  display: inline-block;
+  position: relative;
+  color: transparent;
+  text-transform: uppercase;
+}
+
+.text-animation::before {
+  content: "";
+  position: absolute;
   top: 50%;
-  left: 0;
-
-  transform: translate(-120%, -50%); /* start off-screen left */
-  width: 100px;
+  left: 50%;
+  background: #0e182d;
+  width: 0;
+  height: 1.2em;
+  transform: translate(-50%, -55%);
 }
 
-/* Trigger class */
-.animate {
-  animation: catMove 6s ease-in-out forwards;
+.text-animation.state-1::before {
+  width: 2px;
 }
 
-@keyframes catMove {
-  0% { transform: translate(-120%, -50%); }
-  25% { transform: translate(10%, -50%); }
-  50% { transform: translate(10%, -50%); }
-  100% { transform: translate(120vw, -50%); } 
+.text-animation.state-2::before {
+  width: 0.9em;
+}
+
+.text-animation.state-3 {
+  color: white;
+}
+
+.text-animation.state-3::before {
+  width: 0;
 }
