@@ -24,8 +24,6 @@ body {
   padding: 0;
   margin: 0;
   width: 100vw;
-  /* height: 100%; */
-  /* border: 2px solid red; */
   background-color: var(--darkblue);
   overflow-x: hidden;
 
@@ -33,15 +31,9 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 100%; */
   height: 5em;
   width: 100%;
   position: relative;
-  /* position: absolute;
-  left: 50%;
-  top: 50%; */
-  /* transform: translate(-50%, -50%); */
-  /* animation: headerSplash 10s ease-out; */
 
   > h1 { /* @Sela */
     font-family: 'Space Mono', sans-serif;
@@ -57,21 +49,7 @@ body {
 
     }
   }
-
-  /* > nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    position: fixed;
-    right: 0;
-    top: 0;
-    width: 20em;
-    height: 30em;
-    background-color: white; */
-
     > nav > .hamburgerMenu {
-      
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -81,7 +59,6 @@ body {
       position: fixed;
       right: 0;
       top: 0;
-      /* transform: translateY(50%); */
       width: 5em;
       height: 5em;
       background-color: transparentk;
@@ -101,13 +78,11 @@ body {
         position: absolute;
         right: 1em;
         top: 1em;
-        /* margin-top: 0.5em; */
         width: 3.5em;
         height: 0.75em;
         background-color: white;
         border-radius: 4px;
         z-index: 10000;
-        /* margin-right: 0.5em; */
         cursor: none;
         pointer-events: none;
       }
@@ -141,7 +116,6 @@ body {
       
         > li {
           list-style: none;
-          /* margin: 1em 0; */
           display: flex;
           justify-content: flex-start;
           align-items: center;
@@ -160,12 +134,8 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* overflow-y: scroll;
-  height: 100vh; */
   width: 100vw;
   position: relative;
-  /* overflow: hidden;  */
-  /* Nodig voor blackhole effect */
 
   .satellite {
   width: 30em;
@@ -173,24 +143,13 @@ body {
   margin-top: 5em;
   margin-bottom: 2em;
   position: fixed;
-  /* transform: translateY(-24em); */
   top: 0.5em;
   left: 50%;
   transform: translateX(-50%);
   overflow: hidden;
   z-index: 2000;
 
-  animation: satelliteAnimation 1s ease-in-out, satelliteAnimationOnDelay 0.8s ease-in-out 3.2s forwards;
-  /* animation-timeline: scroll(root); */
-
-  /* animation: satteliteRotate linear;
-  animation-timeline: scroll(root); */
-  /* right: 50%;
-  top:   20px; */
-  /* transform: translate(50%, 0); */
-  /* width:  calc(0.4 * var(--container-w));
-  height: calc(0.4 * var(--container-w));
-  box-shadow: 0 0 0 2px red inset; */
+  animation: satelliteAnimation 1s ease-in-out, satelliteAnimationOnDelay 0.8s ease-in-out 3.2s forwards, satelliteHoveringAnimation 5s ease-in-out 4s infinite;
 }
 
 /* Fonts styling @Sela*/
@@ -222,7 +181,6 @@ p {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* align-items: center; */
 
   margin-bottom: 100vh;
   width: 100%;
@@ -253,17 +211,6 @@ p {
   }
 }
 
-/* .text {
-  background-color: transparent;
-  color: white;
-  border: none;
-  top: 35em;
-  text-align: left;
-
-  animation: texts 1s linear;
-  animation-timeline: scroll(root);
-} */
-
 .globe {
   width: 40em;
   height: 40em;
@@ -278,12 +225,9 @@ p {
   border-radius: 50%;
   position: fixed;
   display: flex;
-  /* animation: globeZoom 1s linear; */
-
 
   animation: grow linear, rotate linear;
   animation-timeline: scroll(root), scroll(root);
-  /* position: absolute; */
   bottom: -50%;
 
   .plane {
@@ -320,22 +264,6 @@ p {
   }
 }
 
-
-/* @keyframes headerSplash {
-  0% {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    z-index: 9999;
-  }
-  100% {
-    backdrop-filter: blur(0);
-    position: absolute;
-  }
-} */
-
-
 @keyframes slideOutH1 {
   0% {
     opacity: 1;
@@ -349,44 +277,26 @@ p {
   }
 }
 
-
 @keyframes textSlide {
   0% {
     opacity: 0;
     transform: translate(-100vw, -20em);
-    /* width: 5em;
-    top: 50em;
-    left: 50%;
-    text-align: center; */
   }
   25% {
     opacity: 1;
     transform: translate(0, -20em);
-    /* width: 10em;
-    top: 35em;
-    left: 50%;
-    text-align: center; */
   }
   50% {
     opacity: 1;
     transform: translate(0, 0em);
-    /* width: 20em;
-    top: 25em;
-    left: 50%;
-    text-align: left; */
   }
   75% {
     opacity: 1;
     transform: translate(0, 20em);
-    /* width: 20em;
-    top: 18em;
-    left: 50%; */
   }
   100% {
     opacity: 1;
     transform: translate(100vw, 60em);
-    /* top: 10em;
-    left: 110em; */
   }
 }
 
@@ -416,6 +326,18 @@ p {
   }
 }
 
+@keyframes satelliteHoveringAnimation {
+  0% {
+    transform: translateX(-50%) translate(0, 0);
+  }
+  50% {
+    transform: translateX(-50%) translate(-0.5em, -0.5em);
+  }
+  100% {
+    transform: translateX(-50%) translate(0, 0);
+  }
+}
+
 @keyframes rotate {
   from {
     rotate: 0deg;
@@ -433,13 +355,6 @@ p {
     scale: 0.8;
   }
 }
-
-
-
-
-
-
-
 
 
 /* Hamburger menu klik interacties */
@@ -483,10 +398,6 @@ p {
 
 
 
-
-
-
-
 /* Custom Scrollbar @Sela */
 /* Bronnen */
 /* https://www.youtube.com/watch?v=GvyGNcUiJGQ */
@@ -508,13 +419,6 @@ p {
 }
 
 
-
-
-
-
-
-
-
 /*********************/
 /* Black Hole Effect */
 /*********************/
@@ -524,8 +428,6 @@ p {
   will-change: transform, opacity;
   transition: transform 0.05s linear;
 }
-
-
 
 
 
