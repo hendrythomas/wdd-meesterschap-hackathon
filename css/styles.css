@@ -26,6 +26,7 @@ body {
   width: 100vw;
   background-color: var(--darkblue);
   overflow-x: hidden;
+  scroll-behavior: smooth;
 
   > header {
   display: flex;
@@ -230,12 +231,12 @@ p {
   animation-timeline: scroll(root), scroll(root);
   bottom: -50%;
 
-  .plane {
+  /* .plane {
     width: 3em;
     height: 3em;
     background-color: yellow;
     margin: 2em;
-  }
+  } */
 }
 
     .stars {
