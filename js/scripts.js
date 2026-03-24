@@ -323,4 +323,38 @@ function shuffle(array) {
 }
 
 decodeText();
- stylingTeksten
+
+
+
+/**************/
+/* UFO Banner */
+/**************/
+const container = document.querySelector(".ufo-with-banner");
+
+function setRandomY() {
+  const min = 100;
+  const max = window.innerHeight - 100;
+
+  const randomY = Math.random() * (max - min) + min;
+  container.style.top = `${randomY}px`;
+}
+
+function restartAnimation() {
+  // Remove animation class
+  container.classList.remove("ufo-animate");
+
+  // Force reflow (important)
+  void container.offsetWidth;
+
+  // Set new random vertical position BEFORE restarting
+  setRandomY();
+
+  // Re-add animation class
+  container.classList.add("ufo-animate");
+}
+
+// Initial run
+restartAnimation();
+
+// Repeat every 40 seconds (or 20 if you want continuous looping)
+setInterval(restartAnimation, 40000);
