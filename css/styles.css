@@ -308,7 +308,7 @@ p {
   /* animation: globeZoom 1s linear; */
 
 
-  animation: rotate linear, grow linear;
+  animation: grow linear, rotate linear;
   animation-timeline: scroll(root), scroll(root);
   /* position: absolute; */
   bottom: -50%;
@@ -421,19 +421,19 @@ p {
 
 @keyframes rotate {
   from {
-    transform: rotate(0deg);
+    rotate: 0deg;
   }
   to {
-    transform: rotate(360deg);
+    rotate: 360deg;
   }
 }
 
 @keyframes grow {
   from {
-    transform: scale(1);
+    scale: 1;
   }
   to {
-    transform: scale(0.8);
+    scale: 0.8;
   }
 }
 
