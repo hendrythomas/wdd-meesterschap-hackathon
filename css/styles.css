@@ -88,7 +88,7 @@ body {
       height: 5em;
       background-color: transparentk;
       z-index: 9999;
-      /* overflow: hidden; */
+      overflow: hidden;
 
       > #menuToggle {
         width: 4em;
