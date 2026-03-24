@@ -1,7 +1,7 @@
 *,*::before, 
 *::after {
   box-sizing: border-box;
-  transition: all 0.3s ease;
+  /* transition: all 0.3s ease; */
 }
 
 :root {
@@ -24,192 +24,121 @@ body {
   padding: 0;
   margin: 0;
   width: 100vw;
-  /* height: 100%; */
-  border: 2px solid red;
-  background-color: rgb(0, 0, 104);
+  background-color: var(--darkblue);
   overflow-x: hidden;
+  scroll-behavior: smooth;
 
   > header {
   display: flex;
   justify-content: center;
   align-items: center;
-  /* height: 100%; */
-  height: 5em;
+  height: 6em;
   width: 100%;
   position: relative;
-  /* position: absolute;
-  left: 50%;
-  top: 50%; */
-  /* transform: translate(-50%, -50%); */
-  /* animation: headerSplash 10s ease-out; */
 
   > h1 { /* @Sela */
     font-family: 'Space Mono', sans-serif;
     font-size: clamp(1.2em, 5vw, 3.5em);
     font-weight: 400;
     color: var(--orange);
+    text-wrap: nowrap;
+
+    animation: slideOutH1 10s ease-out forwards 3.5s;
+
+    > span {
+      font-size: clamp(1.2em, 5vw, 3.5em);
+
+    }
   }
-
-  /* > nav {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
+  }
+  
+  .eggs-hamburger {
+    all: unset;
     position: fixed;
-    right: 0;
+    left: 0;
     top: 0;
-    width: 20em;
-    height: 30em;
-    background-color: white; */
+    width:  3rem;
+    height: 3rem;
+    margin: 1rem;
+    z-index: 9999;
 
-    > nav > .hamburgerMenu {
-      
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-end;
+    > svg {
+      width:  100%;
+      height: 100%;
+      color: var(--orange);
 
-      position: absolute;
-      position: fixed;
-      right: 0;
-      top: 0;
-      /* transform: translateY(50%); */
-      width: 5em;
-      height: 5em;
-      background-color: transparentk;
-      z-index: 9999;
-      overflow: hidden;
-
-      > #menuToggle {
-        width: 4em;
-        height: 4em;
-        position: absolute;
-        top: 1em;
-        right: 1em;
-        appearance: none;
-      }
-
-      > span {
-        position: absolute;
-        right: 1em;
-        top: 1em;
-        /* margin-top: 0.5em; */
-        width: 3.5em;
-        height: 0.75em;
-        background-color: white;
-        border-radius: 4px;
-        z-index: 10000;
-        /* margin-right: 0.5em; */
-        cursor: none;
-        pointer-events: none;
-      }
-      > span:nth-of-type(1) {
-        top: 1em;
-      }
-      > span:nth-of-type(2) {
-        top: 2em;
-      }
-      > span:nth-of-type(3) {
-        top: 3em;
-      }
-      > .menu {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-        height: 90%;
-        padding: 0;
-        margin: 0;
-        margin-top: 5em;
-        border: 2px solid blue;
-        background-color: red;
-        display: none;
-        overflow: hidden;
-      > li {
-        list-style: none;
-        /* margin: 1em 0; */
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 0;
-        margin: 0;
-        width: 100%;
-        z-index: 99999;
-        
+      &:hover, &:focus-visible {
+        color: var(--white);
       }
     }
   }
-  }  
 
+  .eggs-basket {
+    justify-content: center;
+    width:  50vw;
+    height: 50vw;
+    min-height: min-content;
+    background-color: var(--blue);
+    color: var(--white);
+    border: none;
+    font-family: 'Space Grotesk';
+    padding: 1rem;
+    z-index: 1;
+    box-shadow: 0 0 0 max(100vw, 100vh) #00000080;
+
+    &:popover-open {
+      display: flex;
+    }
+
+    h2 {
+      color: var(--orange);
+    }
+
+    ul {
+      padding: 0;
+    }
+
+    li {
+      list-style: none;
+    }
+  }
 
   > main {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  /* overflow-y: scroll;
-  height: 100vh; */
   width: 100vw;
   position: relative;
-  /* overflow: hidden;  */
-  /* Nodig voor blackhole effect */
 
   .satellite {
   width: 30em;
   height: 15em;
   margin-top: 5em;
   margin-bottom: 2em;
-
-
-  /* border: 2px solid green; */
-  /* background-color: cyan; */
-
-
-
-  
-  /* Dit heb ik toegevoegd @Sela
-  & width & height aangepast */
-  /* background-image: url(../images/satellite.svg); */
-  /* background-repeat: no-repeat; */
-
-
-
-
   position: fixed;
-  /* transform: translateY(-24em); */
-  top: 29em;
+  top: 0.5em;
   left: 50%;
   transform: translateX(-50%);
   overflow: hidden;
   z-index: 2000;
 
-  animation: satelliteScale 1s linear;
-  animation-timeline: scroll(root);
-
-  /* animation: satteliteRotate linear;
-  animation-timeline: scroll(root); */
-  /* right: 50%;
-  top:   20px; */
-  /* transform: translate(50%, 0); */
-  /* width:  calc(0.4 * var(--container-w));
-  height: calc(0.4 * var(--container-w));
-  box-shadow: 0 0 0 2px red inset; */
+  animation: satelliteAnimation 1s ease-in-out, satelliteAnimationOnDelay 0.8s ease-in-out 3.2s forwards, satelliteHoveringAnimation 10s ease-in-out 4s infinite;
 }
 
 /* Fonts styling @Sela*/
 h2 {
   font-family: 'Space Mono', sans-serif;
   color: var(--orange);
-
   font-size: clamp(1em, 10vw, 3em);
   font-weight: 100;
+
+  margin: 0 auto;
 }
 
 h3 {
   font-family: 'Space Mono', sans-serif;
   color: var(--orange);
-
   font-size: clamp(1.5em, 8vw, 2em);
   font-weight: 100;
 }
@@ -217,40 +146,38 @@ h3 {
 p {
   font-family: 'Space Grotesk', sans-serif;
   color: var(--white);
-
   font-size: clamp(0.3em, 2.5vw, 1em);
   letter-spacing: 0.05em;
 }
 
+/* Stylen van de sections met tekst @Sela*/
 .textstyling {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
 
-  margin: 0 auto;
   margin-bottom: 100vh;
   width: 100%;
   max-width: 40em;
+
   animation: textSlide 1s linear both;
   animation-timeline: view();
-
   animation-range: cover 0% cover 100%;
 
- > ul {
-  font-family: 'Space Grotesk', sans-serif;
-  color: var(--white);
+  > ul,
+  > ol {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--white);
 
-  font-size: clamp(0.3em, 2.5vw, 1em);
-  letter-spacing: 0.05em;
+    font-size: clamp(0.3em, 2.5vw, 1em);
+    letter-spacing: 0.05em;
 }
 
 > .missiongoals {
     display: flex;
-    flex-direction: row;
-    justify-content: center;
+    width: 100%;
 
-    margin: 0 4em;    
+    gap: 30px;
   }
 
   > .launchingsteps{
@@ -258,57 +185,31 @@ p {
   }
 }
 
-
-/* Stylen van de sections met tekst @Sela*/
-
-/* .text {
-  background-color: transparent;
-  color: white;
-  border: none;
-  top: 35em;
-  text-align: left;
-
-  animation: texts 1s linear;
-  animation-timeline: scroll(root);
-} */
-
 .globe {
   width: 40em;
   height: 40em;
   margin: 0 auto;
   z-index: 1000;
 
-
-
-  /* Dit heb ik toegevoegd @Sela */
   background-image: url(../images/earth.svg);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 
-
-
-
-
-  /* border-top: 10px solid yellow; */
-  border: 2px solid green;
   border-radius: 50%;
   position: fixed;
   display: flex;
-  /* animation: globeZoom 1s linear; */
-
 
   animation: grow linear, rotate linear;
   animation-timeline: scroll(root), scroll(root);
-  /* position: absolute; */
   bottom: -50%;
 
-  .plane {
+  /* .plane {
     width: 3em;
     height: 3em;
     background-color: yellow;
     margin: 2em;
-  }
+  } */
 }
 
     .stars {
@@ -317,6 +218,10 @@ p {
       margin: 0 auto;
       z-index: 1000;
 
+      filter:
+        drop-shadow(0 0  5px white)
+        drop-shadow(0 0 10px white)
+        drop-shadow(0 0 15px white);
       background-image: url(../images/stars.svg);
       background-size: cover;
       background-position: center;
@@ -337,75 +242,98 @@ p {
   }
 }
 
+.altitude {
+  position: fixed;
+  left: 0;
+  top:  0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100vh;
+  width:  5rem;
+  padding: 1rem;
+  z-index: 1001;
+  color: var(--white);
+  font-family: 'Space Mono';
+}
 
-/* @keyframes headerSplash {
+@keyframes slideOutH1 {
   0% {
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(10px);
-    z-index: 9999;
+    opacity: 1;
+    font-size: clamp(1.2em, 5vw, 3.5em);
+    transform: translateY(0);
   }
   100% {
-    backdrop-filter: blur(0);
-    position: absolute;
+    font-size: 0.1em;
+    opacity: 0;
+    transform: translateY(-100vw);
   }
-} */
-
-
+}
 
 @keyframes textSlide {
   0% {
     opacity: 0;
-    transform: translateY(15em);
-    /* width: 5em;
-    top: 50em;
-    left: 50%;
-    text-align: center; */
+    transform: translate(-100vw, -20em);
   }
   25% {
-    opacity: 0.8;
-    transform: translate(0, 0);
-    /* width: 10em;
-    top: 35em;
-    left: 50%;
-    text-align: center; */
+    opacity: 1;
+    transform: translate(0, -20em);
   }
   50% {
     opacity: 1;
-    transform: translate(0, -5em);
-    /* width: 20em;
-    top: 25em;
-    left: 50%;
-    text-align: left; */
+    transform: translate(0, 0em);
   }
   75% {
     opacity: 1;
-    transform: translate(0, -8em);
-    /* width: 20em;
-    top: 18em;
-    left: 50%; */
+    transform: translate(0, 20em);
   }
   100% {
     opacity: 1;
-    transform: translate(-30em, -5em);
-    /* top: 10em;
-    left: 110em; */
+    transform: translate(100vw, 60em);
   }
 }
 
-@keyframes satelliteScale {
+@keyframes satelliteAnimation {
   0% {
-    top: 29em;
-    transform: translateX(-50%) scale(0.5);
-  }
-  50% {
-    transform: translateX(-50%) scale(0.75);
+    transform: translateX(-50%) scale(5);
     top: 20em;
+  }
+  /* 50% {
+    transform: translateX(-50%) scale(2);
+    top: 1em;
+  } */
+  100% {
+    transform: translateX(-50%) scale(1);
+    top: 0em;
+  }
+}
+
+@keyframes satelliteAnimationOnDelay {
+  0% {
+    transform: translateX(-50%) scale(1);
+    top: 0em;
   }
   100% {
     transform: translateX(-50%) scale(1);
-    top: 3em;
+    top: -5em;
+  }
+}
+
+@keyframes satelliteHoveringAnimation {
+  0% {
+    transform: translateX(-50%) translate(0, 0);
+  }
+  25% {
+    transform: translateX(-50%) translate(0.5em, -0.5em);
+  }
+  50% {
+    transform: translateX(-50%) translate(-0.5em, -0.5em);
+  }
+  75% {
+    transform: translateX(-50%) translate(-0.5em, 0.5em);
+  }
+  100% {
+    transform: translateX(-50%) translate(0, 0);
   }
 }
 
@@ -428,54 +356,11 @@ p {
 }
 
 
-
-
-
-
-
-
-
 /* Hamburger menu klik interacties */
-
-:has(#menuToggle:checked) .hamburgerMenu {
-  display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: flex-end;
-
-      position: absolute;
-      position: fixed;
-      right: 0;
-      top: 0;
-      /* transform: translateY(50%); */
-      width: 20em;
-      height: 25em;
-      /* background-color: white; */
-      z-index: 9999;
-
-      transition: width 0.4s ease-in-out, height 0.4s ease-in-out;
-}
-
-:has(#menuToggle:checked) .menu {
-  display: flex;
-  z-index: 99999;
-  background: white;
-  border-radius: 16px;
-
-  transition: border-radius 0.6s ease;
-}
-
-:has(#menuToggle:checked) span {
-  margin-top: 0.25em;
-}
 
 :has(#blackHole:checked) .satellite {
   background-color: red;
 }
-
-
-
-
 
 
 
@@ -584,6 +469,58 @@ p {
   white-space: nowrap;
   will-change: transform, opacity;
   transition: transform 0.05s linear;
+}
+
+
+
+/*********************/
+/* h1 verschijn effect */
+/*********************/
+/* Bron: https://codepen.io/BRacicot/pen/Nryjpa */
+
+/* .decode-text {
+  width: 100%;
+  font-size: clamp(2.5rem, 8vw, 6rem);
+  text-align: center;
+} */
+
+.space {
+  display: inline-block;
+  width: 20px;
+}
+
+.text-animation {
+  display: inline-block;
+  position: relative;
+  color: transparent;
+  text-transform: uppercase;
+}
+
+.text-animation::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: #0e182d;
+  width: 0;
+  height: 1.2em;
+  transform: translate(-50%, -55%);
+}
+
+.text-animation.state-1::before {
+  width: 2px;
+}
+
+.text-animation.state-2::before {
+  width: 0.9em;
+}
+
+.text-animation.state-3 {
+  color: white;
+}
+
+.text-animation.state-3::before {
+  width: 0;
 }
 
 /******************/

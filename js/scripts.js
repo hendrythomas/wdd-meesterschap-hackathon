@@ -143,7 +143,6 @@ window.addEventListener("scroll", () => {
   cachePositions();
 });
 
-
 /******************/
 /* Cat Easter egg */
 /******************/
@@ -235,6 +234,96 @@ function fadeOut(duration = 2000) {
     audio.currentTime = 0;
   }, duration);
 }
+
+
+/*********************/
+/* Animatie Typewriter */
+/*********************/
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const title = document.querySelector("h1");
+//   const text = title.textContent;
+
+//   function typeWriter(text, element, speed = 70) {
+//       let i = 0;
+//       element.textContent = '';
+//       element.style.borderRight = "2px solid white";
+
+//       function typing() {
+//           if (i < text.length) {
+//               element.textContent += text.charAt(i);
+//               i++;
+//               setTimeout(typing, speed);
+//           } else {
+//               element.style.borderRight = "none";
+//           }
+//       }
+
+//       typing();
+//   }
+
+//   typeWriter(text, title, 70);
+// });
+
+/***************************/
+/* Letter verschijn effect */
+/***************************/
+
+function decodeText(){
+  const text = document.querySelector('.decode-text');
+  const children = text.children;
+
+  let state = [];
+
+  for(let i = 0; i < children.length; i++){
+      children[i].classList.remove('state-1','state-2','state-3');
+      state[i] = i;
+  }
+
+  let shuffled = shuffle(state);
+
+  for(let i = 0; i < shuffled.length; i++){
+      let child = children[shuffled[i]];
+
+      let state1Time = Math.random() * 2000 + 50;
+
+      if(child.classList.contains('text-animation')){
+          setTimeout(() => firstStages(child), state1Time);
+      }
+  }
+}
+
+function firstStages(child){
+  child.classList.add('state-1');
+  setTimeout(() => secondStages(child), 100);
+}
+
+function secondStages(child){
+  child.classList.add('state-2');
+  setTimeout(() => thirdStages(child), 100);
+}
+
+function thirdStages(child){
+  child.classList.add('state-3');
+}
+
+function shuffle(array) {
+  let currentIndex = array.length, randomIndex;
+
+  while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]
+      ];
+  }
+
+  return array;
+}
+
+decodeText();
+
 
 
 /**************/
