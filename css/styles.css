@@ -25,7 +25,7 @@ body {
   margin: 0;
   width: 100vw;
   /* height: 100%; */
-  border: 2px solid red;
+  /* border: 2px solid red; */
   background-color: rgb(0, 0, 104);
   overflow-x: hidden;
 
@@ -48,6 +48,8 @@ body {
     font-size: clamp(1.2em, 5vw, 3.5em);
     font-weight: 400;
     color: var(--orange);
+
+    animation: slideOutH1 10s ease-out forwards 2s;
   }
 
   /* > nav {
@@ -178,14 +180,14 @@ body {
 
   position: fixed;
   /* transform: translateY(-24em); */
-  top: 29em;
+  top: 0.5em;
   left: 50%;
   transform: translateX(-50%);
   overflow: hidden;
   z-index: 2000;
 
-  animation: satelliteScale 1s linear;
-  animation-timeline: scroll(root);
+  animation: satelliteAnimation 1s ease-in-out, satelliteAnimationOnDelay 0.8s ease-in-out 2.5s forwards;
+  /* animation-timeline: scroll(root); */
 
   /* animation: satteliteRotate linear;
   animation-timeline: scroll(root); */
@@ -353,6 +355,19 @@ p {
 } */
 
 
+@keyframes slideOutH1 {
+  0% {
+    opacity: 1;
+    font-size: clamp(1.2em, 5vw, 3.5em);
+    transform: translateY(0);
+  }
+  100% {
+    font-size: 0.1em;
+    opacity: 0;
+    transform: translateY(-100vw);
+  }
+}
+
 
 @keyframes textSlide {
   0% {
@@ -373,7 +388,7 @@ p {
   }
   50% {
     opacity: 1;
-    transform: translate(0, -10em);
+    transform: translate(0, 0em);
     /* width: 20em;
     top: 25em;
     left: 50%;
@@ -381,31 +396,42 @@ p {
   }
   75% {
     opacity: 1;
-    transform: translate(100vw, 20em);
+    transform: translate(0, 20em);
     /* width: 20em;
     top: 18em;
     left: 50%; */
   }
   100% {
     opacity: 1;
-    transform: translate(100vw, 20em);
+    transform: translate(100vw, 60em);
     /* top: 10em;
     left: 110em; */
   }
 }
 
-@keyframes satelliteScale {
+@keyframes satelliteAnimation {
   0% {
-    top: 29em;
-    transform: translateX(-50%) scale(0.5);
-  }
-  50% {
-    transform: translateX(-50%) scale(0.75);
+    transform: translateX(-50%) scale(5);
     top: 20em;
+  }
+  /* 50% {
+    transform: translateX(-50%) scale(2);
+    top: 1em;
+  } */
+  100% {
+    transform: translateX(-50%) scale(1);
+    top: 0em;
+  }
+}
+
+@keyframes satelliteAnimationOnDelay {
+  0% {
+    transform: translateX(-50%) scale(1);
+    top: 0em;
   }
   100% {
     transform: translateX(-50%) scale(1);
-    top: 3em;
+    top: -5em;
   }
 }
 
