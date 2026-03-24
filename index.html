@@ -9,6 +9,39 @@
 <body>
   <header>
     <h1>NEBULA Xplorer</h1>
+    <nav>
+            <div class="hamburgerMenu">
+                <input type="checkbox" id="menuToggle">
+
+                <span></span>
+                <span></span>
+                <span></span>
+
+                <ul class="menu">
+                    <h2 class="hamaburgerMenuTitle">Fun Items</h2>
+                    <li>
+                      <input type="checkbox" id="blackHole">
+                      <label for="blackHole">Black Hole</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" onclick="toggleDarkMode()" id="darkModeBtn">
+                        <label for="darkModeBtn"></label>
+                    </li>
+                    <li>
+                        <input type="checkbox" onclick="toggleFontSize()" id="fontSizeBtn">
+                        <label for="fontSizeBtn"></label>
+                    </li>
+                    <li>
+                        <input type="checkbox" onclick="toggleDyslexiaFriendly()" id="dyslexiaBtn">
+                        <label for="dyslexiaBtn"></label>
+                    </li>
+                    <li>
+                        <input type="checkbox" onclick="toggleHighContrast()" id="highContrastBtn">
+                        <label for="highContrastBtn"></label>
+                    </li>
+                </ul>
+            </div>
+        </nav>
   </header>
   <main>
     <div class="satellite"></div>
