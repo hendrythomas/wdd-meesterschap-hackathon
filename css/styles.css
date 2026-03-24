@@ -308,8 +308,8 @@ p {
   /* animation: globeZoom 1s linear; */
 
 
-  animation: earthRotate linear;
-  animation-timeline: scroll(root);
+  animation: grow linear, rotate linear;
+  animation-timeline: scroll(root), scroll(root);
   /* position: absolute; */
   bottom: -50%;
 
@@ -321,10 +321,30 @@ p {
   }
 }
 
-.stretch {
-  height: 200vh;
-}
-}
+    .stars {
+      width:  150em;
+      height: 150em;
+      margin: 0 auto;
+      z-index: 1000;
+
+      background-image: url(../images/stars.svg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+
+      border-radius: 50%;
+      position: fixed;
+      display: flex;
+
+      animation: rotate linear;
+      animation-timeline: scroll(root);
+      bottom: -150%;
+    }
+
+    .stretch {
+      height: 200vh;
+    }
+  }
 }
 
 
@@ -399,12 +419,21 @@ p {
   }
 }
 
-@keyframes earthRotate {
+@keyframes rotate {
   from {
-    transform: scale(1) rotate(-10deg);
+    rotate: 0deg;
   }
   to {
-    transform: scale(0.8) rotate(360deg);
+    rotate: 360deg;
+  }
+}
+
+@keyframes grow {
+  from {
+    scale: 1;
+  }
+  to {
+    scale: 0.8;
   }
 }
 
