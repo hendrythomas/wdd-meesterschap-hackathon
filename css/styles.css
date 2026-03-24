@@ -238,8 +238,8 @@ p {
   justify-content: center;
   align-items: center;
 
-  margin: 0 auto;
-  margin-bottom: 100vh;
+  margin: 20em auto;
+  margin-bottom: 50vh;
   width: 100%;
   max-width: 40em;
   animation: textSlide 1s linear both;
@@ -347,15 +347,15 @@ p {
 @keyframes textSlide {
   0% {
     opacity: 0;
-    transform: translateY(15em);
+    transform: translate(-100vw, -20em);
     /* width: 5em;
     top: 50em;
     left: 50%;
     text-align: center; */
   }
   25% {
-    opacity: 0.8;
-    transform: translate(0, 0);
+    opacity: 1;
+    transform: translate(0, -20em);
     /* width: 10em;
     top: 35em;
     left: 50%;
@@ -363,7 +363,7 @@ p {
   }
   50% {
     opacity: 1;
-    transform: translate(0, -5em);
+    transform: translate(0, -10em);
     /* width: 20em;
     top: 25em;
     left: 50%;
@@ -371,14 +371,14 @@ p {
   }
   75% {
     opacity: 1;
-    transform: translate(0, -8em);
+    transform: translate(100vw, 20em);
     /* width: 20em;
     top: 18em;
     left: 50%; */
   }
   100% {
     opacity: 1;
-    transform: translate(-30em, -5em);
+    transform: translate(100vw, 20em);
     /* top: 10em;
     left: 110em; */
   }
