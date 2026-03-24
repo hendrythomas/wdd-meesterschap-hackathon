@@ -161,6 +161,7 @@ body {
   height: 100vh; */
   width: 100vw;
   position: relative;
+  overflow: hidden; /* Nodig voor blackhole effect */
 
   .satellite, .text {
   width: 20em;
@@ -407,3 +408,12 @@ p{
 
 
 
+/*********************/
+/* Black Hole Effect */
+/*********************/
+.char {
+  display: inline-block;
+  white-space: pre;
+  will-change: transform, opacity;
+  transition: transform 0.05s linear;
+}
