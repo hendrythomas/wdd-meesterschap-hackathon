@@ -149,7 +149,7 @@ body {
   overflow: hidden;
   z-index: 2000;
 
-  animation: satelliteAnimation 1s ease-in-out, satelliteAnimationOnDelay 0.8s ease-in-out 3.2s forwards, satelliteHoveringAnimation 5s ease-in-out 4s infinite;
+  animation: satelliteAnimation 1s ease-in-out, satelliteAnimationOnDelay 0.8s ease-in-out 3.2s forwards, satelliteHoveringAnimation 10s ease-in-out 4s infinite;
 }
 
 /* Fonts styling @Sela*/
@@ -330,8 +330,14 @@ p {
   0% {
     transform: translateX(-50%) translate(0, 0);
   }
+  25% {
+    transform: translateX(-50%) translate(0.5em, -0.5em);
+  }
   50% {
     transform: translateX(-50%) translate(-0.5em, -0.5em);
+  }
+  75% {
+    transform: translateX(-50%) translate(-0.5em, 0.5em);
   }
   100% {
     transform: translateX(-50%) translate(0, 0);
