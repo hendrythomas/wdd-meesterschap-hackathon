@@ -37,6 +37,7 @@ body {
   /* height: 100%; */
   border: 2px solid red;
   background-color: rgb(0, 0, 104);
+  overflow-x: hidden;
 
   > header {
   display: flex;
@@ -161,11 +162,12 @@ body {
   height: 100vh; */
   width: 100vw;
   position: relative;
-  overflow: hidden; /* Nodig voor blackhole effect */
+  /* overflow: hidden;  */
+  /* Nodig voor blackhole effect */
 
   .satellite {
-  width: 20em;
-  height: 5em;
+  width: 30em;
+  height: 15em;
   margin-top: 5em;
   margin-bottom: 2em;
 
@@ -179,7 +181,7 @@ body {
   /* Dit heb ik toegevoegd @Sela
   & width & height aangepast */
   /* background-image: url(../images/satellite.svg); */
-  background-repeat: no-repeat;
+  /* background-repeat: no-repeat; */
 
 
 
@@ -190,8 +192,9 @@ body {
   left: 50%;
   transform: translateX(-50%);
   overflow: hidden;
+  z-index: 2000;
 
-  animation: SatelliteHide 1s linear;
+  animation: satelliteScale 1s linear;
   animation-timeline: scroll(root);
 
   /* animation: satteliteRotate linear;
@@ -205,7 +208,7 @@ body {
 }
 
 /* Fonts styling @Sela*/
-h2{
+h2 {
   font-family: 'Space Mono', sans-serif;
   color: var(--orange);
 
@@ -235,13 +238,16 @@ p {
   justify-content: center;
   align-items: center;
 
-  margin: 0 4em;
-  animation: texts 1s linear;
-  animation-timeline: view(block);
+  margin: 0 auto;
+  margin-bottom: 100vh;
+  width: 100%;
+  max-width: 40em;
+  animation: textSlide 1s linear both;
+  animation-timeline: view();
 
-  animation-range: 0% 50%;
+  animation-range: cover 0% cover 100%;
 
- > ul{
+ > ul {
   font-family: 'Space Grotesk', sans-serif;
   color: var(--white);
 
@@ -356,48 +362,60 @@ p {
   }
 } */
 
-@keyframes SatelliteHide {
-  0% {
-    top: 29em;
-  }
-  50% {
-    top: 20em;
-  }
-  100% {
-    top: 3em;
-  }
-}
 
-@keyframes texts {
+
+@keyframes textSlide {
   0% {
     opacity: 0;
-    width: 5em;
+    transform: translateY(15em);
+    /* width: 5em;
     top: 50em;
     left: 50%;
-    text-align: center;
+    text-align: center; */
   }
   25% {
     opacity: 0.8;
-    width: 10em;
+    transform: translate(0, 0);
+    /* width: 10em;
     top: 35em;
     left: 50%;
-    text-align: center;
+    text-align: center; */
   }
   50% {
     opacity: 1;
-    width: 20em;
+    transform: translate(0, -5em);
+    /* width: 20em;
     top: 25em;
     left: 50%;
-    text-align: left;
+    text-align: left; */
   }
   75% {
-    width: 20em;
+    opacity: 1;
+    transform: translate(0, -8em);
+    /* width: 20em;
     top: 18em;
-    left: 50%;
+    left: 50%; */
   }
   100% {
-    top: 10em;
-    left: 110em;
+    opacity: 1;
+    transform: translate(-30em, -5em);
+    /* top: 10em;
+    left: 110em; */
+  }
+}
+
+@keyframes satelliteScale {
+  0% {
+    top: 29em;
+    transform: translateX(-50%) scale(0.5);
+  }
+  50% {
+    transform: translateX(-50%) scale(0.75);
+    top: 20em;
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    top: 3em;
   }
 }
 
