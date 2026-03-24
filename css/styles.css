@@ -503,10 +503,33 @@ p {
 /*********************/
 /* Black Hole Effect */
 /*********************/
-.char {
+.word {
   display: inline-block;
-  white-space: pre;
+  white-space: nowrap;
   will-change: transform, opacity;
   transition: transform 0.05s linear;
 }
 
+/******************/
+/* Cat Easter egg */
+/******************/
+#cat {
+  position: fixed;
+  top: 50%;
+  left: 0;
+
+  transform: translate(-120%, -50%); /* start off-screen left */
+  width: 100px;
+}
+
+/* Trigger class */
+.animate {
+  animation: catMove 6s ease-in-out forwards;
+}
+
+@keyframes catMove {
+  0% { transform: translate(-120%, -50%); }
+  25% { transform: translate(10%, -50%); }
+  50% { transform: translate(10%, -50%); }
+  100% { transform: translate(120vw, -50%); } 
+}
