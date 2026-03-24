@@ -54,8 +54,9 @@ body {
 
   > h1 { /* @Sela */
     font-family: 'Space Mono', sans-serif;
-    font-size: 2.5em;
-    color: white;
+    font-size: clamp(1.2em, 5vw, 3.5em);
+    font-weight: 400;
+    color: var(--orange);
   }
 
   /* > nav {
@@ -144,14 +145,9 @@ body {
         
       }
     }
-    /* } */
   }
-  
-    color: var(--orange);
-    font-weight: 400;
-    font-size: clamp(1.2em, 10vw, 3.5em);
   }  
-}
+
 
   > main {
   display: flex;
@@ -215,7 +211,7 @@ p{
   letter-spacing: 0.05em;
 }
 
-ul{
+.textstyling > ul{
   font-family: 'Space Grotesk', sans-serif;
   color: var(--white);
 
@@ -231,8 +227,10 @@ ul{
   align-items: center;
 
   margin: 0 4em;
+  animation: texts 1s linear;
+  animation-timeline: scroll(root);
 
-  div{
+  .missiongoals{
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -245,7 +243,7 @@ ul{
   }
 }
 
-.text {
+/* .text {
   background-color: transparent;
   color: white;
   border: none;
@@ -254,7 +252,7 @@ ul{
 
   animation: texts 1s linear;
   animation-timeline: scroll(root);
-}
+} */
 
 .globe {
   width: 40em;
@@ -272,8 +270,8 @@ ul{
 
   animation: earthRotate linear;
   animation-timeline: scroll(root);
-  /* position: absolute;
-  bottom: -50%; */
+  /* position: absolute; */
+  bottom: -50%;
 
   .plane {
     width: 3em;
@@ -362,6 +360,10 @@ ul{
 
 
 
+
+
+
+
 /* Hamburger menu klik interacties */
 
 :has(#menuToggle:checked) .hamburgerMenu {
@@ -388,91 +390,3 @@ ul{
 :has(#blackHole:checked) .satellite {
   background-color: red;
 }
-
-
-
-/* .graphics {
-  --container-w: clamp(200px, 100vh, 100vw);
-  position: relative;
-  width:  var(--container-w);
-  height: 100%;
-  box-shadow: 0 0 0 2px purple inset;
-  overflow: hidden;
-
-  * {
-    position: absolute;
-  } */
-
-  /* .satellite {
-    right: 50%;
-    top:   20px;
-    transform: translate(50%, 0);
-    width:  calc(0.4 * var(--container-w));
-    height: calc(0.4 * var(--container-w));
-    box-shadow: 0 0 0 2px red inset;
-  } */
-
-  /* .globe {
-    right:  50%;
-    bottom: 0%;
-    transform: translate(50%, 50%);
-    width:  calc(1 * var(--container-w));
-    height: calc(1 * var(--container-w));
-    box-shadow: 0 0 0 2px blue inset;
-    animation: spin 5s linear infinite;
-  }
-} */
-
-/* .altitude {
-  position: fixed;
-  right:  0;
-  width:  100px;
-  height: 100%;
-  box-shadow: 0 0 0 2px green inset;
-}
-
-@keyframes grow {
-  0% {
-    transform:
-      translate(50%, 50%)
-      scale(0%);
-  }
-  100% {
-    transform:
-      translate(50%, 50%)
-      scale(100%);
-  }
-}
-
-@keyframes spin {
-  100% {
-    transform:
-      translate(50%, 50%)
-      rotate(360deg);
-  }
-} */
-
-/* voorbeeld */
-/* #thomas {}
-
-
-* {
-  box-sizing: border-box;
-}
-
-html, body {
-  width:  100%;
-  height: 100%;
-  margin: 0;
-} */
-
-/* button {
-  all: unset;
-  box-sizing: border-box;
-} */
-
-/* ::selection {
-  text-shadow: none;
-  background-color: Highlight;
-  color: HighlightText;
-} */
