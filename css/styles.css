@@ -1,8 +1,8 @@
-
-*,*::before, *::after {
-        box-sizing: border-box;
-        transition: all 0.3s ease;
-    }
+*,*::before, 
+*::after {
+  box-sizing: border-box;
+  transition: all 0.3s ease;
+}
 
 :root {
   --white: #ffffff;
@@ -18,6 +18,16 @@
   --link-hover: #212656;
 
   scroll-timeline: --main-timeline;
+}
+
+@font-face{ 
+  font-family:'Space Mono';
+  src: url('../fonts/spacemono.ttf') format('ttf');
+}
+
+@font-face{ 
+  font-family:'Space Grotesk';
+  src: url('../fonts/spacegrotesk.ttf') format('ttf');
 }
 
 body {
@@ -41,10 +51,14 @@ body {
   /* transform: translate(-50%, -50%); */
   /* animation: headerSplash 10s ease-out; */
 
-  > h1 {
+  > h1 { /* @Sela */
+    font-family: 'Space Mono', sans-serif;
     font-size: 2.5em;
-    color: white;
-  }
+  
+    color: var(--orange);
+    font-weight: 400;
+    font-size: clamp(1.2em, 10vw, 3.5em);
+  }  
 }
 
   > main {
@@ -82,6 +96,61 @@ body {
   /* width:  calc(0.4 * var(--container-w));
   height: calc(0.4 * var(--container-w));
   box-shadow: 0 0 0 2px red inset; */
+}
+
+/* Fonts styling @Sela*/
+h2{
+  font-family: 'Space Mono', sans-serif;
+  color: var(--orange);
+
+  font-size: clamp(1em, 10vw, 3em);
+  font-weight: 100;
+}
+
+h3{
+  font-family: 'Space Mono', sans-serif;
+  color: var(--orange);
+
+  font-size: clamp(1.5em, 8vw, 2em);
+  font-weight: 100;
+}
+
+p{
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--white);
+
+  font-size: clamp(0.3em, 2.5vw, 1em);
+  letter-spacing: 0.05em;
+}
+
+ul{
+  font-family: 'Space Grotesk', sans-serif;
+  color: var(--white);
+
+  font-size: clamp(0.3em, 2.5vw, 1em);
+  letter-spacing: 0.05em;
+}
+
+/* Stylen van de sections met tekst @Sela*/
+.textstyling{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  margin: 0 4em;
+
+  div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    margin: 0 4em;    
+  }
+
+  .launchingsteps{
+    padding-left: 1em;
+  }
 }
 
 .text {
