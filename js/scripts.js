@@ -15,32 +15,34 @@ let enabled = false;
 // Select ALL paragraphs
 const paragraphs = document.querySelectorAll(".warpable-text");
 
-// Store all characters
-let chars = [];
+// Store all word elements
+let words = [];
 
-// 🔤 Convert paragraphs into spans (ACCESSIBLE)
-paragraphs.forEach((paragraph, index) => {
+// 🔤 Convert paragraphs into WORD spans (ACCESSIBLE)
+paragraphs.forEach((paragraph) => {
   const text = paragraph.innerText.trim();
 
+  // Accessibility
   paragraph.setAttribute("aria-label", text);
   paragraph.setAttribute("role", "text");
 
+  // Clear content
   paragraph.innerHTML = "";
 
-  text.split("").forEach(char => {
-    if (char === "\n") {
-      paragraph.appendChild(document.createElement("br"));
-      return;
-    }
+  const wordList = text.split(" ");
 
+  wordList.forEach((word, i) => {
     const span = document.createElement("span");
-    span.className = "char";
-    span.setAttribute("aria-hidden", "true");
+    span.className = "word";
 
-    span.innerHTML = char === " " ? "&nbsp;" : char;
+    span.textContent = word;
 
     paragraph.appendChild(span);
-    chars.push(span);
+
+    // Add space between words
+    if (i < wordList.length - 1) {
+      paragraph.appendChild(document.createTextNode(" "));
+    }
   });
 });
 
@@ -49,7 +51,7 @@ toggle?.addEventListener("change", () => {
   enabled = toggle.checked;
 
   if (!enabled) {
-    chars.forEach(el => {
+    words.forEach(el => {
       el.style.transform = "translate(0px, 0px) scale(1)";
       el.style.opacity = 1;
     });
@@ -60,27 +62,30 @@ toggle?.addEventListener("change", () => {
 let basePositions = [];
 
 function cachePositions() {
-  basePositions = [];
+  words = Array.from(document.querySelectorAll(".word"));
 
-  chars.forEach(char => {
-    const rect = char.getBoundingClientRect();
+  basePositions = words.map(word => {
+    const rect = word.getBoundingClientRect();
 
-    basePositions.push({
-      el: char,
+    return {
+      el: word,
       x: rect.left + rect.width / 2,
       y: rect.top + rect.height / 2
-    });
+    };
   });
 }
 
-// Initial cache (delayed)
-setTimeout(() => {
-  cachePositions();
-}, 100);
+// Initial cache
+setTimeout(cachePositions, 100);
 
 // Recalculate on resize
 window.addEventListener("resize", () => {
   setTimeout(cachePositions, 100);
+});
+
+// Recalculate on scroll (important!)
+window.addEventListener("scroll", () => {
+  cachePositions();
 });
 
 // Mouse tracking
@@ -95,12 +100,7 @@ document.addEventListener("mousemove", (e) => {
 });
 
 // Animation loop
-let frameCount = 0;
-
 function animate() {
-  frameCount++;
-  
-
   basePositions.forEach(obj => {
     const { el, x, y } = obj;
 
@@ -110,9 +110,6 @@ function animate() {
     let dist = Math.sqrt(dx * dx + dy * dy) || 0.0001;
 
     if (enabled && dist < RADIUS) {
-      let nx = dx / dist;
-      let ny = dy / dist;
-
       let force = STRENGTH * Math.exp(-dist / 120);
 
       let angle = Math.atan2(dy, dx);
@@ -145,3 +142,185 @@ animate();
 window.addEventListener("scroll", () => {
   cachePositions();
 });
+
+/******************/
+/* Cat Easter egg */
+/******************/
+const img = document.getElementById("cat");
+
+function getRandomDelay() {
+  return Math.random() * (30000 - 12000) + 12000;
+}
+
+// 🎯 Random vertical position
+function setRandomHeight() {
+  const viewportHeight = window.innerHeight;
+
+  // Keep it within visible area (with margins)
+  const min = viewportHeight * 0.2;
+  const max = viewportHeight * 0.8;
+
+  const randomY = Math.random() * (max - min) + min;
+
+  img.style.top = `${randomY}px`;
+}
+
+const catAnimationDuration = 6000; // 6 seconds
+
+function triggerAnimation() {
+  img.classList.remove("animate");
+
+  // Stop previous audio (if running)
+  fadeOut(500);
+
+  setRandomHeight();
+
+  void img.offsetWidth;
+
+  img.classList.add("animate");
+
+  // Start sound (slightly quieter)
+  fadeIn(1000);
+
+  // Fade out BEFORE it reaches the end
+  setTimeout(() => {
+    fadeOut(1000);
+  }, catAnimationDuration - 1000);
+
+  setTimeout(triggerAnimation, getRandomDelay());
+}
+
+// Start
+setTimeout(triggerAnimation, getRandomDelay());
+
+// https://www.youtube.com/watch?v=2yJgwwDcgV8&t=10s
+const audio = new Audio("sfx/cat.mp3"); // replace with your file
+audio.loop = true;
+
+let audioCtx = null;
+let gainNode = null;
+
+function initAudio() {
+  if (audioCtx) return;
+
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const source = audioCtx.createMediaElementSource(audio);
+
+  gainNode = audioCtx.createGain();
+  gainNode.gain.value = 0; // start silent
+
+  source.connect(gainNode);
+  gainNode.connect(audioCtx.destination);
+}
+
+function fadeIn(duration = 2000) {
+  initAudio();
+  audio.play();
+
+  const start = audioCtx.currentTime;
+  gainNode.gain.setValueAtTime(0, start);
+  gainNode.gain.linearRampToValueAtTime(.01, start + duration / 1000);
+}
+
+function fadeOut(duration = 2000) {
+  if (!audioCtx) return;
+
+  const start = audioCtx.currentTime;
+  gainNode.gain.setValueAtTime(gainNode.gain.value, start);
+  gainNode.gain.linearRampToValueAtTime(0, start + duration / 1000);
+
+  setTimeout(() => {
+    audio.pause();
+    audio.currentTime = 0;
+  }, duration);
+}
+
+
+/*********************/
+/* Animatie Typewriter */
+/*********************/
+
+// document.addEventListener("DOMContentLoaded", () => {
+//   const title = document.querySelector("h1");
+//   const text = title.textContent;
+
+//   function typeWriter(text, element, speed = 70) {
+//       let i = 0;
+//       element.textContent = '';
+//       element.style.borderRight = "2px solid white";
+
+//       function typing() {
+//           if (i < text.length) {
+//               element.textContent += text.charAt(i);
+//               i++;
+//               setTimeout(typing, speed);
+//           } else {
+//               element.style.borderRight = "none";
+//           }
+//       }
+
+//       typing();
+//   }
+
+//   typeWriter(text, title, 70);
+// });
+
+/***************************/
+/* Letter verschijn effect */
+/***************************/
+
+function decodeText(){
+  const text = document.querySelector('.decode-text');
+  const children = text.children;
+
+  let state = [];
+
+  for(let i = 0; i < children.length; i++){
+      children[i].classList.remove('state-1','state-2','state-3');
+      state[i] = i;
+  }
+
+  let shuffled = shuffle(state);
+
+  for(let i = 0; i < shuffled.length; i++){
+      let child = children[shuffled[i]];
+
+      let state1Time = Math.random() * 2000 + 50;
+
+      if(child.classList.contains('text-animation')){
+          setTimeout(() => firstStages(child), state1Time);
+      }
+  }
+}
+
+function firstStages(child){
+  child.classList.add('state-1');
+  setTimeout(() => secondStages(child), 100);
+}
+
+function secondStages(child){
+  child.classList.add('state-2');
+  setTimeout(() => thirdStages(child), 100);
+}
+
+function thirdStages(child){
+  child.classList.add('state-3');
+}
+
+function shuffle(array) {
+  let currentIndex = array.length, randomIndex;
+
+  while (currentIndex !== 0) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+      [array[currentIndex], array[randomIndex]] = [
+          array[randomIndex], array[currentIndex]
+      ];
+  }
+
+  return array;
+}
+
+decodeText();
+ stylingTeksten
