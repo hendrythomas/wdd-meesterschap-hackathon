@@ -178,7 +178,7 @@ body {
   
   /* Dit heb ik toegevoegd @Sela
   & width & height aangepast */
-  background-image: url(../images/satellite.svg);
+  /* background-image: url(../images/satellite.svg); */
   background-repeat: no-repeat;
 
 
@@ -286,6 +286,8 @@ p {
 
   /* Dit heb ik toegevoegd @Sela */
   background-image: url(../images/earth.svg);
+  background-size: cover;
+  background-position: center;
   background-repeat: no-repeat;
 
 
