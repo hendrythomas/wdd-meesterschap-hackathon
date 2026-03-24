@@ -20,16 +20,6 @@
   scroll-timeline: --main-timeline;
 }
 
-@font-face{ 
-  font-family:'Space Mono';
-  src: url('../fonts/spacemono.ttf') format('ttf');
-}
-
-@font-face{ 
-  font-family:'Space Grotesk';
-  src: url('../fonts/spacegrotesk.ttf') format('ttf');
-}
-
 body {
   padding: 0;
   margin: 0;
