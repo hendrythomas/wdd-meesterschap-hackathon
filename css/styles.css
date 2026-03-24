@@ -300,6 +300,21 @@ p {
   }
 }
 
+.altitude {
+  position: fixed;
+  left: 0;
+  top:  0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100vh;
+  width:  5rem;
+  padding: 1rem;
+  z-index: 1001;
+  color: var(--white);
+  font-family: 'Space Mono';
+}
+
 
 /* @keyframes headerSplash {
   0% {
