@@ -309,7 +309,7 @@ p {
 
 
   animation: rotate linear, grow linear;
-  animation-timeline: scroll(root) scroll(root);
+  animation-timeline: scroll(root), scroll(root);
   /* position: absolute; */
   bottom: -50%;
 
