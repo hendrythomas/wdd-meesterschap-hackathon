@@ -31,7 +31,10 @@ body {
   scroll-behavior: smooth;
 
   animation: atmosphere;
+<<<<<<< HEAD
   /* Bron: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-timeline/scroll */
+=======
+>>>>>>> parent of 37fad19 (Merge branch 'menuStyling' into dev)
   animation-timeline: scroll(root);
 
   > header {
