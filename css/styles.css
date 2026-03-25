@@ -27,6 +27,8 @@ body {
   background-color: var(--darkblue);
   overflow-x: hidden;
   scroll-behavior: smooth;
+  animation: atmosphere;
+  animation-timeline: scroll(root);
 
   > header {
   display: flex;
@@ -36,20 +38,19 @@ body {
   width: 100%;
   position: relative;
 
-  > h1 { /* @Sela */
-    font-family: 'Space Mono', sans-serif;
-    font-size: clamp(1.2em, 5vw, 3.5em);
-    font-weight: 400;
-    color: var(--orange);
-    text-wrap: nowrap;
+    > h1 {
+      font-family: 'Space Mono', sans-serif;
+      font-size: clamp(1.2em, 5vw, 3.0em);
+      font-weight: 400;
+      color: var(--orange);
+      text-wrap: nowrap;
 
-    animation: slideOutH1 10s ease-out forwards 3.5s;
+      animation: slideOutH1 10s ease-out forwards 3.5s;
 
-    > span {
-      font-size: clamp(1.2em, 5vw, 3.5em);
-
+      > span {
+        font-size: clamp(1.2em, 5vw, 3.0em);
+      }
     }
-  }
   }
   
   .eggs-hamburger {
@@ -108,7 +109,7 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100vw;
+  width: 100%;
   position: relative;
 
   .satellite {
@@ -122,17 +123,18 @@ body {
   transform: translateX(-50%);
   overflow: hidden;
   z-index: 2000;
+  filter: drop-shadow(0px 0px 3px white);
 
-  animation: satelliteAnimation 1s ease-in-out, satelliteAnimationOnDelay 0.8s ease-in-out 3.2s forwards, satelliteHoveringAnimation 10s ease-in-out 4s infinite;
+  animation: satelliteAnimation 1s ease-in-out, 
+  satelliteAnimationOnDelay 0.8s ease-in-out 3.2s forwards, 
+  satelliteHoveringAnimation 10s ease-in-out 4s infinite;
 }
 
-/* Fonts styling @Sela*/
 h2 {
   font-family: 'Space Mono', sans-serif;
   color: var(--orange);
-  font-size: clamp(1em, 10vw, 3em);
+  font-size: clamp(0.7em, 10vw, 2.5em);
   font-weight: 100;
-
   margin: 0 auto;
 }
 
@@ -141,24 +143,27 @@ h3 {
   color: var(--orange);
   font-size: clamp(1.5em, 8vw, 2em);
   font-weight: 100;
+  margin: 0.2em 0;
 }
 
 p {
   font-family: 'Space Grotesk', sans-serif;
   color: var(--white);
-  font-size: clamp(0.3em, 2.5vw, 1em);
+  font-size: clamp(0.8em, 2.5vw, 1em);
   letter-spacing: 0.05em;
 }
 
-/* Stylen van de sections met tekst @Sela*/
+/* Stylen van de sections met tekst */
 .textstyling {
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   margin-bottom: 100vh;
+
   width: 100%;
   max-width: 40em;
+  z-index: 1001;
 
   animation: textSlide 1s linear both;
   animation-timeline: view();
@@ -169,15 +174,19 @@ p {
     font-family: 'Space Grotesk', sans-serif;
     color: var(--white);
 
-    font-size: clamp(0.3em, 2.5vw, 1em);
+    font-size: clamp(0.8em, 2.5vw, 1em);
     letter-spacing: 0.05em;
-}
+  }
 
 > .missiongoals {
     display: flex;
     width: 100%;
+    padding-left: 1.5em;
+    gap: 2em;
 
-    gap: 30px;
+    li {
+      max-width: 50%;
+    }
   }
 
   > .launchingsteps{
@@ -186,8 +195,8 @@ p {
 }
 
 .globe {
-  width: 40em;
-  height: 40em;
+  width:  50em;
+  height: 50em;
   margin: 0 auto;
   z-index: 1000;
 
@@ -195,14 +204,15 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  filter: drop-shadow(0px 0px 20px rgb(102, 231, 93));
 
   border-radius: 50%;
   position: fixed;
   display: flex;
 
-  animation: grow linear, rotate linear;
+  animation: shrink linear, rotate linear;
   animation-timeline: scroll(root), scroll(root);
-  bottom: -50%;
+  top: 75%;
 
   /* .plane {
     width: 3em;
@@ -213,11 +223,12 @@ p {
 }
 
     .stars {
-      width:  150em;
-      height: 150em;
+      width:  175em;
+      height: 175em;
       margin: 0 auto;
       z-index: 1000;
 
+      opacity: 0.5;
       filter:
         drop-shadow(0 0  5px white)
         drop-shadow(0 0 10px white)
@@ -231,9 +242,10 @@ p {
       position: fixed;
       display: flex;
 
-      animation: rotate linear;
-      animation-timeline: scroll(root);
-      bottom: -150%;
+      animation: rotate, atmosphere-stars;
+      animation-timeline: scroll(root), scroll(root);
+      animation-range-end: 800%;
+      top: -10em;
     }
 
     .stretch {
@@ -346,26 +358,178 @@ p {
   }
 }
 
-@keyframes grow {
+@keyframes shrink {
   from {
     scale: 1;
   }
   to {
-    scale: 0.8;
+    scale: 0.6;
   }
+}
+
+@keyframes atmosphere {
+    0% { background-color: var(--blue); }
+   50% { background-color: var(--darkblue); }
+   90% { background-color: black; }
+  100% { background-color: black; }
+}
+
+@keyframes atmosphere-stars {
+    0% { opacity: 0.1; }
+   25% { opacity: 1; }
+  100% { opacity: 1; }
 }
 
 
 /* Hamburger menu klik interacties */
 
-:has(#blackHole:checked) .satellite {
+/* :has(#blackHole:checked) .satellite {
   background-color: red;
+} */
+
+/**********************/
+/* Aurora ander thema */
+/**********************/
+/* Bron: https://www.youtube.com/watch?v=MxpDrULwejY */
+
+body:has(#auroraModeBtn:checked){
+  /* Achtergrondkleur (donkerblauw/ zwart) */
+  min-height: 100vh;
+  min-width: 100vw;
+  /* background-image: linear-gradient(180deg, #020024, #090979, #000000); */
+
+  /* Lichtgroen blob 1 */
+  #up{
+    position: fixed;
+    height: 90vh;
+    width: 90vw;
+    border-radius: 50%;
+
+    background-image: linear-gradient(180deg, #00ffcc, #00ff66);
+    opacity: 0.7;
+    z-index: -100;
+    
+    filter: blur(120px);
+    animation: up 30s linear infinite;
+  }
+
+  /* Roze/ paars blob */
+  #down{
+    position: fixed;
+    height: 60vh;
+    width: 60vw;
+    border-radius: 50%;
+
+    background-image: linear-gradient(180deg, #7b2ff7, #f107a3);
+    opacity: 0.7;
+    z-index: -100;
+    
+    filter: blur(120px);
+    animation: down 20s linear infinite;
+  }
+
+  /* Lichtblauw blob */
+  #left{
+    position: fixed;
+    height: 70vh;
+    width: 70vw;
+    border-radius: 50%;
+
+    background-image: linear-gradient(180deg, #00f2fe, #4facfe);
+    opacity: 0.7;
+    
+    filter: blur(120px);
+    animation: left 25s linear infinite;
+  }
+
+  /* Lichtgroen blob 2 */
+  #right{
+    position: fixed;
+    height: 50vh;
+    width: 50vw;
+    border-radius: 50%;
+
+    background-image: linear-gradient(180deg, #a8ff78, #00ffcc);
+    opacity: 0.7;
+    
+    filter: blur(120px);
+    animation: right 18s linear infinite;
+    animation-delay: .5s;
+  }
+
+  .globe{
+    filter: grayscale(1) contrast(200%);
+  }
 }
 
+/* Lichtgroen 1 */
+@keyframes up{
+  
+  0%, 100%{
+    transform: translateX(-200%);
+  }
+
+  70%{
+    transform: translateX(100%);
+  }
+  
+}
+
+/* Rose/ paars */
+@keyframes down{
+
+  0%, 100%{
+    transform: translateY(-50%);
+  }
+
+  50%{
+    transform: translateY(100%);
+  }
+
+}
+
+/* Lichtblauw */
+@keyframes left{
+
+  0%, 100%{
+    transform: translateX(100%);
+  }
+
+  50%{
+    transform: translateX(0%);
+  }
+
+}
+
+/* Lichtgroen 2 */
+@keyframes right{
+
+  0%, 100%{
+    transform: translateY(100%);
+  }
+
+  50%{
+    transform: translateY(0%);
+  }
+
+}
+
+/**********************/
+/* Mars ander thema */
+/**********************/
 
 
 
-/* Custom Scrollbar @Sela */
+
+
+
+
+
+
+
+
+
+/* Custom Scrollbar */
 /* Bronnen */
 /* https://www.youtube.com/watch?v=GvyGNcUiJGQ */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::-webkit-scrollbar */
@@ -386,6 +550,82 @@ p {
 }
 
 
+/**************/
+/* UFO Banner */
+/**************/
+.ufo-with-banner {
+  display: flex;
+  align-items: center;
+  position: fixed;
+  scale: 2;
+  right: 0;
+  transform: translateX(110%);
+
+  #banner-ufo {
+    background-image: url("../images/ufo.svg");
+    background-repeat: no-repeat;
+    width: 50px;
+    height: 50px;
+
+    /* &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      width: 50px;
+      height: 5px;
+      background: brown;
+    }
+
+    &::before {
+      top: 10px;
+      right: 90px;
+    }
+
+    &::after {
+      bottom: 10px;
+      right: 90px;
+    } */
+  }
+
+  #banner-fire {
+    background-image: url("../images/fire.svg");
+    background-repeat: no-repeat;
+    width: 10px;
+    aspect-ratio: 1;
+    scale: 2;
+    animation: fireRotate 0.2s ease-in-out infinite alternate;
+    transform-origin: 10% 50%;
+  }
+
+  #banner {
+    width: 100px;
+    background: white;
+    padding: 5px;
+    clip-path: shape(
+      from 0% 10%,
+      curve to 100% 10% with 33% 0% / 66% 20%,
+      line to 100% 90%,
+      curve to 0% 90% with 66% 100% / 33% 80%,
+      line to 0% 10%
+    );
+    margin-left: 20px;
+  }
+}
+
+.ufo-animate {
+  animation: bannerMove 20s ease-in forwards;
+}
+
+@keyframes fireRotate {
+  from { transform: rotate(-10deg); }
+  to { transform: rotate(10deg); }
+}
+
+@keyframes bannerMove {
+  0% { transform: translate(120%, -50%); }
+  100% { transform: translate(-120vw, -50%); } 
+}
+
 /*********************/
 /* Black Hole Effect */
 /*********************/
@@ -399,15 +639,9 @@ p {
 
 
 /*********************/
-/* h1 verschijn effect */
+/* H1 verschijn effect */
 /*********************/
 /* Bron: https://codepen.io/BRacicot/pen/Nryjpa */
-
-/* .decode-text {
-  width: 100%;
-  font-size: clamp(2.5rem, 8vw, 6rem);
-  text-align: center;
-} */
 
 .space {
   display: inline-block;
@@ -446,4 +680,108 @@ p {
 
 .text-animation.state-3::before {
   width: 0;
+}
+
+/*******************/
+/* Easter egg: Cat */
+/*******************/
+
+#cat {
+  position: fixed;
+  top: 50%;
+  left: 0;
+
+  transform: translate(-120%, -50%);
+  width: 100px;
+}
+
+.animate {
+  animation: catMove 6s ease-in-out forwards;
+}
+
+@keyframes catMove {
+  0% { transform: translate(-120%, -50%); }
+  25% { transform: translate(10%, -50%); }
+  50% { transform: translate(10%, -50%); }
+  100% { transform: translate(120vw, -50%); } 
+}
+
+/******************************/
+/* Easter egg: Space Invaders */
+/******************************/
+#invader-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 50vh;
+
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-rows: repeat(3, 1fr);
+  gap: clamp(4px, 1vw, 10px);
+  z-index: 10000;
+}
+
+.invader {
+  width: clamp(30px, 6vw, 70px); 
+  aspect-ratio: 1 / 1;
+
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  transform: translateY(-150%);
+  transition: transform 0.6s ease-out;
+
+  align-self: center;
+  justify-self: center;
+}
+
+.invader.show {
+  transform: translateY(0); 
+}
+
+#score-display {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 24px;
+  font-family: 'Space Mono';
+  color: white;
+  background: #00000080;
+  padding: 8px 16px;
+  border-radius: 8px;
+  z-index: 10000;
+  text-align: center;
+}
+
+.floating-score {
+  position: fixed; 
+  color: yellow;
+  font-size: 18px;
+  font-family: 'Space Mono';
+  pointer-events: none;
+
+  transform: translate(-50%, -50%);
+  animation: floatUp 0.8s ease-out forwards;
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes floatUp {
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(-40px);
+  }
 }

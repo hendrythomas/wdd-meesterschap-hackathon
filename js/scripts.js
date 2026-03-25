@@ -1,3 +1,8 @@
+// Blackhole effect is gemaakt met ChatGPT, waardes zijn zelf ingevoerd
+// Prompt: Could you create a fish eye lens?
+// Prompt 2 :Could you make it look more like it gets sucked up like a blackhole, the blackhole being the mouse. I am kind of aiming for a fish lens kind of effect
+// Daarna waren nog meerdere prompts om te tweaken
+
 /*********************/
 /* Black Hole Effect */
 /*********************/
@@ -18,7 +23,7 @@ const paragraphs = document.querySelectorAll(".warpable-text");
 // Store all word elements
 let words = [];
 
-// 🔤 Convert paragraphs into WORD spans (ACCESSIBLE)
+// Convert paragraphs into WORD spans 
 paragraphs.forEach((paragraph) => {
   const text = paragraph.innerText.trim();
 
@@ -152,7 +157,7 @@ function getRandomDelay() {
   return Math.random() * (30000 - 12000) + 12000;
 }
 
-// 🎯 Random vertical position
+// Random vertical position
 function setRandomHeight() {
   const viewportHeight = window.innerHeight;
 
@@ -323,4 +328,36 @@ function shuffle(array) {
 }
 
 decodeText();
- stylingTeksten
+
+/**************/
+/* UFO Banner */
+/**************/
+const container = document.querySelector(".ufo-with-banner");
+
+function setRandomY() {
+  const min = 100;
+  const max = window.innerHeight - 100;
+
+  const randomY = Math.random() * (max - min) + min;
+  container.style.top = `${randomY}px`;
+}
+
+function restartAnimation() {
+  // Remove animation class
+  container.classList.remove("ufo-animate");
+
+  // Force reflow (important)
+  void container.offsetWidth;
+
+  // Set new random vertical position BEFORE restarting
+  setRandomY();
+
+  // Re-add animation class
+  container.classList.add("ufo-animate");
+}
+
+// Initial run
+restartAnimation();
+
+// Repeat every 40 seconds (or 20 if you want continuous looping)
+setInterval(restartAnimation, 40000);
