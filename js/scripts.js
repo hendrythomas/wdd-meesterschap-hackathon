@@ -359,5 +359,123 @@ function restartAnimation() {
 // Initial run
 restartAnimation();
 
-// Repeat every 40 seconds (or 20 if you want continuous looping)
 setInterval(restartAnimation, 40000);
+
+
+/*********/
+/* Alien */
+/*********/
+
+const alienBtn = document.getElementById("alienBtn");
+const alienSVG = "images/alien.svg";
+const alienCursor = "images/ufo-alien.svg";
+
+alienBtn.addEventListener("change", () => {
+  if (alienBtn.checked) {
+    document.body.style.cursor = `url(${alienCursor}) 16 16, auto`;
+  } else {
+    document.body.style.cursor = "auto";
+  }
+});
+
+// 🎛️ SETTINGS (tweak these easily)
+const SETTINGS = {
+  spawnRate: 30,        // ms between spawns (higher = fewer aliens)
+  spawnCount: 1,        // aliens per spawn
+  minSize: 60,
+  maxSize: 90,
+  minVelocity: 0.5,
+  maxVelocity: 1.5,
+  minUpward: 1.5,
+  maxUpward: 2.5,
+  gravity: 0.02,
+  life: 300             // how long particles live (frames)
+};
+
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+
+// track mouse
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+let lastSpawn = 0;
+
+// controlled spawn loop
+function spawnLoop(timestamp) {
+  if (alienBtn.checked && timestamp - lastSpawn > SETTINGS.spawnRate) {
+    for (let i = 0; i < SETTINGS.spawnCount; i++) {
+      spawnAlien(mouseX, mouseY);
+    }
+    lastSpawn = timestamp;
+  }
+
+  requestAnimationFrame(spawnLoop);
+}
+
+spawnLoop();
+
+function spawnAlien(x, y) {
+  const particle = document.createElement("div");
+  particle.classList.add("alien-particle");
+
+  const img = document.createElement("img");
+  img.src = alienSVG;
+  img.style.width = "100%";
+  img.style.height = "100%";
+
+  particle.appendChild(img);
+
+  // size 👽
+  const size = Math.random() * (SETTINGS.maxSize - SETTINGS.minSize) + SETTINGS.minSize;
+  particle.style.width = size + "px";
+  particle.style.height = size + "px";
+
+  // position
+  let posX = x;
+  let posY = y;
+
+  particle.style.left = posX + "px";
+  particle.style.top = posY + "px";
+
+  document.body.appendChild(particle);
+
+  // movement 🐢
+  const angle = (Math.random() - 0.5) * Math.PI;
+
+  const velocity =
+    Math.random() * (SETTINGS.maxVelocity - SETTINGS.minVelocity) + SETTINGS.minVelocity;
+
+  const vx = Math.sin(angle) * velocity;
+  let vy =
+    -(Math.random() * (SETTINGS.maxUpward - SETTINGS.minUpward) + SETTINGS.minUpward);
+
+  let life = 0;
+
+  // rotation
+  const rotation = Math.random() * 360;
+  particle.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+
+  function animate() {
+    life++;
+
+    posX += vx;
+    posY += vy;
+
+    vy += SETTINGS.gravity;
+
+    particle.style.left = posX + "px";
+    particle.style.top = posY + "px";
+    particle.style.opacity = 1 - life / SETTINGS.life;
+
+    if (life < SETTINGS.life) {
+      requestAnimationFrame(animate);
+    } else {
+      particle.remove();
+    }
+  }
+
+  animate();
+}

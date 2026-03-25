@@ -18,6 +18,9 @@
   --link-hover: #212656;
 
   scroll-timeline: --main-timeline;
+
+  --font-Grotesk: 'Space Grotesk', sans-serif;
+  --font-Mono: 'Space Mono', monospace;
 }
 
 body {
@@ -40,7 +43,7 @@ body {
   position: relative;
 
     > h1 {
-      font-family: 'Space Mono', sans-serif;
+      font-family: var(--font-Mono);
       font-size: clamp(1.2em, 5vw, 3.0em);
       font-weight: 400;
       color: var(--orange);
@@ -104,6 +107,7 @@ body {
     background-color: var(--blue);
     color: var(--white);
     border: none;
+    font-family: var(--font-Grotesk);
     border-radius: 8px;
     font-family: 'Space Grotesk';
     /* padding: 1rem; */
@@ -347,7 +351,7 @@ body {
 }
 
 h2 {
-  font-family: 'Space Mono', sans-serif;
+  font-family: var(--font-Mono);
   color: var(--orange);
   font-size: clamp(0.7em, 10vw, 2.5em);
   font-weight: 100;
@@ -355,7 +359,7 @@ h2 {
 }
 
 h3 {
-  font-family: 'Space Mono', sans-serif;
+  font-family: var(--font-Mono);
   color: var(--orange);
   font-size: clamp(1.5em, 8vw, 2em);
   font-weight: 100;
@@ -363,7 +367,7 @@ h3 {
 }
 
 p {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: var(--font-Grotesk);
   color: var(--white);
   font-size: clamp(0.8em, 2.5vw, 1em);
   letter-spacing: 0.05em;
@@ -387,7 +391,7 @@ p {
 
   > ul,
   > ol {
-    font-family: 'Space Grotesk', sans-serif;
+    font-family: var(--font-Grotesk);
     color: var(--white);
 
     font-size: clamp(0.8em, 2.5vw, 1em);
@@ -485,7 +489,7 @@ p {
   padding: 1rem;
   z-index: 1001;
   color: var(--white);
-  font-family: 'Space Mono';
+  font-family: var(--font-Mono);
 }
 
 
@@ -1049,7 +1053,7 @@ body:has(#auroraModeBtn:checked) .globe {
   left: 50%;
   transform: translateX(-50%);
   font-size: 24px;
-  font-family: 'Space Mono';
+  font-family: var(--font-Mono);
   color: white;
   background: #00000080;
   padding: 8px 16px;
@@ -1062,7 +1066,7 @@ body:has(#auroraModeBtn:checked) .globe {
   position: fixed; 
   color: yellow;
   font-size: 18px;
-  font-family: 'Space Mono';
+  font-family: var(--font-Mono);
   pointer-events: none;
 
   transform: translate(-50%, -50%);
@@ -1082,4 +1086,27 @@ body:has(#auroraModeBtn:checked) .globe {
     opacity: 0;
     transform: translate(-50%, -50%) translateY(-40px);
   }
+}
+
+/****************************/
+/* Setting: Alien Effect */
+/****************************/
+.alien-particle {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+  z-index: 9999;
+
+  transform: translate(-50%, -50%);
+  will-change: transform, opacity;
+}
+
+
+/*********************/
+/* Setting: Dyslexia */
+/*********************/
+body:has(#dyslexiaBtn:checked) {
+  --font-Mono: 'Lexend Deca', Arial;
+  --font-Grotesk: 'Lexend Deca', Arial;
 }
