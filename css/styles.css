@@ -27,6 +27,8 @@ body {
   background-color: var(--darkblue);
   overflow-x: hidden;
   scroll-behavior: smooth;
+  animation: atmosphere;
+  animation-timeline: scroll(root);
 
   > header {
   display: flex;
@@ -162,6 +164,7 @@ p {
 
   width: 100%;
   max-width: 40em;
+  z-index: 1001;
 
   animation: textSlide 1s linear both;
   animation-timeline: view();
@@ -193,8 +196,8 @@ p {
 }
 
 .globe {
-  width: 40em;
-  height: 40em;
+  width:  50em;
+  height: 50em;
   margin: 0 auto;
   z-index: 1000;
 
@@ -208,9 +211,9 @@ p {
   position: fixed;
   display: flex;
 
-  animation: grow linear, rotate linear;
+  animation: shrink linear, rotate linear;
   animation-timeline: scroll(root), scroll(root);
-  bottom: -50%;
+  top: 75%;
 
   /* .plane {
     width: 3em;
@@ -240,8 +243,9 @@ p {
       position: fixed;
       display: flex;
 
-      animation: rotate linear;
-      animation-timeline: scroll(root);
+      animation: rotate, atmosphere-stars;
+      animation-timeline: scroll(root), scroll(root);
+      animation-range-end: 600%;
       bottom: -150%;
     }
 
@@ -355,13 +359,26 @@ p {
   }
 }
 
-@keyframes grow {
+@keyframes shrink {
   from {
     scale: 1;
   }
   to {
-    scale: 0.8;
+    scale: 0.6;
   }
+}
+
+@keyframes atmosphere {
+    0% { background-color: var(--blue); }
+   50% { background-color: var(--darkblue); }
+   90% { background-color: black; }
+  100% { background-color: black; }
+}
+
+@keyframes atmosphere-stars {
+    0% { opacity: 0.1; }
+   25% { opacity: 1; }
+  100% { opacity: 1; }
 }
 
 
