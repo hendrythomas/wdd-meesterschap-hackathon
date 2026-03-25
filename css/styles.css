@@ -52,7 +52,7 @@ body {
       }
     }
   }
-  
+
   .eggs-hamburger {
     all: unset;
     position: fixed;
@@ -382,10 +382,29 @@ p {
 
 
 /* Hamburger menu klik interacties */
+body:has(#blackhole-toggle:checked) {
+  animation: atmosphereBlackHole 8s ease-in-out infinite;
+  background-size: 200% 200%;
+}
 
-/* :has(#blackHole:checked) .satellite {
-  background-color: red;
-} */
+body:has(#blackhole-toggle:checked) .globe {
+  filter: drop-shadow(0 0 20px rgba(255, 80, 0, 0.4));
+  content: url(../images/mars.svg);
+}
+
+@keyframes atmosphereBlackHole {
+  0% {
+    background: radial-gradient(circle at center, #000 20%, #020024 40%, #090979 70%, #000 100%);
+  }
+
+  50% {
+    background: radial-gradient(circle at center, #000 10%, #1a0033 40%, #3a0ca3 70%, #000 100%);
+  }
+
+  100% {
+    background: radial-gradient(circle at center, #000 20%, #000428 50%, #004e92 80%, #000 100%);
+  }
+}
 
 /**********************/
 /* Aurora ander thema */
@@ -458,7 +477,7 @@ body:has(#auroraModeBtn:checked){
   }
 
   .globe{
-    filter: grayscale(1) contrast(200%);
+    filter: saturate(0) contrast(400%) drop-shadow(0 0 20px rgba(238, 236, 234, 0.4));;
   }
 }
 
@@ -513,10 +532,6 @@ body:has(#auroraModeBtn:checked){
   }
 
 }
-
-/**********************/
-/* Mars ander thema */
-/**********************/
 
 
 
