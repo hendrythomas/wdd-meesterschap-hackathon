@@ -110,6 +110,7 @@ body {
     margin: 2em 2em;
     z-index: 99990;
     /* box-shadow: 0 0 0 max(100vw, 100vh) #00000080; */
+    box-shadow: 0 0 0px var(--orange);
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -118,7 +119,7 @@ body {
     overflow: hidden;
     pointer-events: none;
 
-    transition: width 0.6s ease, height 0.2s ease, opacity 0.8s ease, margin 2s ease, top 1s ease;
+    transition: width 0.6s ease, height 0.2s ease, opacity 0.8s ease, margin 2s ease, top 1s ease, box-shadow 0.8s ease;
 
     h2 {
       margin: 1em auto;
@@ -475,13 +476,14 @@ p {
 .eggs-hamburger.open ~ .eggs-basket {
       top: 3.5rem;
       background-color: var(--blue);
+      box-shadow: 0 0 20px var(--orange);
       opacity: 1;
       width:  20vw;
       padding-bottom: 2rem;
       height: fit-content;
       pointer-events: all;
 
-      transition: width 0.6s ease, height 0.6s ease, opacity 0.4s ease, top 0.6s ease;
+      transition: width 0.6s ease, height 0.6s ease, opacity 0.4s ease, top 0.6s ease, box-shadow 0.8s ease;
 
       > h2 {
       font-size: 32px;
