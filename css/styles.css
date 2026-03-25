@@ -37,6 +37,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row-reverse;
   height: 6em;
   width: 100%;
   position: relative;
@@ -55,56 +56,272 @@ body {
       }
     }
   }
-  
+
+
   .eggs-hamburger {
-    all: unset;
     position: fixed;
-    left: 0;
-    top: 0;
-    width:  3rem;
+    left: 2rem;
+    top: 2rem;
+    background-color: transparent;
+    border: none;
+    width: 3.5rem;
     height: 3rem;
-    margin: 1rem;
-    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 99999;
 
-    > svg {
-      width:  100%;
-      height: 100%;
-      color: var(--orange);
+    > span {
+      width: 100%;
+      height: 0.4rem;
+      background-color: var(--orange);
+      border-radius: 8px;
+      pointer-events: none;
+      cursor: pointer;
+      z-index: 9999999;
+      transition: transform 0.8s ease-in-out, width 0.6s ease-in-out, opacity 0.8s ease-in-out;
+    }
 
-      &:hover, &:focus-visible {
-        color: var(--white);
+    &.open {
+      > span:first-of-type {
+      transform: translateY(0.9rem) rotate(45deg);
+      }
+      > span:nth-of-type(2) {
+        width: 0;
+        opacity: 0;
+      }
+      > span:last-of-type {
+        transform: translateY(-0.9rem) rotate(-45deg);
       }
     }
   }
 
+
   .eggs-basket {
-    justify-content: center;
-    width:  50vw;
-    height: 50vw;
-    min-height: min-content;
+    position: fixed;
+    top: 1em;
+    left: 0;
+    width:  0vw;
+    height: 0vw;
+    /* min-height: min-content; */
     background-color: var(--blue);
     color: var(--white);
     border: none;
     font-family: var(--font-Grotesk);
-    padding: 1rem;
-    z-index: 1;
-    box-shadow: 0 0 0 max(100vw, 100vh) #00000080;
+    border-radius: 8px;
+    font-family: 'Space Grotesk';
+    /* padding: 1rem; */
+    margin: 2em 2em;
+    z-index: 99990;
+    /* box-shadow: 0 0 0 max(100vw, 100vh) #00000080; */
+    box-shadow: 0 0 0px var(--orange);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
 
-    &:popover-open {
-      display: flex;
-    }
+    transition: width 0.8s ease, height 0.2s ease, opacity 0.8s ease, margin 2s ease, top 1s ease, box-shadow 0.8s ease;
 
     h2 {
+      margin: 1em auto;
       color: var(--orange);
+      font-size: 16px;
+      letter-spacing: normal;
+
+      transition: font-size 1.2s ease, letter-spacing 1.5s ease;
     }
 
     ul {
+      display: flex;
+      flex-direction: column;
+      gap: 1em;
+      width: 80%;
+      margin: 0 auto;
       padding: 0;
-    }
 
-    li {
+      > li {
       list-style: none;
+      
+
+      transition: box-shadow 0.3s ease;
+      
+
+      > label {
+        display: flex;
+        border-radius: 8px;
+        padding: 1em 2em;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 0 1px var(--orange);
+
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      > input {
+        appearance: none;
+      }
+
+      > span {
+        font-size: 20px;
+        letter-spacing: normal;
+        z-index: 3;
+
+        transition: letter-spacing 0.3s ease-in-out;
+      }
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px var(--orange);
+
+        > span {
+          font-weight: 900;
+        }
+      }
+
+      &:hover > span {
+        transform: scale(1.05);
+        color: var(--darkorange);
+      }
+
+      }
+
+      /* Styling for Black Hole */
+      &:first-of-type > label::after {
+        content: "";
+        position: absolute;
+        right: 20%;
+        top: 50%;
+        transform: translate(0, -50%);
+        width: 2em;
+        height: 2em;
+        border-radius: 50%;
+        filter: blur(0.5px);
+        background-color: yellow;
+        box-shadow: 0 0 30px yellow;
+        z-index: 1;
+
+        transition: right 0.8s ease, width 0.3s ease, height 0.3s ease;
+      }
+
+      &:first-of-type > label::before {
+        content: "";
+        position: absolute;
+        left: -10%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 2em;
+        height: 2em;
+        border-radius: 50%;
+        background-color: black;
+        box-shadow: 0 0 10px black;
+        z-index: 2;
+
+        transition: width 0.3s ease, height 0.3s ease, left 0.3s ease;
+      }
+
+      &:first-of-type > label:has(input:checked)::after {
+        right: -30%;
+        width: 1em;
+        height: 1em;
+      }
+
+      &:first-of-type > label:has(input:checked)::before {
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        box-shadow: 0 0 100px black;
+      }
+
+      &:first-of-type > label:has(input:checked) > span {
+        letter-spacing: 5px;
+        text-shadow: 0 0 5px var(--orange);
+      }
+
+
+      /* Styling for Aurora */
+
+      &:nth-of-type(3) > label:has(input:checked) > span {
+        text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+        color: transparent;
+        -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.7);
+      }
+      &:nth-of-type(3) > label::after {
+        content: "";
+        position: absolute;
+        right: -20%;
+        top: 50%;
+        transform: translate(50%, -50%);
+        width: 2em;
+        height: 2em;
+        border-radius: 50%;
+        filter: blur(5px);
+        background-color: cyan;
+        box-shadow: 0 0 30px cyan;
+        z-index: 1;
+
+        transition: right 0.8s ease, width 0.3s ease, height 0.3s ease, box-shadow 0.8s ease, filter 0.8s ease;
+      }
+
+      &:nth-of-type(3) > label:hover::after {
+        right: 50%;
+        box-shadow: 0 0 100px cyan;
+        filter: blur(10px);
+        width: 3em;
+        height: 3em;
+      }
+
+      &:nth-of-type(3) > label::before {
+        content: "";
+        position: absolute;
+        left: -20%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 2em;
+        height: 2em;
+        border-radius: 50%;
+        filter: blur(5px);
+        background-color: green;
+        box-shadow: 0 0 30px green;
+        z-index: 2;
+
+        transition: width 0.3s ease, height 0.3s ease, left 0.3s ease, box-shadow 0.8s ease, filter 0.8s ease;
+      }
+
+      &:nth-of-type(3) > label:hover::before {
+        left: 50%;
+        box-shadow: 0 0 100px green;
+        filter: blur(10px);
+        width: 3em;
+        height: 3em;
+      }
+
+      &:nth-of-type(3) > label:has(input:checked)::after {
+        right: 50%;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        filter: blur(25px);
+        animation: auroraGlow 4s ease-in-out infinite alternate;
+        /* width: 1em;
+        height: 1em; */
+      }
+
+      &:nth-of-type(3) > label:has(input:checked)::before {
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+        filter: blur(25px);
+        animation: auroraGlow 4s ease-in-out infinite alternate;
+        /* width: 1em;
+        height: 1em; */
+      }
     }
+    }
+    
   }
 
   > main {
@@ -207,7 +424,10 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: drop-shadow(0px 0px 20px rgb(102, 231, 93));
+  box-shadow:
+    0px 0px 40px var(--cyan),
+    0px 0px 20px var(--white),
+    0px 0px 20px var(--white) inset;
 
   border-radius: 50%;
   position: fixed;
@@ -226,7 +446,7 @@ p {
 }
 
     .stars {
-      width:  175em;
+      width: 175em;
       height: 175em;
       margin: 0 auto;
       z-index: 1000;
@@ -271,6 +491,51 @@ p {
   color: var(--white);
   font-family: var(--font-Mono);
 }
+
+
+.eggs-hamburger.open ~ .eggs-basket {
+      top: 3.5rem;
+      background-color: var(--blue);
+      box-shadow: 0 0 20px var(--orange);
+      opacity: 1;
+      width:  20vw;
+      padding-bottom: 2rem;
+      height: fit-content;
+      pointer-events: all;
+
+      transition: width 0.6s ease, height 0.6s ease, opacity 0.4s ease, top 0.6s ease, box-shadow 0.8s ease;
+
+      > h2 {
+      font-size: 32px;
+      letter-spacing: 5px;
+      }
+    }
+
+
+
+
+@keyframes auroraGlow {
+  0% {
+    background-color: #00ffcc;
+    box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ff66;
+  }
+  33% {
+    background-color: #7b2ff7;
+    box-shadow: 0 0 15px #7b2ff7, 0 0 30px #f107a3;
+  }
+  66% {
+    background-color: #00f2fe;
+    box-shadow: 0 0 15px #00f2fe, 0 0 30px #4facfe;
+  }
+  100% {
+    background-color: #a8ff78;
+    box-shadow: 0 0 15px #a8ff78, 0 0 30px #00ffcc;
+  }
+}
+
+
+
+
 
 @keyframes slideOutH1 {
   0% {
@@ -383,86 +648,122 @@ p {
   100% { opacity: 1; }
 }
 
+/**************************/
+/* Black Hole ander thema */
+/**************************/
 
-/* Hamburger menu klik interacties */
+body:has(#blackhole-toggle:checked) {
+  animation: atmosphereBlackHole 8s ease-in-out infinite;
+  background-size: 200% 200%;
+}
 
-/* :has(#blackHole:checked) .satellite {
-  background-color: red;
-} */
+html:has(#blackhole-toggle:checked) {
+  cursor: url("../images/black-hole.png");
+  background-color: var(--darkblue);
+}
+
+body:has(#blackhole-toggle:checked) .globe {
+  filter:
+    brightness(0.5)
+    sepia(1)
+    saturate(9)
+    hue-rotate(-15deg);
+  box-shadow:
+    0px 0px 20px var(--white),
+    0px 0px 20px var(--white) inset;
+}
+
+@keyframes atmosphereBlackHole {
+  0% {
+    background: radial-gradient(circle at center, #000 20%, #020024 40%, #090979 70%, #000 100%);
+  }
+
+  50% {
+    background: radial-gradient(circle at center, #000 10%, #1a0033 40%, #3a0ca3 70%, #000 100%);
+  }
+
+  100% {
+    background: radial-gradient(circle at center, #000 20%, #000428 50%, #004e92 80%, #000 100%);
+  }
+}
 
 /**********************/
 /* Aurora ander thema */
 /**********************/
 /* Bron: https://www.youtube.com/watch?v=MxpDrULwejY */
 
-body:has(#auroraModeBtn:checked){
-  /* Achtergrondkleur (donkerblauw/ zwart) */
+/* Body state */
+body:has(#auroraModeBtn:checked) {
   min-height: 100vh;
   min-width: 100vw;
-  /* background-image: linear-gradient(180deg, #020024, #090979, #000000); */
+}
 
-  /* Lichtgroen blob 1 */
-  #up{
-    position: fixed;
-    height: 90vh;
-    width: 90vw;
-    border-radius: 50%;
+/* Blob 1 lichtgroen */
+body:has(#auroraModeBtn:checked) #up {
+  position: fixed;
+  height: 90vh;
+  width: 90vw;
+  border-radius: 50%;
+  background-image: linear-gradient(180deg, #00ffcc, #00ff66);
+  opacity: 0.7;
+  z-index: -100;
+  filter: blur(120px);
+  animation: up 30s linear infinite;
+}
 
-    background-image: linear-gradient(180deg, #00ffcc, #00ff66);
-    opacity: 0.7;
-    z-index: -100;
-    
-    filter: blur(120px);
-    animation: up 30s linear infinite;
-  }
+/* Blob 2 roze/paars */
+body:has(#auroraModeBtn:checked) #down {
+  position: fixed;
+  height: 60vh;
+  width: 60vw;
+  border-radius: 50%;
+  background-image: linear-gradient(180deg, #7b2ff7, #f107a3);
+  opacity: 0.7;
+  z-index: -100;
+  filter: blur(120px);
+  animation: down 20s linear infinite;
+}
 
-  /* Roze/ paars blob */
-  #down{
-    position: fixed;
-    height: 60vh;
-    width: 60vw;
-    border-radius: 50%;
+/* Blob 3 lichtblauw */
+body:has(#auroraModeBtn:checked) #left {
+  position: fixed;
+  height: 70vh;
+  width: 70vw;
+  border-radius: 50%;
+  background-image: linear-gradient(180deg, #00f2fe, #4facfe);
+  opacity: 0.7;
+  filter: blur(120px);
+  animation: left 25s linear infinite;
+}
 
-    background-image: linear-gradient(180deg, #7b2ff7, #f107a3);
-    opacity: 0.7;
-    z-index: -100;
-    
-    filter: blur(120px);
-    animation: down 20s linear infinite;
-  }
+/* Blob 4 lichtgroen 2 */
+body:has(#auroraModeBtn:checked) #right {
+  position: fixed;
+  height: 50vh;
+  width: 50vw;
+  border-radius: 50%;
+  background-image: linear-gradient(180deg, #a8ff78, #00ffcc);
+  opacity: 0.7;
+  filter: blur(120px);
+  animation: right 18s linear infinite;
+  animation-delay: .5s;
+}
 
-  /* Lichtblauw blob */
-  #left{
-    position: fixed;
-    height: 70vh;
-    width: 70vw;
-    border-radius: 50%;
+body:has(#auroraModeBtn:checked) #up,
+body:has(#auroraModeBtn:checked) #down,
+body:has(#auroraModeBtn:checked) #left,
+body:has(#auroraModeBtn:checked) #right {
+  mix-blend-mode: screen;
+}
 
-    background-image: linear-gradient(180deg, #00f2fe, #4facfe);
-    opacity: 0.7;
-    
-    filter: blur(120px);
-    animation: left 25s linear infinite;
-  }
-
-  /* Lichtgroen blob 2 */
-  #right{
-    position: fixed;
-    height: 50vh;
-    width: 50vw;
-    border-radius: 50%;
-
-    background-image: linear-gradient(180deg, #a8ff78, #00ffcc);
-    opacity: 0.7;
-    
-    filter: blur(120px);
-    animation: right 18s linear infinite;
-    animation-delay: .5s;
-  }
-
-  .globe{
-    filter: grayscale(1) contrast(200%);
-  }
+/* Globe effect */
+body:has(#auroraModeBtn:checked) .globe {
+  filter: 
+    saturate(0) 
+    contrast(400%);
+  box-shadow:
+    0px 0px 20px #ffffff80,
+    0px 0px 20px #ffffff20 inset;
 }
 
 /* Lichtgroen 1 */
@@ -516,10 +817,6 @@ body:has(#auroraModeBtn:checked){
   }
 
 }
-
-/**********************/
-/* Mars ander thema */
-/**********************/
 
 
 
@@ -721,6 +1018,7 @@ body:has(#auroraModeBtn:checked){
   height: 50vh;
 
   overflow: hidden;
+  pointer-events: none; /* 👈 important to allow clicks through */
 
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -742,6 +1040,7 @@ body:has(#auroraModeBtn:checked){
 
   align-self: center;
   justify-self: center;
+  pointer-events: auto; /* 👈 allow clicks on invaders */
 }
 
 .invader.show {
