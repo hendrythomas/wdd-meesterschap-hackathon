@@ -361,9 +361,9 @@ p {
 
 /* Hamburger menu klik interacties */
 
-:has(#blackHole:checked) .satellite {
+/* :has(#blackHole:checked) .satellite {
   background-color: red;
-}
+} */
 
 /**********************/
 /* Aurora ander thema */
@@ -371,117 +371,138 @@ p {
 /* Bron: https://www.youtube.com/watch?v=MxpDrULwejY */
 
 body:has(#auroraModeBtn:checked){
-/* Achtergrondkleur (donkerblauw/ zwart) */
-body{
-  /* min-height: 100vh; */
-  background-image: linear-gradient(180deg, #020024, #090979, #000000);
-  /* overflow: hidden; */
+  /* Achtergrondkleur (donkerblauw/ zwart) */
+  min-height: 100vh;
+  min-width: 100vw;
+  /* background-image: linear-gradient(180deg, #020024, #090979, #000000); */
+
+  /* Lichtgroen blob 1 */
+  #up{
+    position: fixed;
+    height: 90vh;
+    width: 90vw;
+    border-radius: 50%;
+
+    background-image: linear-gradient(180deg, #00ffcc, #00ff66);
+    opacity: 0.7;
+    z-index: -100;
+    
+    filter: blur(120px);
+    animation: up 30s linear infinite;
+  }
+
+  /* Roze/ paars blob */
+  #down{
+    position: fixed;
+    height: 60vh;
+    width: 60vw;
+    border-radius: 50%;
+
+    background-image: linear-gradient(180deg, #7b2ff7, #f107a3);
+    opacity: 0.7;
+    z-index: -100;
+    
+    filter: blur(120px);
+    animation: down 20s linear infinite;
+  }
+
+  /* Lichtblauw blob */
+  #left{
+    position: fixed;
+    height: 70vh;
+    width: 70vw;
+    border-radius: 50%;
+
+    background-image: linear-gradient(180deg, #00f2fe, #4facfe);
+    opacity: 0.7;
+    
+    filter: blur(120px);
+    animation: left 25s linear infinite;
+  }
+
+  /* Lichtgroen blob 2 */
+  #right{
+    position: fixed;
+    height: 50vh;
+    width: 50vw;
+    border-radius: 50%;
+
+    background-image: linear-gradient(180deg, #a8ff78, #00ffcc);
+    opacity: 0.7;
+    
+    filter: blur(120px);
+    animation: right 18s linear infinite;
+    animation-delay: .5s;
+  }
+
+  .globe{
+    filter: grayscale(1) contrast(200%);
+  }
 }
 
-/* Lichtgroen blob */
-#up{
-  position: absolute;
-  height: 800px;
-  width: 800px;
-  border-radius: 50%;
-  background-image: linear-gradient(180deg, #00ffcc, #00ff66);
-  filter: blur(120px);
-  opacity: 0.7;
-  
-  animation: up 20s ease-in-out infinite;
-}
-
+/* Lichtgroen 1 */
 @keyframes up{
- 
-    0%, 100%{
-      bottom: -100px;
-    }
   
-    70%{
-     bottom: 700px;
-   }
-    
+  0%, 100%{
+    transform: translateX(-200%);
+  }
+
+  70%{
+    transform: translateX(100%);
+  }
+  
 }
 
-/* Roze/ paars blob */
-#down{
-  position: absolute;
-  right: 0;
-  height: 500px;
-  width: 500px;
-  border-radius: 50%;
-  background-image: linear-gradient(180deg, #7b2ff7, #f107a3);
-  filter: blur(120px);
-  opacity: 0.7;
-  
-  animation: down 40s ease-in-out infinite; 
-}
-
+/* Rose/ paars */
 @keyframes down{
+
   0%, 100%{
-    top: -100px;
+    transform: translateY(-50%);
   }
-  
-    70%{
-      top: 700px;
-    }
+
+  50%{
+    transform: translateY(100%);
+  }
+
 }
 
-/* Lichtblauw blob */
-#left{
-  position: absolute;
-  height: 500px;
-  width: 500px;
-  border-radius: 50%;
-  background-image: linear-gradient(180deg, #00f2fe, #4facfe);
-  filter: blur(120px);
-  opacity: 0.7;
-  
-  animation: left 10s ease-in-out infinite; 
-}
-
+/* Lichtblauw */
 @keyframes left{
-  
+
   0%, 100%{
-    top: -1300px;
+    transform: translateX(100%);
   }
-  
-    70%{
-     top: 1300px;
-   }
-    
+
+  50%{
+    transform: translateX(0%);
+  }
+
 }
 
-/* Lichtgroen blob */
-#right{
-  position: absolute;
-  height: 500px;
-  width: 500px;
-  border-radius: 50%;
-  background-image: linear-gradient(180deg, #a8ff78, #00ffcc);
-  filter: blur(120px);
-  opacity: 0.7;
-  
-  animation: right 30s .5s infinite; 
-}
-
+/* Lichtgroen 2 */
 @keyframes right{
-  
+
   0%, 100%{
-    top: -100px;
+    transform: translateY(100%);
   }
-  
-    70%{
-      top: 700px;
-    }
-    
-}
+
+  50%{
+    transform: translateY(0%);
+  }
 
 }
 
 /**********************/
 /* Mars ander thema */
 /**********************/
+
+
+
+
+
+
+
+
 
 
 

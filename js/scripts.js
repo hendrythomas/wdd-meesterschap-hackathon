@@ -10,8 +10,6 @@ const EVENT_HORIZON = 10;
 
 // Toggle
 const toggle = document.getElementById("blackhole-toggle");
-
-
 let enabled = false;
 
 // Select ALL paragraphs
@@ -325,8 +323,6 @@ function shuffle(array) {
 }
 
 decodeText();
-
-
 
 /**************/
 /* UFO Banner */
