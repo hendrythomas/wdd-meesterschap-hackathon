@@ -224,8 +224,8 @@ p {
 }
 
     .stars {
-      width:  150em;
-      height: 150em;
+      width:  175em;
+      height: 175em;
       margin: 0 auto;
       z-index: 1000;
 
@@ -245,8 +245,8 @@ p {
 
       animation: rotate, atmosphere-stars;
       animation-timeline: scroll(root), scroll(root);
-      animation-range-end: 600%;
-      bottom: -150%;
+      animation-range-end: 800%;
+      top: 0;
     }
 
     .stretch {
