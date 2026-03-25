@@ -110,11 +110,12 @@ body {
   align-items: center;
   flex-direction: column;
   width: 100%;
+  padding: 40px;
   position: relative;
 
   .satellite {
   width: 30em;
-  height: 15em;
+  height: 20vh;
   margin-top: 5em;
   margin-bottom: 2em;
   position: fixed;
