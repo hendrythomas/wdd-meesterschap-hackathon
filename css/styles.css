@@ -128,6 +128,8 @@ body {
   animation: satelliteAnimation 1s ease-in-out, 
   satelliteAnimationOnDelay 0.8s ease-in-out 3.2s forwards, 
   satelliteHoveringAnimation 10s ease-in-out 4s infinite;
+
+  pointer-events: none;
 }
 
 /* Fonts styling @Sela*/
@@ -200,6 +202,7 @@ p {
   height: 50em;
   margin: 0 auto;
   z-index: 1000;
+  pointer-events: none;
 
   background-image: url(../images/earth.svg);
   background-size: cover;
@@ -228,6 +231,7 @@ p {
       height: 175em;
       margin: 0 auto;
       z-index: 1000;
+      pointer-events: none;
 
       opacity: 0.5;
       filter:
@@ -542,6 +546,7 @@ body{
   scale: 2;
   right: 0;
   transform: translateX(110%);
+  pointer-events: none;
 
   #banner-ufo {
     background-image: url("../images/ufo.svg");
@@ -680,6 +685,7 @@ body{
 
   transform: translate(-120%, -50%);
   width: 100px;
+  pointer-events: none;
 }
 
 /* Trigger class */
