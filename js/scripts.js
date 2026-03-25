@@ -173,6 +173,7 @@ const catAnimationDuration = 6000; // 6 seconden
 function triggerAnimation() {
   img.classList.remove("animate");
 
+  // Stop previous audio (if running)
   fadeOut(500);
 
   setRandomHeight();
@@ -181,10 +182,10 @@ function triggerAnimation() {
 
   img.classList.add("animate");
 
-  // Fade in
+  // Start sound (slightly quieter)
   fadeIn(1000);
 
-  // Fade out
+  // Fade out BEFORE it reaches the end
   setTimeout(() => {
     fadeOut(1000);
   }, catAnimationDuration - 1000);
@@ -206,6 +207,15 @@ function initAudio() {
   if (audioCtx) return;
 
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+}
+
+// Start sound with fade in
+function startSound() {
+  initAudio();
+
+  audio = new Audio("sfx/cat.mp3");
+  audio.loop = false;
+
   const source = audioCtx.createMediaElementSource(audio);
 
   gainNode = audioCtx.createGain();
@@ -213,29 +223,69 @@ function initAudio() {
 
   source.connect(gainNode);
   gainNode.connect(audioCtx.destination);
+
+  audio.play().catch(() => {});
+
+  const now = audioCtx.currentTime;
+
+  gainNode.gain.setValueAtTime(0, now);
+  gainNode.gain.linearRampToValueAtTime(0.01, now + 1);
 }
 
-function fadeIn(duration = 2000) {
-  initAudio();
-  audio.play();
+// Fade out + stop + reset
+function stopSound() {
+  if (!audioCtx || !audio) return;
 
-  const start = audioCtx.currentTime;
-  gainNode.gain.setValueAtTime(0, start);
-  gainNode.gain.linearRampToValueAtTime(.01, start + duration / 1000);
-}
+  const now = audioCtx.currentTime;
 
-function fadeOut(duration = 2000) {
-  if (!audioCtx) return;
-
-  const start = audioCtx.currentTime;
-  gainNode.gain.setValueAtTime(gainNode.gain.value, start);
-  gainNode.gain.linearRampToValueAtTime(0, start + duration / 1000);
+  gainNode.gain.cancelScheduledValues(now);
+  gainNode.gain.setValueAtTime(gainNode.gain.value, now);
+  gainNode.gain.linearRampToValueAtTime(0, now + 0.5);
 
   setTimeout(() => {
     audio.pause();
     audio.currentTime = 0;
-  }, duration);
+    audio = null;
+  }, 500);
 }
+
+function triggerAnimation() {
+  img.classList.remove("animate");
+
+  setRandomHeight();
+
+  // Force reflow
+  void img.offsetWidth;
+
+  img.classList.add("animate");
+
+  startSound();
+
+  // Fade out shortly before animation ends
+  setTimeout(() => {
+    stopSound();
+  }, catAnimationDuration - 500);
+
+  // Schedule next run
+  setTimeout(triggerAnimation, getRandomDelay());
+}
+
+document.addEventListener(
+  "click",
+  () => {
+    initAudio();
+
+    // Unlock audio context
+    const unlock = new Audio("sfx/cat.mp3");
+    unlock.play().then(() => {
+      unlock.pause();
+      unlock.currentTime = 0;
+    });
+  },
+  { once: true }
+);
+
+setTimeout(triggerAnimation, getRandomDelay());
 
 
 /*********************/
@@ -373,7 +423,7 @@ alienBtn.addEventListener("change", () => {
   }
 });
 
-// 🎛️ SETTINGS (tweak these easily)
+// Instellingen
 const SETTINGS = {
   spawnRate: 30,        // Tijd tussen spawns
   spawnCount: 1,        // Aliens per spawn
@@ -474,3 +524,11 @@ function spawnAlien(x, y) {
 
   animate();
 }
+
+// Button voor menu
+
+const btn = document.querySelector('.eggs-hamburger');
+
+btn.addEventListener('click', () => {
+  btn.classList.toggle('open');
+});
