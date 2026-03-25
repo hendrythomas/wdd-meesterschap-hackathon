@@ -58,7 +58,6 @@ body {
     }
   }
 
-
   .eggs-hamburger {
     position: fixed;
     left: 2rem;
@@ -83,18 +82,25 @@ body {
       z-index: 9999999;
       transition: transform 0.8s ease-in-out, width 0.6s ease-in-out, opacity 0.8s ease-in-out;
     }
-
-    &.open {
-      > span:first-of-type {
+    
+    &:hover, &:focus-visible {
+      outline: none;
+      
+      > span {
+        background-color: white;
+      }
+    }
+  }
+  &:has(.eggs-basket:popover-open) {
+    > span:first-of-type {
       transform: translateY(0.9rem) rotate(45deg);
-      }
-      > span:nth-of-type(2) {
-        width: 0;
-        opacity: 0;
-      }
-      > span:last-of-type {
-        transform: translateY(-0.9rem) rotate(-45deg);
-      }
+    }
+    > span:nth-of-type(2) {
+      width: 0;
+      opacity: 0;
+    }
+    > span:last-of-type {
+      transform: translateY(-0.9rem) rotate(-45deg);
     }
   }
 
@@ -126,6 +132,22 @@ body {
     pointer-events: none;
 
     transition: width 0.6s ease, height 0.8s ease, opacity 0.8s ease, margin 2s ease, top 1s ease, box-shadow 0.8s ease;
+    &:popover-open {
+      top: 3.5rem;
+      background-color: var(--blue);
+      box-shadow: 0 0 20px var(--orange);
+      opacity: 1;
+      width: 20rem;
+      max-width: calc(100% - 40px);
+      padding-bottom: 2rem;
+      height: fit-content;
+      pointer-events: all;
+    
+      > h2 {
+        font-size: 32px;
+        letter-spacing: 5px;
+      }
+    }
 
     h2 {
       margin: 1em auto;
@@ -463,11 +485,12 @@ body {
   align-items: center;
   flex-direction: column;
   width: 100%;
+  padding: 40px;
   position: relative;
 
   .satellite {
   width: 30em;
-  height: 15em;
+  height: 20vh;
   margin-top: 5em;
   margin-bottom: 2em;
   position: fixed;
@@ -481,6 +504,8 @@ body {
   animation: satelliteAnimation 1s ease-in-out, 
   satelliteAnimationOnDelay 0.8s ease-in-out 3.2s forwards, 
   satelliteHoveringAnimation 10s ease-in-out 4s infinite;
+
+  pointer-events: none;
 }
 
 h2 {
@@ -539,10 +564,6 @@ p {
     width: 100%;
     padding-left: 1.5em;
     gap: 2em;
-
-    li {
-      max-width: 50%;
-    }
   }
 
   > .launchingsteps{
@@ -555,6 +576,7 @@ p {
   height: 50em;
   margin: 0 auto;
   z-index: 1000;
+  pointer-events: none;
 
   background-image: url(../images/earth.svg);
   background-size: cover;
@@ -586,6 +608,7 @@ p {
       height: 175em;
       margin: 0 auto;
       z-index: 1000;
+      pointer-events: none;
 
       opacity: 0.5;
       filter:
@@ -606,6 +629,12 @@ p {
       animation-range-end: 800%;
       top: -10em;
     }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body .missiongoals {
+    flex-direction: column;
   }
 }
 
@@ -1020,6 +1049,7 @@ body:has(#auroraModeBtn:checked) .globe {
   scale: 2;
   right: 0;
   transform: translateX(110%);
+  pointer-events: none;
 
   #banner-ufo {
     background-image: url("../images/ufo.svg");
@@ -1151,6 +1181,7 @@ body:has(#auroraModeBtn:checked) .globe {
 
   transform: translate(-120%, -50%);
   width: 100px;
+  pointer-events: none;
 }
 
 .animate {
