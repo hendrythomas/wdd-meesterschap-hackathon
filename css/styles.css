@@ -635,7 +635,7 @@ body {
 
   /* Black hole cursor change */
   &:has(#blackhole-toggle:checked) {
-    cursor: url("../images/black-hole.png");
+    cursor: url("../images/black-hole.png") 16 16, auto;
     background-color: var(--darkblue);
   }
 
