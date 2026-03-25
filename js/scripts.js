@@ -164,9 +164,9 @@ const img = document.getElementById("cat");
 
 function getRandomDelay() {
   return Math.random() * (30000 - 12000) + 12000;
-};
+}
 
-// Random y positie
+// Random vertical position
 function setRandomHeight() {
   const viewportHeight = window.innerHeight;
 
@@ -176,48 +176,23 @@ function setRandomHeight() {
   const randomY = Math.random() * (max - min) + min;
 
   img.style.top = `${randomY}px`;
-};
+}
 
-const catAnimationDuration = 6000; // 6 seconden
+const catAnimationDuration = 6000; // 6 seconds
 
+// -------------------- AUDIO --------------------
 
-function triggerAnimation() {
-  img.classList.remove("animate");
-
-  fadeOut(500);
-
-  setRandomHeight();
-
-  void img.offsetWidth;
-
-  img.classList.add("animate");
-
-  // Start sound
-  fadeIn(1000);
-
-  // Fade out
-  setTimeout(() => {
-    fadeOut(1000);
-  }, catAnimationDuration - 1000);
-
-  setTimeout(triggerAnimation, getRandomDelay());
-};
-
-// Start
-setTimeout(triggerAnimation, getRandomDelay());
-
-// Bron: https://www.youtube.com/watch?v=2yJgwwDcgV8&t=10s
-let audio;
 let audioCtx;
+let audio;
 let gainNode;
 
 function initAudio() {
   if (audioCtx) return;
 
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-};
+}
 
-// Begin met Fade in
+// Start sound with fade in
 function startSound() {
   initAudio();
 
@@ -238,7 +213,7 @@ function startSound() {
 
   gainNode.gain.setValueAtTime(0, now);
   gainNode.gain.linearRampToValueAtTime(0.01, now + 1);
-};
+}
 
 // Fade out + stop + reset
 function stopSound() {
@@ -255,41 +230,49 @@ function stopSound() {
     audio.currentTime = 0;
     audio = null;
   }, 500);
-};
+}
+
+// -------------------- ANIMATION --------------------
 
 function triggerAnimation() {
   img.classList.remove("animate");
 
   setRandomHeight();
 
+  // Force reflow
   void img.offsetWidth;
 
   img.classList.add("animate");
 
   startSound();
 
-  // Fade out
+  // Fade out shortly before animation ends
   setTimeout(() => {
     stopSound();
   }, catAnimationDuration - 500);
 
+  // Schedule next run
   setTimeout(triggerAnimation, getRandomDelay());
-};
+}
+
+// -------------------- USER INTERACTION (REQUIRED) --------------------
 
 document.addEventListener(
   "click",
   () => {
     initAudio();
 
+    // Unlock audio context
     const unlock = new Audio("sfx/cat.mp3");
     unlock.play().then(() => {
       unlock.pause();
       unlock.currentTime = 0;
     });
   },
-
   { once: true }
 );
+
+// -------------------- START --------------------
 
 setTimeout(triggerAnimation, getRandomDelay());
 
