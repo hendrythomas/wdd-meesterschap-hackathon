@@ -223,7 +223,7 @@ p {
 }
 
     .stars {
-      width:  175em;
+      width: 175em;
       height: 175em;
       margin: 0 auto;
       z-index: 1000;
@@ -380,15 +380,22 @@ p {
   100% { opacity: 1; }
 }
 
+/**************************/
+/* Black Hole ander thema */
+/**************************/
 
-/* Hamburger menu klik interacties */
 body:has(#blackhole-toggle:checked) {
   animation: atmosphereBlackHole 8s ease-in-out infinite;
   background-size: 200% 200%;
 }
 
+html:has(#blackhole-toggle:checked) {
+  cursor: url("../images/black-hole.png");
+  background-color: var(--darkblue);
+}
+
 body:has(#blackhole-toggle:checked) .globe {
-  filter: drop-shadow(0 0 20px rgba(255, 80, 0, 0.4));
+  filter: drop-shadow(0 0 20px rgba(255 80 0 0.4));
   content: url(../images/mars.svg);
 }
 
