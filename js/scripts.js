@@ -1,6 +1,16 @@
+/********************/
+/* Menu toggle klik */
+/********************/
+
+const btn = document.querySelector('.eggs-hamburger');
+
+btn.addEventListener('click', () => {
+  btn.classList.toggle('open');
+});
+
 // Blackhole effect is gemaakt met ChatGPT, waardes zijn zelf ingevoerd
 // Prompt: Could you create a fish eye lens?
-// Prompt 2 :Could you make it look more like it gets sucked up like a blackhole, the blackhole being the mouse. I am kind of aiming for a fish lens kind of effect
+// Prompt 2: Could you make it look more like it gets sucked up like a blackhole, the blackhole being the mouse. I am kind of aiming for a fish lens kind of effect
 // Daarna waren nog meerdere prompts om te tweaken
 
 /*********************/
@@ -27,7 +37,7 @@ let words = [];
 paragraphs.forEach((paragraph) => {
   const text = paragraph.innerText.trim();
 
-  // Accesibel maken voor screenreaders zodat niet alles los wordt voorgelezen
+  // Accessibel maken voor screenreaders zodat niet alles los wordt voorgelezen
   paragraph.setAttribute("aria-label", text);
   paragraph.setAttribute("role", "text");
 
@@ -60,7 +70,7 @@ toggle?.addEventListener("change", () => {
       el.style.transform = "translate(0px, 0px) scale(1)";
       el.style.opacity = 1;
     });
-  }
+  };
 });
 
 // Posities onthouden
@@ -78,7 +88,7 @@ function cachePositions() {
       y: rect.top + rect.height / 2
     };
   });
-}
+};
 
 setTimeout(cachePositions, 100);
 
@@ -139,7 +149,7 @@ function animate() {
   });
 
   requestAnimationFrame(animate);
-}
+};
 
 animate();
 
@@ -154,7 +164,7 @@ const img = document.getElementById("cat");
 
 function getRandomDelay() {
   return Math.random() * (30000 - 12000) + 12000;
-}
+};
 
 // Random y positie
 function setRandomHeight() {
@@ -166,14 +176,13 @@ function setRandomHeight() {
   const randomY = Math.random() * (max - min) + min;
 
   img.style.top = `${randomY}px`;
-}
+};
 
-const catAnimationDuration = 6000; // 6 seconden
+const catAnimationDuration = 6000;
 
 function triggerAnimation() {
   img.classList.remove("animate");
 
-  // Stop previous audio (if running)
   fadeOut(500);
 
   setRandomHeight();
@@ -182,21 +191,21 @@ function triggerAnimation() {
 
   img.classList.add("animate");
 
-  // Start sound (slightly quieter)
+  // Start sound
   fadeIn(1000);
 
-  // Fade out BEFORE it reaches the end
+  // Fade out
   setTimeout(() => {
     fadeOut(1000);
   }, catAnimationDuration - 1000);
 
   setTimeout(triggerAnimation, getRandomDelay());
-}
+};
 
 // Start
 setTimeout(triggerAnimation, getRandomDelay());
 
-// https://www.youtube.com/watch?v=2yJgwwDcgV8&t=10s
+// Bron: https://www.youtube.com/watch?v=2yJgwwDcgV8&t=10s
 const audio = new Audio("sfx/cat.mp3"); // replace with your file
 audio.loop = true;
 
@@ -207,9 +216,9 @@ function initAudio() {
   if (audioCtx) return;
 
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-}
+};
 
-// Start sound with fade in
+// Fade in
 function startSound() {
   initAudio();
 
@@ -230,7 +239,7 @@ function startSound() {
 
   gainNode.gain.setValueAtTime(0, now);
   gainNode.gain.linearRampToValueAtTime(0.01, now + 1);
-}
+};
 
 // Fade out + stop + reset
 function stopSound() {
@@ -247,7 +256,7 @@ function stopSound() {
     audio.currentTime = 0;
     audio = null;
   }, 500);
-}
+};
 
 function triggerAnimation() {
   img.classList.remove("animate");
@@ -261,14 +270,13 @@ function triggerAnimation() {
 
   startSound();
 
-  // Fade out shortly before animation ends
+  // Fade out
   setTimeout(() => {
     stopSound();
   }, catAnimationDuration - 500);
 
-  // Schedule next run
   setTimeout(triggerAnimation, getRandomDelay());
-}
+};
 
 document.addEventListener(
   "click",
@@ -282,43 +290,14 @@ document.addEventListener(
       unlock.currentTime = 0;
     });
   },
+
   { once: true }
 );
 
 setTimeout(triggerAnimation, getRandomDelay());
 
-
-/*********************/
-/* Animatie Typewriter */
-/*********************/
-
-// document.addEventListener("DOMContentLoaded", () => {
-//   const title = document.querySelector("h1");
-//   const text = title.textContent;
-
-//   function typeWriter(text, element, speed = 70) {
-//       let i = 0;
-//       element.textContent = '';
-//       element.style.borderRight = "2px solid white";
-
-//       function typing() {
-//           if (i < text.length) {
-//               element.textContent += text.charAt(i);
-//               i++;
-//               setTimeout(typing, speed);
-//           } else {
-//               element.style.borderRight = "none";
-//           }
-//       }
-
-//       typing();
-//   }
-
-//   typeWriter(text, title, 70);
-// });
-
 /***************************/
-/* Letter verschijn effect */
+/* H1 Letter verschijn effect */
 /***************************/
 
 function decodeText(){
@@ -341,23 +320,23 @@ function decodeText(){
 
       if(child.classList.contains('text-animation')){
           setTimeout(() => firstStages(child), state1Time);
-      }
-  }
-}
+      };
+  };
+};
 
 function firstStages(child){
   child.classList.add('state-1');
   setTimeout(() => secondStages(child), 100);
-}
+};
 
 function secondStages(child){
   child.classList.add('state-2');
   setTimeout(() => thirdStages(child), 100);
-}
+};
 
 function thirdStages(child){
   child.classList.add('state-3');
-}
+};
 
 function shuffle(array) {
   let currentIndex = array.length, randomIndex;
@@ -369,10 +348,10 @@ function shuffle(array) {
       [array[currentIndex], array[randomIndex]] = [
           array[randomIndex], array[currentIndex]
       ];
-  }
+  };
 
   return array;
-}
+};
 
 decodeText();
 
@@ -387,7 +366,7 @@ function setRandomY() {
 
   const randomY = Math.random() * (max - min) + min;
   container.style.top = `${randomY}px`;
-}
+};
 
 function restartAnimation() {
   // Animatie class verwijderen
@@ -400,12 +379,11 @@ function restartAnimation() {
 
   // Animatie class weer toevoegen
   container.classList.add("ufo-animate");
-}
+};
 
 restartAnimation();
 
 setInterval(restartAnimation, 40000);
-
 
 /*********/
 /* Alien */
@@ -425,8 +403,8 @@ alienBtn.addEventListener("change", () => {
 
 // Instellingen
 const SETTINGS = {
-  spawnRate: 30,        // Tijd tussen spawns
-  spawnCount: 1,        // Aliens per spawn
+  spawnRate: 30,
+  spawnCount: 1,
   minSize: 60,
   maxSize: 90,
   minVelocity: 0.5,
@@ -434,13 +412,13 @@ const SETTINGS = {
   minUpward: 1.5,
   maxUpward: 2.5,
   gravity: 0.02,
-  life: 300             // Hoe lang de aliens blijven
+  life: 300            // Hoe lang de aliens blijven
 };
 
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
 
-// track mouse
+// Muis tracken
 document.addEventListener("mousemove", (e) => {
   mouseX = e.clientX;
   mouseY = e.clientY;
@@ -448,17 +426,16 @@ document.addEventListener("mousemove", (e) => {
 
 let lastSpawn = 0;
 
-// controlled spawn loop
 function spawnLoop(timestamp) {
   if (alienBtn.checked && timestamp - lastSpawn > SETTINGS.spawnRate) {
     for (let i = 0; i < SETTINGS.spawnCount; i++) {
       spawnAlien(mouseX, mouseY);
-    }
+    };
     lastSpawn = timestamp;
-  }
+  };
 
   requestAnimationFrame(spawnLoop);
-}
+};
 
 spawnLoop();
 
@@ -519,16 +496,8 @@ function spawnAlien(x, y) {
       requestAnimationFrame(animate);
     } else {
       particle.remove();
-    }
-  }
+    };
+  };
 
   animate();
-}
-
-// Button voor menu
-
-const btn = document.querySelector('.eggs-hamburger');
-
-btn.addEventListener('click', () => {
-  btn.classList.toggle('open');
-});
+};
