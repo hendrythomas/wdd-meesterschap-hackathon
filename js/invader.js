@@ -28,7 +28,7 @@ function startGame() {
   console.log("Game started");
 
   InvaderContainer.style.display = "grid";
-  scoreDisplay.style.display = "block"; // 👈 show score
+  scoreDisplay.style.display = "block";
 
   createWave(3, 6);
 }
@@ -45,7 +45,7 @@ function stopGame() {
 function createWave(rows = 3, cols = 6) {
   InvaderContainer.innerHTML = "";
 
-  remainingInvaders = rows * cols; // 👈 reset counter
+  remainingInvaders = rows * cols;
 
   for (let i = 0; i < rows * cols; i++) {
     const invader = document.createElement("div");
@@ -59,7 +59,7 @@ function createWave(rows = 3, cols = 6) {
     invader.dataset.type = random.type;
 
     invader.addEventListener("click", (e) => {
-        if (!gameEnabled) return; // 👈 block clicks when disabled
+        if (!gameEnabled) return;
 
         if (invader.style.visibility === "hidden") return;
 
@@ -96,7 +96,6 @@ function createWave(rows = 3, cols = 6) {
   }
 }
 
-// run it
 createWave();
 
 let score = 0;
