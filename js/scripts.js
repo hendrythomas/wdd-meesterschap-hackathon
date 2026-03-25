@@ -524,3 +524,11 @@ function spawnAlien(x, y) {
 
   animate();
 }
+
+// Button voor menu
+
+const btn = document.querySelector('.eggs-hamburger');
+
+btn.addEventListener('click', () => {
+  btn.classList.toggle('open');
+});

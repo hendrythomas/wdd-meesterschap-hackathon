@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NEBULA Xplorer</title>
+
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk">
@@ -32,47 +33,47 @@
         <span class="text-animation">r</span>
       </h1>
 
-      <button class="eggs-hamburger" popovertarget="eggs-basket" onclick="this.classList.toggle('open')">
+      <button class="eggs-hamburger" popovertarget="eggs-basket">
         <span></span>
         <span></span>
         <span></span>
       </button>
 
-      <div class="eggs-basket" id="eggs-basket" popover>
+      <nav class="eggs-basket" id="eggs-basket">
         <h2>Fun Items</h2>
 
         <ul class="menu">
           <li>
             <label for="blackhole-toggle">
-              <input type="checkbox" id="blackhole-toggle">
+              <input type="checkbox" id="blackhole-toggle" aria-label="Activate black hole mode">
               <span>Black Hole</span>
             </label>
           </li>
 
           <li>
             <label for="alienBtn">
-              <input type="checkbox" id="alienBtn">
+              <input type="checkbox" id="alienBtn" aria-label="Activate alien mode">
               <span>Alien</span>
             </label>
           </li>
 
           <li>
             <label for="auroraModeBtn">
-              <input type="checkbox" id="auroraModeBtn">
+              <input type="checkbox" id="auroraModeBtn" aria-label="Activate aurora mode">
               <span>Aurora</span>
           </label>
           </li>
 
           <li>
             <label for="dyslexiaBtn">
-              <input type="checkbox" id="dyslexiaBtn">
+              <input type="checkbox" id="dyslexiaBtn" aria-label="Activate dyslexia friendly mode">
               <span>DyslexiaFriendly</span>
             </label>
           </li>
         </ul>
-      </div>
+      </nav>
 
-      <!-- Aurora thema kleuren -->
+      <!-- Aurora -->
       <div class="aurora">
         <div id="up"></div>
         <div id="down"></div>
@@ -82,7 +83,8 @@
     </header>
 
     <main>
-      <img src="images/satellite.svg" class="satellite"></img>
+      <!-- Satelliet -->
+      <img src="images/satellite.svg" class="satellite" alt="Satellite orbiting Earth">
 
       <section class="textstyling">
         <h2 class="warpable-text">What is NEBULA?</h2>
@@ -205,7 +207,7 @@
 
     <!-- Easter eggs -->
     <!-- Nyan cat -->
-    <!-- https://i.pinimg.com/originals/ed/35/f8/ed35f861be81be2548e514085fb19385.gif -->
+    <!-- Bron: https://i.pinimg.com/originals/ed/35/f8/ed35f861be81be2548e514085fb19385.gif -->
     <img id="cat" src="https://i.pinimg.com/originals/ed/35/f8/ed35f861be81be2548e514085fb19385.gif" alt="NyanCat">
     
     <!-- Space Invaders -->
