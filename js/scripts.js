@@ -1,3 +1,8 @@
+// Blackhole effect is gemaakt met ChatGPT, waardes zijn zelf ingevoerd
+// Prompt: Could you create a fish eye lens?
+// Prompt 2 :Could you make it look more like it gets sucked up like a blackhole, the blackhole being the mouse. I am kind of aiming for a fish lens kind of effect
+// Daarna waren nog meerdere prompts om te tweaken
+
 /*********************/
 /* Black Hole Effect */
 /*********************/
@@ -10,6 +15,8 @@ const EVENT_HORIZON = 10;
 
 // Toggle
 const toggle = document.getElementById("blackhole-toggle");
+
+
 let enabled = false;
 
 // Select ALL paragraphs
@@ -18,7 +25,7 @@ const paragraphs = document.querySelectorAll(".warpable-text");
 // Store all word elements
 let words = [];
 
-// 🔤 Convert paragraphs into WORD spans (ACCESSIBLE)
+// Convert paragraphs into WORD spans 
 paragraphs.forEach((paragraph) => {
   const text = paragraph.innerText.trim();
 
@@ -152,7 +159,7 @@ function getRandomDelay() {
   return Math.random() * (30000 - 12000) + 12000;
 }
 
-// 🎯 Random vertical position
+// Random vertical position
 function setRandomHeight() {
   const viewportHeight = window.innerHeight;
 
