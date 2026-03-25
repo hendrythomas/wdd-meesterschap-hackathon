@@ -653,28 +653,6 @@ p {
   font-family: var(--font-Mono);
 }
 
-
-.eggs-hamburger.open ~ .eggs-basket {
-      top: 3.5rem;
-      background-color: var(--blue);
-      box-shadow: 0 0 20px var(--orange);
-      opacity: 1;
-      width:  20vw;
-      padding-bottom: 2rem;
-      height: fit-content;
-      pointer-events: all;
-
-      transition: width 0.6s ease, height 0.6s ease, opacity 0.4s ease, top 0.6s ease, box-shadow 0.8s ease;
-
-      > h2 {
-      font-size: 32px;
-      letter-spacing: 5px;
-      }
-    }
-
-
-
-
     @keyframes alienSlide {
       0% {
         transform: scale(1) translate(0, 0);
