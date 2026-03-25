@@ -57,7 +57,6 @@ body {
     }
   }
 
-
   .eggs-hamburger {
     position: fixed;
     left: 2rem;
@@ -81,18 +80,25 @@ body {
       z-index: 9999999;
       transition: transform 0.8s ease-in-out, width 0.6s ease-in-out, opacity 0.8s ease-in-out;
     }
-
-    &.open {
-      > span:first-of-type {
+    
+    &:hover, &:focus-visible {
+      outline: none;
+      
+      > span {
+        background-color: white;
+      }
+    }
+  }
+  &:has(.eggs-basket:popover-open) {
+    > span:first-of-type {
       transform: translateY(0.9rem) rotate(45deg);
-      }
-      > span:nth-of-type(2) {
-        width: 0;
-        opacity: 0;
-      }
-      > span:last-of-type {
-        transform: translateY(-0.9rem) rotate(-45deg);
-      }
+    }
+    > span:nth-of-type(2) {
+      width: 0;
+      opacity: 0;
+    }
+    > span:last-of-type {
+      transform: translateY(-0.9rem) rotate(-45deg);
     }
   }
 
