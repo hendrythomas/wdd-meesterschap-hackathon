@@ -31,6 +31,8 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   animation: atmosphere;
+  /* Bron:
+  https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-timeline/scroll */
   animation-timeline: scroll(root);
 
   > header {
