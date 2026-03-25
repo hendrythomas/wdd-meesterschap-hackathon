@@ -140,7 +140,7 @@ body {
         letter-spacing: 5px;
       }
     }
-    
+
     h2 {
       margin: 1em auto;
       color: var(--orange);
@@ -431,10 +431,6 @@ p {
     width: 100%;
     padding-left: 1.5em;
     gap: 2em;
-
-    li {
-      max-width: 50%;
-    }
   }
 
   > .launchingsteps{
@@ -504,6 +500,12 @@ p {
     .stretch {
       height: 200vh;
     }
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  body .missiongoals {
+    flex-direction: column;
   }
 }
 
