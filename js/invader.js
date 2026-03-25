@@ -5,7 +5,7 @@ const shootSound = new Audio("sfx/invaderKilled.wav");
 shootSound.volume = 0.3;
 
 
-// define invaders with type + points
+// Elk soort invader aanmaken met bijbehorende score
 const invaderTypes = [
   { img: "images/invaders/invader1.svg", points: 100, type: "invader1" },
   { img: "images/invaders/invader2.svg", points: 250, type: "invader2" },
@@ -100,15 +100,15 @@ createWave();
 
 let score = 0;
 
-// Create the score display element
+// Score display aanmaken
 const scoreDisplay = document.createElement("div");
 scoreDisplay.id = "score-display";
 scoreDisplay.textContent = `Score: ${score}`;
 
-// Append to body
+// Score vastmaken aan body
 document.body.appendChild(scoreDisplay);
 
-// Function to update score
+// Score steeds laten updaten
 function updateScore() {
   scoreDisplay.textContent = `Score: ${score}`;
 }
