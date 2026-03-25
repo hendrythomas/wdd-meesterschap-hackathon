@@ -8,219 +8,210 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend+Deca">
-
   <link rel="icon" href="./images/satellite.svg"> 
 </head>
 
-<body>
-  <header>
-    <h1 class="decode-text">
-      <span class="text-animation">N</span>
-      <span class="text-animation">E</span>
-      <span class="text-animation">B</span>
-      <span class="text-animation">U</span>
-      <span class="text-animation">L</span>
-      <span class="text-animation">A</span>
-    
-      <span class="space"></span>
-    
-      <span class="text-animation">X</span>
-      <span class="text-animation">p</span>
-      <span class="text-animation">l</span>
-      <span class="text-animation">o</span>
-      <span class="text-animation">r</span>
-      <span class="text-animation">e</span>
-      <span class="text-animation">r</span>
-    </h1>
-    
-    <!-- <button class="eggs-hamburger" popovertarget="eggs-basket">
-      <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg>
-    </button> -->
+  <body>
+    <header>
+      <h1 class="decode-text">
+        <span class="text-animation">N</span>
+        <span class="text-animation">E</span>
+        <span class="text-animation">B</span>
+        <span class="text-animation">U</span>
+        <span class="text-animation">L</span>
+        <span class="text-animation">A</span>
+      
+        <span class="space"></span>
+      
+        <span class="text-animation">X</span>
+        <span class="text-animation">p</span>
+        <span class="text-animation">l</span>
+        <span class="text-animation">o</span>
+        <span class="text-animation">r</span>
+        <span class="text-animation">e</span>
+        <span class="text-animation">r</span>
+      </h1>
 
-    <button class="eggs-hamburger" popovertarget="eggs-basket" onclick="this.classList.toggle('open')">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+      <button class="eggs-hamburger" popovertarget="eggs-basket" onclick="this.classList.toggle('open')">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-    <div class="eggs-basket" id="eggs-basket" popover>
-      <h2>Fun Items</h2>
-      <ul class="menu">
-        
+      <div class="eggs-basket" id="eggs-basket" popover>
+        <h2>Fun Items</h2>
 
-        <li>
-          <label for="blackhole-toggle">
-            <input type="checkbox" id="blackhole-toggle">
-            <span>Black Hole</span>
-          </label>
-        </li>
+        <ul class="menu">
+          <li>
+            <label for="blackhole-toggle">
+              <input type="checkbox" id="blackhole-toggle">
+              <span>Black Hole</span>
+            </label>
+          </li>
 
-        <li>
-          <label for="alienBtn">
+          <li>
+            <label for="alienBtn">
               <input type="checkbox" id="alienBtn">
               <span>Alien</span>
+            </label>
+          </li>
+
+          <li>
+            <label for="auroraModeBtn">
+              <input type="checkbox" id="auroraModeBtn">
+              <span>Aurora</span>
           </label>
-        </li>
+          </li>
 
-        <li>
-          <label for="auroraModeBtn">
-            <input type="checkbox" id="auroraModeBtn">
-            <span>Aurora</span>
-        </label>
-        </li>
+          <li>
+            <label for="dyslexiaBtn">
+              <input type="checkbox" id="dyslexiaBtn">
+              <span>DyslexiaFriendly</span>
+            </label>
+          </li>
+        </ul>
+      </div>
 
-        <li>
-          <label for="dyslexiaBtn">
-            <input type="checkbox" id="dyslexiaBtn">
-            <span>DyslexiaFriendly</span>
-          </label>
-        </li>
-      </ul>
-    </div>
+      <!-- Aurora thema kleuren -->
+      <div class="aurora">
+        <div id="up"></div>
+        <div id="down"></div>
+        <div id="left"></div>
+        <div id="right"></div>
+      </div>
+    </header>
 
-    <!-- Aurora thema kleuren -->
-    <div class="aurora">
-      <div id="up"></div>
-      <div id="down"></div>
-      <div id="left"></div>
-      <div id="right"></div>
-    </div>
-  </header>
+    <main>
+      <img src="images/satellite.svg" class="satellite"></img>
 
-  <main>
-    <img src="images/satellite.svg" class="satellite"></img>
+      <section class="textstyling">
+        <h2 class="warpable-text">What is NEBULA?</h2>
 
-    <section class="textstyling">
-      <h2 class="warpable-text">What is NEBULA?</h2>
+        <p class="warpable-text">NEBULA – Xplorer stands for “Netherlands Educational Satellite for Exploration of Binary-Linked Astrophysics – X-ray Observer”. 
+          The NEBULA-Xplorer is a compact, high-performance scientific satellite platform developed under SRON’s NEBULA program. 
+          It aims to deliver high-precision astrophysical observations from a 45-degree inclination orbit, supporting its X-ray instrumation and associated scientific objectives.
+        </p>
+      </section>
 
-      <p class="warpable-text">NEBULA – Xplorer stands for “Netherlands Educational Satellite for Exploration of Binary-Linked Astrophysics – X-ray Observer”. 
-        The NEBULA-Xplorer is a compact, high-performance scientific satellite platform developed under SRON’s NEBULA program. 
-        It aims to deliver high-precision astrophysical observations from a 45-degree inclination orbit, supporting its X-ray instrumation and associated scientific objectives.
-      </p>
-    </section>
+      <section class="textstyling">
+        <h2 class="warpable-text">The goal of NEBULA</h2>
 
-    <section class="textstyling">
-      <h2 class="warpable-text">The goal of NEBULA</h2>
+        <p class="warpable-text">The mission has two goals:</p> 
 
-      <p class="warpable-text">The mission has two goals:</p> 
+        <ol class="missiongoals">
+          <li class="warpable-text">The scientific goal is to better understand how a black hole captures material from a companion star.</li>
+          <li class="warpable-text">The educational goal is for students from Dutch educational institutions to experience firsthand how to build a space mission from the ground up.</li>
+        </ol>
 
-      <ol class="missiongoals">
-        <li class="warpable-text">The scientific goal is to better understand how a black hole captures material from a companion star.</li>
-        <li class="warpable-text">The educational goal is for students from Dutch educational institutions to experience firsthand how to build a space mission from the ground up.</li>
-      </ol>
+        <p class="warpable-text">SRON is leading the NEBULA – Xplorer mission, contributing to a new generation of scientists, designers and technicians for Dutch space research.</p>
+      </section>
 
-      <p class="warpable-text">SRON is leading the NEBULA – Xplorer mission, contributing to a new generation of scientists, designers and technicians for Dutch space research.</p>
-    </section>
+      <section class="textstyling">
+        <h2 class="warpable-text">About us</h2>
 
-    <section class="textstyling">
-      <h2 class="warpable-text">About us</h2>
+        <p class="warpable-text">About 400 students will join SRON, 14 Dutch educational institutions and many industrial partners in developing this space mission from start to finish, led by scientists and engineers. </p>
+      </section>
 
-      <p class="warpable-text">About 400 students will join SRON, 14 Dutch educational institutions and many industrial partners in developing this space mission from start to finish, led by scientists and engineers. </p>
-    </section>
+      <section class="textstyling">
+        <h2 class="warpable-text">The Science</h2>
+        <h3 class="warpable-text">X-rays double stars</h3>
 
-    <section class="textstyling">
-      <h2 class="warpable-text">The Science</h2>
-      <h3 class="warpable-text">X-rays double stars</h3>
+        <p class="warpable-text">Many of the brightest objects in the Universe are X-ray binaries. 
+          These are combinations of an extremely compact object, such as a black hole or neutron star, and a companion star. 
+          Over time, the compact object extracts matter from its companion star. This releases lots of energy through a jet. 
+          Scientists do not yet fully understand this process. Especially the nature of the stream of matter right next to the black hole remains a big mystery.</p>
+      </section>
 
-      <p class="warpable-text">Many of the brightest objects in the Universe are X-ray binaries. 
-        These are combinations of an extremely compact object, such as a black hole or neutron star, and a companion star. 
-        Over time, the compact object extracts matter from its companion star. This releases lots of energy through a jet. 
-        Scientists do not yet fully understand this process. Especially the nature of the stream of matter right next to the black hole remains a big mystery.
-      </p>
-    </section>
+      <section class="textstyling">
+        <h2 class="warpable-text">The Science</h2>
+        <h3 class="warpable-text">Long observation periods</h3>
 
-    <section class="textstyling">
-      <h2 class="warpable-text">The Science</h2>
-      <h3 class="warpable-text">Long observation periods</h3>
+        <p class="warpable-text">NEBULA-Xplorer will investigate how jets form and how X-ray binaries evolve. It will observe these objects for long periods of time to see how their emission varies on time scales from milliseconds to weeks. 
+          This long observation time makes it possible to combine X-ray activity with data from other wavelengths from other telescopes.</p>
+      </section>
 
-      <p class="warpable-text">NEBULA-Xplorer will investigate how jets form and how X-ray binaries evolve. It will observe these objects for long periods of time to see how their emission varies on time scales from milliseconds to weeks. 
-        This long observation time makes it possible to combine X-ray activity with data from other wavelengths from other telescopes.
-      </p>
-    </section>
+      <section class="textstyling">
+        <h2 class="warpable-text">Instrumentation </h2>
+        <h3 class="warpable-text">Compact X-ray telescope</h3>
 
-    <section class="textstyling">
-      <h2 class="warpable-text">Instrumentation </h2>
-      <h3 class="warpable-text">Compact X-ray telescope</h3>
+        <p class="warpable-text">NEBULA – Xplorer will be a very compact X-ray space telescope, measuring only 110 x 85 x 50 centimetres. It can be made so small by using several cylindrical mirrors that reflect X-rays. 
+          The mission has one X-ray instrument on board that can measure how X-rays vary over a long period of time. The space telescope will use existing, commercial X-ray detectors. 
+          These will be cooled down to their optimum operating temperature of -35 degrees Celsius.</p>
+      </section>
 
-      <p class="warpable-text">NEBULA – Xplorer will be a very compact X-ray space telescope, measuring only 110 x 85 x 50 centimetres. It can be made so small by using several cylindrical mirrors that reflect X-rays. 
-        The mission has one X-ray instrument on board that can measure how X-rays vary over a long period of time. The space telescope will use existing, commercial X-ray detectors. 
-        These will be cooled down to their optimum operating temperature of -35 degrees Celsius.</p>
-    </section>
+      <section class="textstyling">
+        <h2 class="warpable-text">Instrumentation</h2>
+        <h3 class="warpable-text">Design</h3>
 
-    <section class="textstyling">
-      <h2 class="warpable-text">Instrumentation</h2>
-      <h3 class="warpable-text">Design</h3>
+        <p class="warpable-text">The students will be supported by SRON in designing, building, and testing the camera, electronics, and housing. 
+          They will also receive coaching from their educational institute and the industrial partners within the project. 
+          We develop NEBULA – Xplorer in close cooperation with the Dutch space industry, which provides the technical facilities to produce and test the various components.</p>
+      </section>
 
-      <p class="warpable-text">The students will be supported by SRON in designing, building, and testing the camera, electronics, and housing. 
-        They will also receive coaching from their educational institute and the industrial partners within the project. 
-        We develop NEBULA – Xplorer in close cooperation with the Dutch space industry, which provides the technical facilities to produce and test the various components.
-      </p>
-    </section>
+      <section class="textstyling">
+        <h2 class="warpable-text">The steps that need to be taken before launching</h2>
 
-    <section class="textstyling">
-      <h2 class="warpable-text">The steps that need to be taken before launching</h2>
+        <ol class="launchingsteps">
+          <li class="warpable-text">Research</li>
+          <li class="warpable-text">Prototype, review and refine</li>
+          <li class="warpable-text">Build</li>
+          <li class="warpable-text">Take off</li>
+        </ol>
+      </section>
 
-      <ol class="launchingsteps">
-        <li class="warpable-text">Research</li>
-        <li class="warpable-text">Prototype, review and refine</li>
-        <li class="warpable-text">Build</li>
-        <li class="warpable-text">Take off</li>
-      </ol>
-    </section>
+      <section class="textstyling">
+        <h2 class="warpable-text">Partnerships</h2>
 
-    <section class="textstyling">
-      <h2 class="warpable-text">Partnerships</h2>
+        <ul>
+          <li class="warpable-text">Mrborijnland</li>
+          <li class="warpable-text">Lis</li>
+          <li class="warpable-text">Saxion</li>
+          <li class="warpable-text">Hogeschool van Amsterdam</li>
+          <li class="warpable-text">Hogeschool Utrecht</li>
+          <li class="warpable-text">De Haagse hogeschool</li>
+          <li class="warpable-text">Inholland</li>
+          <li class="warpable-text">Universiteit van Amsterdam</li>
+          <li class="warpable-text">Rijksuniversiteit Groningen</li>
+          <li class="warpable-text">Esatan-TMS</li>
+          <li class="warpable-text">Astos Solutions</li>
+          <li class="warpable-text">Universiteit Leiden</li>
+          <li class="warpable-text">Erasmus Universiteit Rotterdam</li>
+          <li class="warpable-text">TU Delft</li>
+          <li class="warpable-text">Techniek College Rotterdam</li>
+          <li class="warpable-text">Nova College</li>
+          <li class="warpable-text">ROC Mondriaan</li>
+        </ul>
+      </section>
 
-      <ul>
-        <li class="warpable-text">Mrborijnland</li>
-        <li class="warpable-text">Lis</li>
-        <li class="warpable-text">Saxion</li>
-        <li class="warpable-text">Hogeschool van Amsterdam</li>
-        <li class="warpable-text">Hogeschool Utrecht</li>
-        <li class="warpable-text">De Haagse hogeschool</li>
-        <li class="warpable-text">Inholland</li>
-        <li class="warpable-text">Universiteit van Amsterdam</li>
-        <li class="warpable-text">Rijksuniversiteit Groningen</li>
-        <li class="warpable-text">Esatan-TMS</li>
-        <li class="warpable-text">Astos Solutions</li>
-        <li class="warpable-text">Universiteit Leiden</li>
-        <li class="warpable-text">Erasmus Universiteit Rotterdam</li>
-        <li class="warpable-text">TU Delft</li>
-        <li class="warpable-text">Techniek College Rotterdam</li>
-        <li class="warpable-text">Nova College</li>
-        <li class="warpable-text">ROC Mondriaan</li>
-      </ul>
-    </section>
+      <section class="textstyling">
+        <h2 class="warpable-text">At last, press the key 'i'</h2>
 
-    <section class="textstyling">
-      <h2 class="warpable-text">At last, press the key 'i'</h2>
+        <p class="warpable-text">If you dare...</p>
+      </section>
 
-      <p class="warpable-text">If you dare...</p>
-    </section>
+      <!-- Sterren -->
+      <div class="stars"></div>
+        <!-- De aardbol -->
+        <div class="globe">
+      </div>
 
-    <div class="stars"></div>
-    <div class="globe">
-    </div>
-    <div class="stretch"></div>
+      <!-- UFO -->
+      <div class="ufo-with-banner">
+        <div id="banner-ufo"></div>      
+        <div id="banner-fire"></div>
+        <img id="banner" src="https://www.sron.nl/wp-content/uploads/2025/04/NEBULA-Xplorer-logo-motto-1024x649.jpg" alt="logo of Nebula Xplorer">
+      </div>
+    </main>
 
-    <div class="ufo-with-banner">
-      <div id="banner-ufo"></div>      
-      <div id="banner-fire"></div>
-      <img id="banner" src="https://www.sron.nl/wp-content/uploads/2025/04/NEBULA-Xplorer-logo-motto-1024x649.jpg" alt="logo of Nebula Xplorer">
-    </div>
+    <!-- Easter eggs -->
+    <!-- Nyan cat -->
+    <!-- https://i.pinimg.com/originals/ed/35/f8/ed35f861be81be2548e514085fb19385.gif -->
+    <img id="cat" src="https://i.pinimg.com/originals/ed/35/f8/ed35f861be81be2548e514085fb19385.gif" alt="NyanCat">
+    
+    <!-- Space Invaders -->
+    <div id="invader-container"></div>
 
-  </main>
-
-  <!-- Easter eggs -->
-  <!-- https://i.pinimg.com/originals/ed/35/f8/ed35f861be81be2548e514085fb19385.gif -->
-  <img id="cat" src="https://i.pinimg.com/originals/ed/35/f8/ed35f861be81be2548e514085fb19385.gif" alt="NyanCat">
-  
-  <div id="invader-container"></div>
-
-
-
-</body>
-<script src="./js/scripts.js"></script>
-<script src="./js/invader.js" defer></script>
-
+    <script src="./js/scripts.js"></script>
+    <script src="./js/invader.js" defer></script>
+  </body>
 </html>
