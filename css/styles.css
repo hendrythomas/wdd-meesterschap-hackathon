@@ -1,7 +1,6 @@
 *,*::before, 
 *::after {
   box-sizing: border-box;
-  /* transition: all 0.3s ease; */
 }
 
 :root {
@@ -30,9 +29,9 @@ body {
   background-color: var(--darkblue);
   overflow-x: hidden;
   scroll-behavior: smooth;
+
   animation: atmosphere;
-  /* Bron:
-  https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-timeline/scroll */
+  /* Bron: https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/animation-timeline/scroll */
   animation-timeline: scroll(root);
 
   > header {
@@ -57,9 +56,81 @@ body {
       > span {
         font-size: clamp(1.2em, 5vw, 3.0em);
       }
+
+      /***********************/
+      /* H1 verschijn effect */
+      /***********************/
+      /* Bron: https://codepen.io/BRacicot/pen/Nryjpa */
+
+      .space {
+        display: inline-block;
+        width: 20px;
+      }
+
+      .text-animation {
+        display: inline-block;
+        position: relative;
+        color: transparent;
+        text-transform: uppercase;
+      }
+
+      .text-animation::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        background: #0e182d;
+        width: 0;
+        height: 1.2em;
+        transform: translate(-50%, -55%);
+      }
+
+      .text-animation.state-1::before {
+        width: 2px;
+      }
+
+      .text-animation.state-2::before {
+        width: 0.9em;
+      }
+
+      .text-animation.state-3 {
+        color: var(--white);
+      }
+
+      .text-animation.state-3::before {
+        width: 0;
+      }
     }
   }
 
+  /* Teksten styling */
+  h2 {
+    font-family: var(--font-Mono);
+    color: var(--orange);
+    font-size: clamp(0.7em, 10vw, 2.5em);
+    font-weight: 100;
+    margin: 0 auto;
+    cursor: text;
+  }
+  
+  h3 {
+    font-family: var(--font-Mono);
+    color: var(--orange);
+    font-size: clamp(1.5em, 8vw, 2em);
+    font-weight: 100;
+    margin: 0.2em 0;
+    cursor: text;
+  }
+  
+  p {
+    font-family: var(--font-Grotesk);
+    color: var(--white);
+    font-size: clamp(0.8em, 2.5vw, 1em);
+    letter-spacing: 0.05em;
+    cursor: text;
+  }
+
+  /* Hamburger menu styling */
   .eggs-hamburger {
     position: fixed;
     left: 2rem;
@@ -80,7 +151,6 @@ body {
       background-color: var(--orange);
       border-radius: 8px;
       pointer-events: none;
-      /* cursor: pointer; */
       z-index: 9999999;
       transition: transform 0.8s ease-in-out, width 0.6s ease-in-out, opacity 0.8s ease-in-out;
     }
@@ -93,47 +163,53 @@ body {
       }
     }
   }
-  &:has(.eggs-basket:popover-open) {
+
+  /* Menu pop-up is open styling */
+  &:has(.eggs-basket:popover-open) .eggs-hamburger {
+
     > span:first-of-type {
       transform: translateY(0.9rem) rotate(45deg);
     }
+
     > span:nth-of-type(2) {
       width: 0;
       opacity: 0;
     }
+
     > span:last-of-type {
       transform: translateY(-0.9rem) rotate(-45deg);
     }
+
   }
 
-
+  /* Menu items (settings) styling */
   .eggs-basket {
     position: fixed;
     top: 1em;
     left: 0;
     width:  0vw;
     height: 0vw;
-    /* min-height: min-content; */
+
     background-color: var(--blue);
     color: var(--white);
     border: none;
     font-family: var(--font-Grotesk);
     border-radius: 8px;
-    font-family: 'Space Grotesk';
-    /* padding: 1rem; */
     margin: 2em 2em;
     z-index: 99990;
-    /* box-shadow: 0 0 0 max(100vw, 100vh) #00000080; */
     box-shadow: 0 0 0px var(--orange);
+
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
+
     opacity: 0;
     overflow: hidden;
     pointer-events: none;
 
     transition: width 0.6s ease, height 0.8s ease, opacity 0.8s ease, margin 2s ease, top 1s ease, box-shadow 0.8s ease;
+
     &:popover-open {
       top: 3.5rem;
       background-color: var(--blue);
@@ -171,439 +247,514 @@ body {
 
       > li {
       list-style: none;
-      
 
       transition: box-shadow 0.3s ease;
-      
 
-      > label {
-        display: flex;
-        border-radius: 8px;
-        padding: 1em 2em;
-        position: relative;
-        overflow: hidden;
-        box-shadow: 0 0 1px var(--orange);
-        cursor: pointer;
+        > label {
+          display: flex;
+          border-radius: 8px;
+          padding: 1em 2em;
+          position: relative;
+          overflow: hidden;
+          box-shadow: 0 0 1px var(--orange);
+          cursor: pointer;
 
-        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.8s ease, color 0.8s ease;
+          transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.8s ease, color 0.8s ease;
 
-      > input {
-        appearance: none;
-      }
+            > input {
+              appearance: none;
+            }
 
-      > span {
-        font-size: 20px;
-        letter-spacing: normal;
-        z-index: 3;
+            > span {
+              font-size: 20px;
+              letter-spacing: normal;
+              z-index: 3;
 
-        transition: letter-spacing 0.3s ease-in-out;
-      }
+              transition: letter-spacing 0.3s ease-in-out;
+            }
 
-      &:hover {
-        transform: scale(1.05);
-        box-shadow: 0 0 10px var(--orange);
+            &:hover {
+              transform: scale(1.05);
+              box-shadow: 0 0 10px var(--orange);
 
-        > span {
+              > span {
+                font-weight: 900;
+              }
+            }
+
+            &:hover > span {
+              transform: scale(1.05);
+              color: var(--darkorange);
+            }
+        }
+
+        /* Setting Black Hole styling */
+        &:first-of-type > label::after {
+          content: "";
+          position: absolute;
+          right: 20%;
+          top: 50%;
+          transform: translate(0, -50%);
+          width: 2em;
+          height: 2em;
+          border-radius: 50%;
+          filter: blur(0.5px);
+          background-color: yellow;
+          box-shadow: 0 0 30px yellow;
+          z-index: 1;
+
+          transition: right 0.8s ease, width 0.3s ease, height 0.3s ease;
+        }
+
+        &:first-of-type > label::before {
+          content: "";
+          position: absolute;
+          left: -20%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 2em;
+          height: 2em;
+          border-radius: 50%;
+          background-color: black;
+          box-shadow: 0 0 10px black;
+          z-index: 2;
+          transform-origin: left center;
+
+          transition: width 0.3s ease, height 0.3s ease, left 0.3s ease;
+        }
+
+        &:first-of-type > label:hover::before {
+          left: 0%;
+          width: 100%;
+          height: 100%;
+          border-radius: inherit;
+        }
+
+        &:first-of-type > label:has(input:checked)::after {
+          right: -30%;
+          width: 1em;
+          height: 1em;
+        }
+
+        &:first-of-type > label:has(input:checked)::before {
+          left: 50%;
+          width: 100%;
+          height: 100%;
+          border-radius: inherit;
+          box-shadow: 0 0 100px black;
+        }
+
+        &:first-of-type > label:has(input:checked) > span {
+          letter-spacing: 5px;
+          text-shadow: 0 0 5px var(--orange);
+        }
+
+        /* Setting Alien styling */
+        &:nth-of-type(2) > label:has(input:checked) {
+          background: linear-gradient(90deg, var(--darkblue), var(--blue), var(--cyan), var(--darkblue));
+
+          background-size: 300% 100%;
+          animation: gradientShift 3s linear infinite;
+        }
+
+        &:nth-of-type(2) > label::after {
+          content: "";
+          position: absolute;
+          right: -20%;
+          top: 50%;
+
+          transform: translate(50%, -50%);
+          width: 2em;
+          height: 2em;
+          filter: blur(0.5px);
+
+          background-image: url(/images/alien.svg);
+          background-repeat: no-repeat;
+          background-position: center;
+          z-index: 1;
+
+          transition: right 0.8s ease, width 0.3s ease, height 0.3s ease;
+        }
+
+        &:nth-of-type(2) > label::before {
+          content: "";
+          position: absolute;
+          left: -20%;
+          top: 50%;
+
+          transform: translate(-50%, -50%);
+          width: 2em;
+          height: 2em;
+          filter: blur(0.5px);
+
+          background-image: url(/images/alien.svg);
+          background-repeat: no-repeat;
+          background-position: center;
+          z-index: 1;
+
+          transition: right 0.8s ease, width 0.3s ease, height 0.3s ease;
+        }
+
+        &:nth-of-type(2) > label:has(input:checked)::after {
+          right: 50%;
+
+          animation: alienSlide 1s ease-in-out infinite;
+        }
+
+        &:nth-of-type(2) > label:has(input:checked)::before {
+          left: 50%;
+
+          animation: alienSlide 1s ease-in-out infinite;
+        }
+
+        &:nth-of-type(2)> label:has(input:checked) > span {
+          font-size: 32px;
+          letter-spacing: 10px;
+          text-shadow: 0 0 5px var(--orange);
+        }
+
+        &:nth-of-type(2) > label:hover::before {
+          left: 0%;
+          width: 100%;
+          height: 100%;
+          border-radius: inherit;
+        }
+
+        &:nth-of-type(2) > label:hover::after {
+          right: 30%;
+        }
+
+        /* Setting Aurora styling */
+        &:nth-of-type(3) > label:has(input:checked) > span {
+          text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
+          color: transparent;
+          -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.7);
+        }
+
+        &:nth-of-type(3) > label::after {
+          content: "";
+          position: absolute;
+          right: -20%;
+          top: 50%;
+          transform: translate(50%, -50%);
+          width: 2em;
+          height: 2em;
+          border-radius: 50%;
+          filter: blur(5px);
+          background-color: cyan;
+          box-shadow: 0 0 30px cyan;
+          z-index: 1;
+
+          transition: right 0.8s ease, width 0.3s ease, height 0.3s ease, box-shadow 0.8s ease, filter 0.8s ease;
+        }
+
+        &:nth-of-type(3) > label:hover::after {
+          right: 50%;
+          box-shadow: 0 0 100px cyan;
+          filter: blur(10px);
+          width: 3em;
+          height: 3em;
+        }
+
+        &:nth-of-type(3) > label::before {
+          content: "";
+          position: absolute;
+          left: -20%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 2em;
+          height: 2em;
+          border-radius: 50%;
+          filter: blur(5px);
+          background-color: green;
+          box-shadow: 0 0 30px green;
+          z-index: 2;
+
+          transition: left 0.8s ease, width 0.3s ease, height 0.3s ease, box-shadow 0.8s ease, filter 0.8s ease;
+        }
+
+        &:nth-of-type(3) > label:hover::before {
+          left: 50%;
+          box-shadow: 0 0 100px green;
+          filter: blur(10px);
+          width: 3em;
+          height: 3em;
+        }
+
+        &:nth-of-type(3) > label:has(input:checked)::after {
+          right: 50%;
+          width: 100%;
+          height: 100%;
+          border-radius: inherit;
+          filter: blur(25px);
+
+          animation: auroraGlow 4s ease-in-out infinite alternate;
+        }
+
+        &:nth-of-type(3) > label:has(input:checked)::before {
+          left: 50%;
+          width: 100%;
+          height: 100%;
+          border-radius: inherit;
+          filter: blur(25px);
+
+          animation: auroraGlow 4s ease-in-out infinite alternate;
+        }
+
+        /* Setting Dyslexia Help styling */
+        &:nth-of-type(4) > label:has(input:checked) > span {
+          --font-Grotesk: 'Lexend Deca', Arial;
+          transform: scale(1.2);
+          color: black;
+          font-family: var(--font-Grotesk);
           font-weight: 900;
         }
+
+        &:nth-of-type(4) > label::after {
+          content: "";
+          position: absolute;
+          right: 50%;
+          top: 50%;
+          transform-origin: center;
+          transform: translate(50%, -50%);
+          width: 0em;
+          height: 0em;
+          border-radius: 50%;
+          filter: blur(5px);
+          background-color: cyan;
+          box-shadow: 0 0 30px cyan;
+          z-index: 1;
+
+          transition: right 0.8s ease, width 0.3s ease, height 0.3s ease, box-shadow 0.8s ease, filter 0.8s ease;
+        }
+
+        &:nth-of-type(4) > label:has(input:checked)::after {
+          background-color: white;
+          box-shadow: none;
+          width: 100%;
+          height: 100%;
+          border-radius: inherit;
+        }
+
+        &:nth-of-type(4) > label:hover::after {
+          width: 4em;
+          height: 2em;
+          background-color: white;
+        }
       }
-
-      &:hover > span {
-        transform: scale(1.05);
-        color: var(--darkorange);
-      }
-
-      }
-
-      /* Styling for Black Hole */
-      &:first-of-type > label::after {
-        content: "";
-        position: absolute;
-        right: 20%;
-        top: 50%;
-        transform: translate(0, -50%);
-        width: 2em;
-        height: 2em;
-        border-radius: 50%;
-        filter: blur(0.5px);
-        background-color: yellow;
-        box-shadow: 0 0 30px yellow;
-        z-index: 1;
-
-        transition: right 0.8s ease, width 0.3s ease, height 0.3s ease;
-      }
-
-      &:first-of-type > label::before {
-        content: "";
-        position: absolute;
-        left: -20%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 2em;
-        height: 2em;
-        border-radius: 50%;
-        background-color: black;
-        box-shadow: 0 0 10px black;
-        z-index: 2;
-        transform-origin: left center;
-
-        transition: width 0.3s ease, height 0.3s ease, left 0.3s ease;
-      }
-
-      &:first-of-type > label:hover::before {
-        left: 0%;
-        width: 100%;
-        height: 100%;
-        border-radius: inherit;
-      }
-
-      &:first-of-type > label:has(input:checked)::after {
-        right: -30%;
-        width: 1em;
-        height: 1em;
-      }
-
-      &:first-of-type > label:has(input:checked)::before {
-        left: 50%;
-        width: 100%;
-        height: 100%;
-        border-radius: inherit;
-        box-shadow: 0 0 100px black;
-      }
-
-      &:first-of-type > label:has(input:checked) > span {
-        letter-spacing: 5px;
-        text-shadow: 0 0 5px var(--orange);
-      }
-
-      /* Styling for Alien */
-      
-      &:nth-of-type(2) > label:has(input:checked) {
-        background: linear-gradient(90deg, var(--darkblue), var(--blue), var(--cyan), var(--darkblue));
-
-        background-size: 300% 100%;
-        animation: gradientShift 3s linear infinite;
-      }
-
-      &:nth-of-type(2) > label::after {
-        content: "";
-        position: absolute;
-        right: -20%;
-        top: 50%;
-        transform: translate(50%, -50%);
-        width: 2em;
-        height: 2em;
-        /* border-radius: 50%; */
-        filter: blur(0.5px);
-        background-image: url(/images/alien.svg);
-        background-repeat: no-repeat;
-        background-position: center;
-        /* background-color: yellow; */
-        /* box-shadow: 0 0 30px yellow; */
-        z-index: 1;
-
-        transition: right 0.8s ease, width 0.3s ease, height 0.3s ease;
-      }
-
-      &:nth-of-type(2) > label::before {
-        content: "";
-        position: absolute;
-        left: -20%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 2em;
-        height: 2em;
-        /* border-radius: 50%; */
-        filter: blur(0.5px);
-        background-image: url(/images/alien.svg);
-        background-repeat: no-repeat;
-        background-position: center;
-        /* background-color: yellow; */
-        /* box-shadow: 0 0 30px yellow; */
-        z-index: 1;
-
-        transition: right 0.8s ease, width 0.3s ease, height 0.3s ease;
-      }
-
-      &:nth-of-type(2) > label:has(input:checked)::after {
-        right: 50%;
-        /* width: 1em;
-        height: 1em; */
-        animation: alienSlide 1s ease-in-out infinite;
-      }
-
-      &:nth-of-type(2) > label:has(input:checked)::before {
-        left: 50%;
-        /* width: 100%;
-        height: 100%; */
-        animation: alienSlide 1s ease-in-out infinite;
-      }
-
-      &:nth-of-type(2)> label:has(input:checked) > span {
-        font-size: 32px;
-        letter-spacing: 10px;
-        text-shadow: 0 0 5px var(--orange);
-      }
-
-      &:nth-of-type(2) > label:hover::before {
-        left: 0%;
-        width: 100%;
-        height: 100%;
-        border-radius: inherit;
-      }
-
-      &:nth-of-type(2) > label:hover::after {
-        right: 30%;
-      }
-
-      /* Styling for Aurora */
-
-      &:nth-of-type(3) > label:has(input:checked) > span {
-        text-shadow: 0 0 6px rgba(0, 0, 0, 0.8);
-        color: transparent;
-        -webkit-text-stroke: 0.5px rgba(255, 255, 255, 0.7);
-      }
-      &:nth-of-type(3) > label::after {
-        content: "";
-        position: absolute;
-        right: -20%;
-        top: 50%;
-        transform: translate(50%, -50%);
-        width: 2em;
-        height: 2em;
-        border-radius: 50%;
-        filter: blur(5px);
-        background-color: cyan;
-        box-shadow: 0 0 30px cyan;
-        z-index: 1;
-
-        transition: right 0.8s ease, width 0.3s ease, height 0.3s ease, box-shadow 0.8s ease, filter 0.8s ease;
-      }
-
-      &:nth-of-type(3) > label:hover::after {
-        right: 50%;
-        box-shadow: 0 0 100px cyan;
-        filter: blur(10px);
-        width: 3em;
-        height: 3em;
-      }
-
-      &:nth-of-type(3) > label::before {
-        content: "";
-        position: absolute;
-        left: -20%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        width: 2em;
-        height: 2em;
-        border-radius: 50%;
-        filter: blur(5px);
-        background-color: green;
-        box-shadow: 0 0 30px green;
-        z-index: 2;
-
-        transition: left 0.8s ease, width 0.3s ease, height 0.3s ease, box-shadow 0.8s ease, filter 0.8s ease;
-      }
-
-      &:nth-of-type(3) > label:hover::before {
-        left: 50%;
-        box-shadow: 0 0 100px green;
-        filter: blur(10px);
-        width: 3em;
-        height: 3em;
-      }
-
-      &:nth-of-type(3) > label:has(input:checked)::after {
-        right: 50%;
-        width: 100%;
-        height: 100%;
-        border-radius: inherit;
-        filter: blur(25px);
-        animation: auroraGlow 4s ease-in-out infinite alternate;
-      }
-
-      &:nth-of-type(3) > label:has(input:checked)::before {
-        left: 50%;
-        width: 100%;
-        height: 100%;
-        border-radius: inherit;
-        filter: blur(25px);
-        animation: auroraGlow 4s ease-in-out infinite alternate;
-        /* width: 1em;
-        height: 1em; */
-      }
-
-      /* Styling for Dyslexia */
-
-      &:nth-of-type(4) > label:has(input:checked) > span {
-        --font-Grotesk: 'Lexend Deca', Arial;
-        transform: scale(1.2);
-        color: black;
-        font-family: var(--font-Grotesk);
-        font-weight: 900;
-      }
-
-      &:nth-of-type(4) > label::after {
-        content: "";
-        position: absolute;
-        right: 50%;
-        top: 50%;
-        transform-origin: center;
-        transform: translate(50%, -50%);
-        width: 0em;
-        height: 0em;
-        border-radius: 50%;
-        filter: blur(5px);
-        background-color: cyan;
-        box-shadow: 0 0 30px cyan;
-        z-index: 1;
-
-        transition: right 0.8s ease, width 0.3s ease, height 0.3s ease, box-shadow 0.8s ease, filter 0.8s ease;
-      }
-
-      &:nth-of-type(4) > label:has(input:checked)::after {
-        background-color: white;
-        box-shadow: none;
-        width: 100%;
-        height: 100%;
-        border-radius: inherit;
-      }
-
-      &:nth-of-type(4) > label:hover::after {
-        width: 4em;
-        height: 2em;
-        background-color: white;
-      }
-
-
     }
-    }
-    
+  }
+
+  &:has(#dyslexiaBtn:checked) {
+    --font-Mono: 'Lexend Deca', Arial;
+    --font-Grotesk: 'Lexend Deca', Arial;
+  }
+
+  /**********************/
+  /* Aurora ander thema */
+  /**********************/
+  /* Bron: https://www.youtube.com/watch?v=MxpDrULwejY */
+
+  /* Body state */
+  &:has(#auroraModeBtn:checked) {
+  min-height: 100vh;
+  min-width: 100vw;
+  }
+
+  /* Blob 1 lichtgroen */
+  &:has(#auroraModeBtn:checked) #up {
+    position: fixed;
+    height: 90vh;
+    width: 90vw;
+    border-radius: 50%;
+    background-image: linear-gradient(180deg, #00ffcc, #00ff66);
+    opacity: 0.7;
+    z-index: -100;
+    filter: blur(120px);
+    animation: up 30s linear infinite;
+  }
+
+  /* Blob 2 roze/paars */
+  &:has(#auroraModeBtn:checked) #down {
+    position: fixed;
+    height: 60vh;
+    width: 60vw;
+    border-radius: 50%;
+    background-image: linear-gradient(180deg, #7b2ff7, #f107a3);
+    opacity: 0.7;
+    z-index: -100;
+    filter: blur(120px);
+    animation: down 20s linear infinite;
+  }
+
+  /* Blob 3 lichtblauw */
+  &:has(#auroraModeBtn:checked) #left {
+    position: fixed;
+    height: 70vh;
+    width: 70vw;
+    border-radius: 50%;
+    background-image: linear-gradient(180deg, #00f2fe, #4facfe);
+    opacity: 0.7;
+    filter: blur(120px);
+    animation: left 25s linear infinite;
+  }
+
+  /* Blob 4 lichtgroen 2 */
+  &:has(#auroraModeBtn:checked) #right {
+    position: fixed;
+    height: 50vh;
+    width: 50vw;
+    border-radius: 50%;
+    background-image: linear-gradient(180deg, #a8ff78, #00ffcc);
+    opacity: 0.7;
+    filter: blur(120px);
+    animation: right 18s linear infinite;
+    animation-delay: .5s;
+  }
+
+  &:has(#auroraModeBtn:checked) #up,
+  &:has(#auroraModeBtn:checked) #down,
+  &:has(#auroraModeBtn:checked) #left,
+  &:has(#auroraModeBtn:checked) #right {
+    mix-blend-mode: screen;
+  }
+
+  /* Globe effect */
+  &:has(#auroraModeBtn:checked) .globe {
+    filter: 
+      saturate(0) 
+      contrast(400%);
+    box-shadow:
+      0px 0px 20px #ffffff80,
+      0px 0px 20px #ffffff20 inset;
+  }
+
+  /**************************/
+  /* Black Hole ander thema */
+  /**************************/
+
+  /* Black hole cursor change */
+  &:has(#blackhole-toggle:checked) {
+    cursor: url("../images/black-hole.png");
+    background-color: var(--darkblue);
+  }
+
+  /* Black hole effect */
+  .word {
+    display: inline-block;
+    white-space: nowrap;
+    will-change: transform, opacity;
+    transition: transform 0.05s linear;
+  }
+
+  /* Black hole ander thema */
+  &:has(#blackhole-toggle:checked) {
+    animation: atmosphereBlackHole 8s ease-in-out infinite;
+    background-size: 200% 200%;
+  }
+
+  &:has(#blackhole-toggle:checked) .globe {
+    filter:
+      brightness(0.5)
+      sepia(1)
+      saturate(9)
+      hue-rotate(-15deg);
+    box-shadow:
+      0px 0px 20px var(--white),
+      0px 0px 20px var(--white) inset;
   }
 
   > main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  width: 100%;
-  padding: 40px;
-  position: relative;
-
-  .satellite {
-  width: 30em;
-  height: 20vh;
-  margin-top: 5em;
-  margin-bottom: 2em;
-  position: fixed;
-  top: 0.5em;
-  left: 50%;
-  transform: translateX(-50%);
-  overflow: hidden;
-  z-index: 2000;
-  filter: drop-shadow(0px 0px 3px white);
-
-  animation: satelliteAnimation 1s ease-in-out, 
-  satelliteAnimationOnDelay 0.8s ease-in-out 3.2s forwards, 
-  satelliteHoveringAnimation 10s ease-in-out 4s infinite;
-
-  pointer-events: none;
-}
-
-h2 {
-  font-family: var(--font-Mono);
-  color: var(--orange);
-  font-size: clamp(0.7em, 10vw, 2.5em);
-  font-weight: 100;
-  margin: 0 auto;
-  cursor: text;
-}
-
-h3 {
-  font-family: var(--font-Mono);
-  color: var(--orange);
-  font-size: clamp(1.5em, 8vw, 2em);
-  font-weight: 100;
-  margin: 0.2em 0;
-  cursor: text;
-}
-
-p {
-  font-family: var(--font-Grotesk);
-  color: var(--white);
-  font-size: clamp(0.8em, 2.5vw, 1em);
-  letter-spacing: 0.05em;
-  cursor: text;
-}
-
-/* Stylen van de sections met tekst */
-.textstyling {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  margin-bottom: 100vh;
-
-  width: 100%;
-  max-width: 40em;
-  z-index: 1001;
-
-  animation: textSlide 1s linear both;
-  animation-timeline: view();
-  animation-range: cover 0% cover 100%;
-
-  > ul,
-  > ol {
-    font-family: var(--font-Grotesk);
-    color: var(--white);
-
-    font-size: clamp(0.8em, 2.5vw, 1em);
-    letter-spacing: 0.05em;
-  }
-
-> .missiongoals {
     display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     width: 100%;
-    padding-left: 1.5em;
-    gap: 2em;
-  }
+    padding: 40px;
+    position: relative;
 
-  > .launchingsteps{
-    padding-left: 1em;
-  }
-}
+      /* Satelliet */
+      .satellite {
+        width: 30em;
+        height: 20vh;
+        margin-top: 5em;
+        margin-bottom: 2em;
+        position: fixed;
+        top: 0.5em;
+        left: 50%;
+        transform: translateX(-50%);
+        overflow: hidden;
+        z-index: 2000;
+        filter: drop-shadow(0px 0px 3px white);
 
-.globe {
-  width:  50em;
-  height: 50em;
-  margin: 0 auto;
-  z-index: 1000;
-  pointer-events: none;
+        animation: satelliteAnimation 1s ease-in-out, 
+        satelliteAnimationOnDelay 0.8s ease-in-out 3.2s forwards, 
+        satelliteHoveringAnimation 10s ease-in-out 4s infinite;
 
-  background-image: url(../images/earth.svg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  box-shadow:
-    0px 0px 40px var(--cyan),
-    0px 0px 20px var(--white),
-    0px 0px 20px var(--white) inset;
+        pointer-events: none;
+      }
 
-  border-radius: 50%;
-  position: fixed;
-  display: flex;
+      /* Stylen van de sections met tekst */
+      .textstyling {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
-  animation: shrink linear, rotate linear;
-  animation-timeline: scroll(root), scroll(root);
-  top: 75%;
+        margin-bottom: 100vh;
 
-  /* .plane {
-    width: 3em;
-    height: 3em;
-    background-color: yellow;
-    margin: 2em;
-  } */
-}
+        width: 100%;
+        max-width: 40em;
+        z-index: 1001;
+
+        animation: textSlide 1s linear both;
+        animation-timeline: view();
+        animation-range: cover 0% cover 100%;
+
+        > ul,
+        > ol {
+          font-family: var(--font-Grotesk);
+          color: var(--white);
+
+          font-size: clamp(0.8em, 2.5vw, 1em);
+          letter-spacing: 0.05em;
+        }
+
+        > .missiongoals {
+            display: flex;
+            width: 100%;
+            padding-left: 1.5em;
+            gap: 2em;
+          }
+
+        > .launchingsteps{
+          padding-left: 1em;
+        }
+      }
+
+    .globe {
+      width:  50em;
+      height: 50em;
+      margin: 0 auto;
+      z-index: 1000;
+      pointer-events: none;
+
+      background-image: url(../images/earth.svg);
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      box-shadow:
+        0px 0px 40px var(--cyan),
+        0px 0px 20px var(--white),
+        0px 0px 20px var(--white) inset;
+
+      border-radius: 50%;
+      position: fixed;
+      display: flex;
+
+      animation: shrink linear, rotate linear;
+      animation-timeline: scroll(root), scroll(root);
+      top: 75%;
+    }
 
     .stars {
       width: 175em;
@@ -631,216 +782,72 @@ p {
       animation-range-end: 800%;
       top: -10em;
     }
+
+    /**************/
+    /* UFO Banner */
+    /**************/
+    .ufo-with-banner {
+      display: flex;
+      align-items: center;
+      position: fixed;
+      scale: 2;
+      right: 0;
+      transform: translateX(110%);
+      pointer-events: none;
+
+      #banner-ufo {
+        background-image: url("../images/ufo.svg");
+        background-repeat: no-repeat;
+        width: 50px;
+        height: 50px;
+      }
+
+      #banner-fire {
+        background-image: url("../images/fire.svg");
+        background-repeat: no-repeat;
+        width: 10px;
+        aspect-ratio: 1;
+        scale: 2;
+        animation: fireRotate 0.2s ease-in-out infinite alternate;
+        transform-origin: 10% 50%;
+      }
+
+      #banner {
+        width: 100px;
+        background: white;
+        padding: 5px;
+
+        clip-path: shape(
+          from 0% 10%,
+          curve to 100% 10% with 33% 0% / 66% 20%,
+          line to 100% 90%,
+          curve to 0% 90% with 66% 100% / 33% 80%,
+          line to 0% 10%
+        );
+
+        margin-left: 20px;
+      }
+    }
+
+    .ufo-animate {
+      animation: bannerMove 20s ease-in forwards;
+    }
   }
 }
 
 @media only screen and (max-width: 600px) {
+
   body .missiongoals {
     flex-direction: column;
   }
+
 }
 
-.altitude {
-  position: fixed;
-  left: 0;
-  top:  0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  height: 100vh;
-  width:  5rem;
-  padding: 1rem;
-  z-index: 1001;
-  color: var(--white);
-  font-family: var(--font-Mono);
-}
+/*************/
+/* Animaties */
+/*************/
 
-    @keyframes alienSlide {
-      0% {
-        transform: scale(1) translate(0, 0);
-      }
-      33% {
-        transform: scale(1.5) translate(-100px, 0px);
-      }
-      66% {
-        transform: scale(1.5) translate(100px, 0px);
-      }
-      100% {
-        transform: scale(1) translate(0, 0);
-      }
-    }
-
-    @keyframes gradientShift {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-@keyframes auroraGlow {
-  0% {
-    background-color: #00ffcc;
-    box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ff66;
-  }
-  33% {
-    background-color: #7b2ff7;
-    box-shadow: 0 0 15px #7b2ff7, 0 0 30px #f107a3;
-  }
-  66% {
-    background-color: #00f2fe;
-    box-shadow: 0 0 15px #00f2fe, 0 0 30px #4facfe;
-  }
-  100% {
-    background-color: #a8ff78;
-    box-shadow: 0 0 15px #a8ff78, 0 0 30px #00ffcc;
-  }
-}
-
-
-
-
-
-@keyframes slideOutH1 {
-  0% {
-    opacity: 1;
-    font-size: clamp(1.2em, 5vw, 3.5em);
-    transform: translateY(0);
-  }
-  100% {
-    font-size: 0.1em;
-    opacity: 0;
-    transform: translateY(-100vw);
-  }
-}
-
-@keyframes textSlide {
-  0% {
-    opacity: 0;
-    transform: translate(-100vw, -20em);
-  }
-  25% {
-    opacity: 1;
-    transform: translate(0, -20em);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(0, 0em);
-  }
-  75% {
-    opacity: 1;
-    transform: translate(0, 20em);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(100vw, 60em);
-  }
-}
-
-@keyframes satelliteAnimation {
-  0% {
-    transform: translateX(-50%) scale(5);
-    top: 20em;
-  }
-  /* 50% {
-    transform: translateX(-50%) scale(2);
-    top: 1em;
-  } */
-  100% {
-    transform: translateX(-50%) scale(1);
-    top: 0em;
-  }
-}
-
-@keyframes satelliteAnimationOnDelay {
-  0% {
-    transform: translateX(-50%) scale(1);
-    top: 0em;
-  }
-  100% {
-    transform: translateX(-50%) scale(1);
-    top: -5em;
-  }
-}
-
-@keyframes satelliteHoveringAnimation {
-  0% {
-    transform: translateX(-50%) translate(0, 0);
-  }
-  25% {
-    transform: translateX(-50%) translate(0.5em, -0.5em);
-  }
-  50% {
-    transform: translateX(-50%) translate(-0.5em, -0.5em);
-  }
-  75% {
-    transform: translateX(-50%) translate(-0.5em, 0.5em);
-  }
-  100% {
-    transform: translateX(-50%) translate(0, 0);
-  }
-}
-
-@keyframes rotate {
-  from {
-    rotate: 0deg;
-  }
-  to {
-    rotate: 360deg;
-  }
-}
-
-@keyframes shrink {
-  from {
-    scale: 1;
-  }
-  to {
-    scale: 0.6;
-  }
-}
-
-@keyframes atmosphere {
-    0% { background-color: var(--blue); }
-   50% { background-color: var(--darkblue); }
-   90% { background-color: black; }
-  100% { background-color: black; }
-}
-
-@keyframes atmosphere-stars {
-    0% { opacity: 0.1; }
-   25% { opacity: 1; }
-  100% { opacity: 1; }
-}
-
-/**************************/
-/* Black Hole ander thema */
-/**************************/
-
-body:has(#blackhole-toggle:checked) {
-  animation: atmosphereBlackHole 8s ease-in-out infinite;
-  background-size: 200% 200%;
-}
-
-html:has(#blackhole-toggle:checked) {
-  cursor: url("../images/black-hole.png");
-  background-color: var(--darkblue);
-}
-
-body:has(#blackhole-toggle:checked) .globe {
-  filter:
-    brightness(0.5)
-    sepia(1)
-    saturate(9)
-    hue-rotate(-15deg);
-  box-shadow:
-    0px 0px 20px var(--white),
-    0px 0px 20px var(--white) inset;
-}
-
+/* Black hole achtergrond */
 @keyframes atmosphereBlackHole {
   0% {
     background: radial-gradient(circle at center, #000 20%, #020024 40%, #090979 70%, #000 100%);
@@ -855,85 +862,7 @@ body:has(#blackhole-toggle:checked) .globe {
   }
 }
 
-/**********************/
-/* Aurora ander thema */
-/**********************/
-/* Bron: https://www.youtube.com/watch?v=MxpDrULwejY */
-
-/* Body state */
-body:has(#auroraModeBtn:checked) {
-  min-height: 100vh;
-  min-width: 100vw;
-}
-
-/* Blob 1 lichtgroen */
-body:has(#auroraModeBtn:checked) #up {
-  position: fixed;
-  height: 90vh;
-  width: 90vw;
-  border-radius: 50%;
-  background-image: linear-gradient(180deg, #00ffcc, #00ff66);
-  opacity: 0.7;
-  z-index: -100;
-  filter: blur(120px);
-  animation: up 30s linear infinite;
-}
-
-/* Blob 2 roze/paars */
-body:has(#auroraModeBtn:checked) #down {
-  position: fixed;
-  height: 60vh;
-  width: 60vw;
-  border-radius: 50%;
-  background-image: linear-gradient(180deg, #7b2ff7, #f107a3);
-  opacity: 0.7;
-  z-index: -100;
-  filter: blur(120px);
-  animation: down 20s linear infinite;
-}
-
-/* Blob 3 lichtblauw */
-body:has(#auroraModeBtn:checked) #left {
-  position: fixed;
-  height: 70vh;
-  width: 70vw;
-  border-radius: 50%;
-  background-image: linear-gradient(180deg, #00f2fe, #4facfe);
-  opacity: 0.7;
-  filter: blur(120px);
-  animation: left 25s linear infinite;
-}
-
-/* Blob 4 lichtgroen 2 */
-body:has(#auroraModeBtn:checked) #right {
-  position: fixed;
-  height: 50vh;
-  width: 50vw;
-  border-radius: 50%;
-  background-image: linear-gradient(180deg, #a8ff78, #00ffcc);
-  opacity: 0.7;
-  filter: blur(120px);
-  animation: right 18s linear infinite;
-  animation-delay: .5s;
-}
-
-body:has(#auroraModeBtn:checked) #up,
-body:has(#auroraModeBtn:checked) #down,
-body:has(#auroraModeBtn:checked) #left,
-body:has(#auroraModeBtn:checked) #right {
-  mix-blend-mode: screen;
-}
-
-/* Globe effect */
-body:has(#auroraModeBtn:checked) .globe {
-  filter: 
-    saturate(0) 
-    contrast(400%);
-  box-shadow:
-    0px 0px 20px #ffffff80,
-    0px 0px 20px #ffffff20 inset;
-}
-
+/* Aurora kleuren */
 /* Lichtgroen 1 */
 @keyframes up{
   
@@ -986,18 +915,205 @@ body:has(#auroraModeBtn:checked) .globe {
 
 }
 
+/* Vuur bij banner draaien */
+@keyframes fireRotate {
 
+  from { transform: rotate(-10deg); }
+  to { transform: rotate(10deg); }
 
+}
 
+/* Banner laten draaien */
+@keyframes bannerMove {
 
+  0% { transform: translate(120%, -50%); }
+  100% { transform: translate(-120vw, -50%); } 
 
+}
 
+/* Setting: alien gaat heen en weer */
+@keyframes alienSlide {
 
+  0% {
+    transform: scale(1) translate(0, 0);
+  }
+  33% {
+    transform: scale(1.5) translate(-100px, 0px);
+  }
+  66% {
+    transform: scale(1.5) translate(100px, 0px);
+  }
+  100% {
+    transform: scale(1) translate(0, 0);
+  }
 
+}
 
+@keyframes gradientShift {
 
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 
+}
+
+/* Setting: aurora menu item styling */
+@keyframes auroraGlow {
+
+  0% {
+    background-color: #00ffcc;
+    box-shadow: 0 0 15px #00ffcc, 0 0 30px #00ff66;
+  }
+  33% {
+    background-color: #7b2ff7;
+    box-shadow: 0 0 15px #7b2ff7, 0 0 30px #f107a3;
+  }
+  66% {
+    background-color: #00f2fe;
+    box-shadow: 0 0 15px #00f2fe, 0 0 30px #4facfe;
+  }
+  100% {
+    background-color: #a8ff78;
+    box-shadow: 0 0 15px #a8ff78, 0 0 30px #00ffcc;
+  }
+
+}
+
+/* H1 styling */
+@keyframes slideOutH1 {
+
+  0% {
+    opacity: 1;
+    font-size: clamp(1.2em, 5vw, 3.5em);
+    transform: translateY(0);
+  }
+  100% {
+    font-size: 0.1em;
+    opacity: 0;
+    transform: translateY(-100vw);
+  }
+
+}
+
+@keyframes textSlide {
+
+  0% {
+    opacity: 0;
+    transform: translate(-100vw, -20em);
+  }
+  25% {
+    opacity: 1;
+    transform: translate(0, -20em);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(0, 0em);
+  }
+  75% {
+    opacity: 1;
+    transform: translate(0, 20em);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(100vw, 60em);
+  }
+
+}
+
+/* Satelliet */
+@keyframes satelliteAnimation {
+
+  0% {
+    transform: translateX(-50%) scale(5);
+    top: 20em;
+  }
+  
+  100% {
+    transform: translateX(-50%) scale(1);
+    top: 0em;
+  }
+
+}
+
+@keyframes satelliteAnimationOnDelay {
+
+  0% {
+    transform: translateX(-50%) scale(1);
+    top: 0em;
+  }
+  100% {
+    transform: translateX(-50%) scale(1);
+    top: -5em;
+  }
+
+}
+
+@keyframes satelliteHoveringAnimation {
+
+  0% {
+    transform: translateX(-50%) translate(0, 0);
+  }
+  25% {
+    transform: translateX(-50%) translate(0.5em, -0.5em);
+  }
+  50% {
+    transform: translateX(-50%) translate(-0.5em, -0.5em);
+  }
+  75% {
+    transform: translateX(-50%) translate(-0.5em, 0.5em);
+  }
+  100% {
+    transform: translateX(-50%) translate(0, 0);
+  }
+
+}
+
+@keyframes rotate {
+
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+
+}
+
+@keyframes shrink {
+
+  from {
+    scale: 1;
+  }
+  to {
+    scale: 0.6;
+  }
+
+}
+
+/* Achtergrond */
+@keyframes atmosphere {
+  0% { background-color: var(--blue); }
+  50% { background-color: var(--darkblue); }
+  90% { background-color: black; }
+  100% { background-color: black; }
+}
+
+/* Sterren */
+@keyframes atmosphere-stars {
+  0% { opacity: 0.1; }
+  25% { opacity: 1; }
+  100% { opacity: 1; }
+}
+
+/********************/
 /* Custom Scrollbar */
+/********************/
 /* Bronnen */
 /* https://www.youtube.com/watch?v=GvyGNcUiJGQ */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::-webkit-scrollbar */
@@ -1016,138 +1132,6 @@ body:has(#auroraModeBtn:checked) .globe {
   background-size: contain;
   background-repeat: no-repeat;
   cursor: grab;
-}
-
-
-/**************/
-/* UFO Banner */
-/**************/
-.ufo-with-banner {
-  display: flex;
-  align-items: center;
-  position: fixed;
-  scale: 2;
-  right: 0;
-  transform: translateX(110%);
-  pointer-events: none;
-
-  #banner-ufo {
-    background-image: url("../images/ufo.svg");
-    background-repeat: no-repeat;
-    width: 50px;
-    height: 50px;
-
-    /* &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      width: 50px;
-      height: 5px;
-      background: brown;
-    }
-
-    &::before {
-      top: 10px;
-      right: 90px;
-    }
-
-    &::after {
-      bottom: 10px;
-      right: 90px;
-    } */
-  }
-
-  #banner-fire {
-    background-image: url("../images/fire.svg");
-    background-repeat: no-repeat;
-    width: 10px;
-    aspect-ratio: 1;
-    scale: 2;
-    animation: fireRotate 0.2s ease-in-out infinite alternate;
-    transform-origin: 10% 50%;
-  }
-
-  #banner {
-    width: 100px;
-    background: white;
-    padding: 5px;
-    clip-path: shape(
-      from 0% 10%,
-      curve to 100% 10% with 33% 0% / 66% 20%,
-      line to 100% 90%,
-      curve to 0% 90% with 66% 100% / 33% 80%,
-      line to 0% 10%
-    );
-    margin-left: 20px;
-  }
-}
-
-.ufo-animate {
-  animation: bannerMove 20s ease-in forwards;
-}
-
-@keyframes fireRotate {
-  from { transform: rotate(-10deg); }
-  to { transform: rotate(10deg); }
-}
-
-@keyframes bannerMove {
-  0% { transform: translate(120%, -50%); }
-  100% { transform: translate(-120vw, -50%); } 
-}
-
-/*********************/
-/* Black Hole Effect */
-/*********************/
-.word {
-  display: inline-block;
-  white-space: nowrap;
-  will-change: transform, opacity;
-  transition: transform 0.05s linear;
-}
-
-/*********************/
-/* H1 verschijn effect */
-/*********************/
-/* Bron: https://codepen.io/BRacicot/pen/Nryjpa */
-
-.space {
-  display: inline-block;
-  width: 20px;
-}
-
-.text-animation {
-  display: inline-block;
-  position: relative;
-  color: transparent;
-  text-transform: uppercase;
-}
-
-.text-animation::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  background: #0e182d;
-  width: 0;
-  height: 1.2em;
-  transform: translate(-50%, -55%);
-}
-
-.text-animation.state-1::before {
-  width: 2px;
-}
-
-.text-animation.state-2::before {
-  width: 0.9em;
-}
-
-.text-animation.state-3 {
-  color: white;
-}
-
-.text-animation.state-3::before {
-  width: 0;
 }
 
 /*******************/
@@ -1169,10 +1153,12 @@ body:has(#auroraModeBtn:checked) .globe {
 }
 
 @keyframes catMove {
+
   0% { transform: translate(-120%, -50%); }
   25% { transform: translate(10%, -50%); }
   50% { transform: translate(10%, -50%); }
   100% { transform: translate(120vw, -50%); } 
+
 }
 
 /******************************/
@@ -1257,9 +1243,9 @@ body:has(#auroraModeBtn:checked) .globe {
   }
 }
 
-/****************************/
-/* Setting: Alien Effect */
-/****************************/
+/********************************************/
+/* Easter egg: Alien spam particle uit muis */
+/********************************************/
 .alien-particle {
   position: fixed;
   width: 20px;
@@ -1269,13 +1255,4 @@ body:has(#auroraModeBtn:checked) .globe {
 
   transform: translate(-50%, -50%);
   will-change: transform, opacity;
-}
-
-
-/*********************/
-/* Setting: Dyslexia */
-/*********************/
-body:has(#dyslexiaBtn:checked) {
-  --font-Mono: 'Lexend Deca', Arial;
-  --font-Grotesk: 'Lexend Deca', Arial;
 }

@@ -4,7 +4,6 @@ const InvaderContainer = document.getElementById("invader-container");
 const shootSound = new Audio("sfx/invaderKilled.wav");
 shootSound.volume = 0.3;
 
-
 // Elk soort invader aanmaken met bijbehorende score
 const invaderTypes = [
   { img: "images/invaders/invader1.svg", points: 100, type: "invader1" },
