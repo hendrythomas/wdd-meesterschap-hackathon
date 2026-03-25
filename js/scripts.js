@@ -170,9 +170,39 @@ function setRandomHeight() {
 
 const catAnimationDuration = 6000; // 6 seconden
 
-let audioCtx;
-let audio;
-let gainNode;
+
+function triggerAnimation() {
+  img.classList.remove("animate");
+
+  // Stop previous audio (if running)
+  fadeOut(500);
+
+  setRandomHeight();
+
+  void img.offsetWidth;
+
+  img.classList.add("animate");
+
+  // Start sound (slightly quieter)
+  fadeIn(1000);
+
+  // Fade out BEFORE it reaches the end
+  setTimeout(() => {
+    fadeOut(1000);
+  }, catAnimationDuration - 1000);
+
+  setTimeout(triggerAnimation, getRandomDelay());
+}
+
+// Start
+setTimeout(triggerAnimation, getRandomDelay());
+
+// https://www.youtube.com/watch?v=2yJgwwDcgV8&t=10s
+const audio = new Audio("sfx/cat.mp3"); // replace with your file
+audio.loop = true;
+
+let audioCtx = null;
+let gainNode = null;
 
 function initAudio() {
   if (audioCtx) return;
@@ -493,3 +523,11 @@ function spawnAlien(x, y) {
 
   animate();
 }
+
+// Button voor menu
+
+const btn = document.querySelector('.eggs-hamburger');
+
+btn.addEventListener('click', () => {
+  btn.classList.toggle('open');
+});
