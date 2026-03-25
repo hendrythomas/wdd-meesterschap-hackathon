@@ -7,7 +7,7 @@
 /* Black Hole Effect */
 /*********************/
 
-// SETTINGS
+// Instellingen
 const RADIUS = 150;
 const STRENGTH = 150;
 const SWIRL_STRENGTH = 15;
@@ -17,21 +17,21 @@ const EVENT_HORIZON = 10;
 const toggle = document.getElementById("blackhole-toggle");
 let enabled = false;
 
-// Select ALL paragraphs
+// Elk warpable text element pakken
 const paragraphs = document.querySelectorAll(".warpable-text");
 
-// Store all word elements
+// Originele woorden opslaan
 let words = [];
 
-// Convert paragraphs into WORD spans 
+// Elk woord een eigen span maken
 paragraphs.forEach((paragraph) => {
   const text = paragraph.innerText.trim();
 
-  // Accessibility
+  // Accesibel maken voor screenreaders zodat niet alles los wordt voorgelezen
   paragraph.setAttribute("aria-label", text);
   paragraph.setAttribute("role", "text");
 
-  // Clear content
+  // Reset
   paragraph.innerHTML = "";
 
   const wordList = text.split(" ");
@@ -44,14 +44,14 @@ paragraphs.forEach((paragraph) => {
 
     paragraph.appendChild(span);
 
-    // Add space between words
+    // Afstand tussen woorden creeëren
     if (i < wordList.length - 1) {
       paragraph.appendChild(document.createTextNode(" "));
     }
   });
 });
 
-// Toggle behavior
+// Toggle functie
 toggle?.addEventListener("change", () => {
   enabled = toggle.checked;
 
@@ -63,7 +63,7 @@ toggle?.addEventListener("change", () => {
   }
 });
 
-// Cache positions
+// Posities onthouden
 let basePositions = [];
 
 function cachePositions() {
@@ -80,15 +80,14 @@ function cachePositions() {
   });
 }
 
-// Initial cache
 setTimeout(cachePositions, 100);
 
-// Recalculate on resize
+// Herbereken op resize
 window.addEventListener("resize", () => {
   setTimeout(cachePositions, 100);
 });
 
-// Recalculate on scroll (important!)
+// Rekening houden met scrollen
 window.addEventListener("scroll", () => {
   cachePositions();
 });
@@ -104,7 +103,7 @@ document.addEventListener("mousemove", (e) => {
   mouse.y = e.clientY;
 });
 
-// Animation loop
+// Animatie loop
 function animate() {
   basePositions.forEach(obj => {
     const { el, x, y } = obj;
@@ -157,11 +156,10 @@ function getRandomDelay() {
   return Math.random() * (30000 - 12000) + 12000;
 }
 
-// Random vertical position
+// Random y positie
 function setRandomHeight() {
   const viewportHeight = window.innerHeight;
 
-  // Keep it within visible area (with margins)
   const min = viewportHeight * 0.2;
   const max = viewportHeight * 0.8;
 
@@ -170,12 +168,11 @@ function setRandomHeight() {
   img.style.top = `${randomY}px`;
 }
 
-const catAnimationDuration = 6000; // 6 seconds
+const catAnimationDuration = 6000; // 6 seconden
 
 function triggerAnimation() {
   img.classList.remove("animate");
 
-  // Stop previous audio (if running)
   fadeOut(500);
 
   setRandomHeight();
@@ -184,10 +181,10 @@ function triggerAnimation() {
 
   img.classList.add("animate");
 
-  // Start sound (slightly quieter)
+  // Fade in
   fadeIn(1000);
 
-  // Fade out BEFORE it reaches the end
+  // Fade out
   setTimeout(() => {
     fadeOut(1000);
   }, catAnimationDuration - 1000);
@@ -212,7 +209,7 @@ function initAudio() {
   const source = audioCtx.createMediaElementSource(audio);
 
   gainNode = audioCtx.createGain();
-  gainNode.gain.value = 0; // start silent
+  gainNode.gain.value = 0;
 
   source.connect(gainNode);
   gainNode.connect(audioCtx.destination);
@@ -343,21 +340,137 @@ function setRandomY() {
 }
 
 function restartAnimation() {
-  // Remove animation class
+  // Animatie class verwijderen
   container.classList.remove("ufo-animate");
-
-  // Force reflow (important)
+  
   void container.offsetWidth;
 
-  // Set new random vertical position BEFORE restarting
+  // Random Y positie instellen
   setRandomY();
 
-  // Re-add animation class
+  // Animatie class weer toevoegen
   container.classList.add("ufo-animate");
 }
 
-// Initial run
 restartAnimation();
 
-// Repeat every 40 seconds (or 20 if you want continuous looping)
 setInterval(restartAnimation, 40000);
+
+
+/*********/
+/* Alien */
+/*********/
+
+const alienBtn = document.getElementById("alienBtn");
+const alienSVG = "images/alien.svg";
+const alienCursor = "images/ufo-alien.svg";
+
+alienBtn.addEventListener("change", () => {
+  if (alienBtn.checked) {
+    document.body.style.cursor = `url(${alienCursor}) 16 16, auto`;
+  } else {
+    document.body.style.cursor = "auto";
+  }
+});
+
+// 🎛️ SETTINGS (tweak these easily)
+const SETTINGS = {
+  spawnRate: 30,        // Tijd tussen spawns
+  spawnCount: 1,        // Aliens per spawn
+  minSize: 60,
+  maxSize: 90,
+  minVelocity: 0.5,
+  maxVelocity: 1.5,
+  minUpward: 1.5,
+  maxUpward: 2.5,
+  gravity: 0.02,
+  life: 300             // Hoe lang de aliens blijven
+};
+
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+
+// track mouse
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+let lastSpawn = 0;
+
+// controlled spawn loop
+function spawnLoop(timestamp) {
+  if (alienBtn.checked && timestamp - lastSpawn > SETTINGS.spawnRate) {
+    for (let i = 0; i < SETTINGS.spawnCount; i++) {
+      spawnAlien(mouseX, mouseY);
+    }
+    lastSpawn = timestamp;
+  }
+
+  requestAnimationFrame(spawnLoop);
+}
+
+spawnLoop();
+
+function spawnAlien(x, y) {
+  const particle = document.createElement("div");
+  particle.classList.add("alien-particle");
+
+  const img = document.createElement("img");
+  img.src = alienSVG;
+  img.style.width = "100%";
+  img.style.height = "100%";
+
+  particle.appendChild(img);
+
+  // Grootte
+  const size = Math.random() * (SETTINGS.maxSize - SETTINGS.minSize) + SETTINGS.minSize;
+  particle.style.width = size + "px";
+  particle.style.height = size + "px";
+
+  // Positie
+  let posX = x;
+  let posY = y;
+
+  particle.style.left = posX + "px";
+  particle.style.top = posY + "px";
+
+  document.body.appendChild(particle);
+
+  // Beweging
+  const angle = (Math.random() - 0.5) * Math.PI;
+
+  const velocity =
+    Math.random() * (SETTINGS.maxVelocity - SETTINGS.minVelocity) + SETTINGS.minVelocity;
+
+  const vx = Math.sin(angle) * velocity;
+  let vy =
+    -(Math.random() * (SETTINGS.maxUpward - SETTINGS.minUpward) + SETTINGS.minUpward);
+
+  let life = 0;
+
+  // Rotatie
+  const rotation = Math.random() * 360;
+  particle.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+
+  function animate() {
+    life++;
+
+    posX += vx;
+    posY += vy;
+
+    vy += SETTINGS.gravity;
+
+    particle.style.left = posX + "px";
+    particle.style.top = posY + "px";
+    particle.style.opacity = 1 - life / SETTINGS.life;
+
+    if (life < SETTINGS.life) {
+      requestAnimationFrame(animate);
+    } else {
+      particle.remove();
+    }
+  }
+
+  animate();
+}
