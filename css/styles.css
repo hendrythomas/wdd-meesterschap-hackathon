@@ -160,7 +160,7 @@ body {
         box-shadow: 0 0 1px var(--orange);
         cursor: pointer;
 
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.8s ease, color 0.8s ease;
 
       > input {
         appearance: none;
@@ -377,7 +377,7 @@ body {
         box-shadow: 0 0 30px green;
         z-index: 2;
 
-        transition: left 0.8s ease, height 0.3s ease, left 0.3s ease, box-shadow 0.8s ease, filter 0.8s ease;
+        transition: left 0.8s ease, width 0.3s ease, height 0.3s ease, box-shadow 0.8s ease, filter 0.8s ease;
       }
 
       &:nth-of-type(3) > label:hover::before {
@@ -395,8 +395,6 @@ body {
         border-radius: inherit;
         filter: blur(25px);
         animation: auroraGlow 4s ease-in-out infinite alternate;
-        /* width: 1em;
-        height: 1em; */
       }
 
       &:nth-of-type(3) > label:has(input:checked)::before {
@@ -409,6 +407,50 @@ body {
         /* width: 1em;
         height: 1em; */
       }
+
+      /* Styling for Dyslexia */
+
+      &:nth-of-type(4) > label:has(input:checked) > span {
+        --font-Grotesk: 'Lexend Deca', Arial;
+        transform: scale(1.2);
+        color: black;
+        font-family: var(--font-Grotesk);
+        font-weight: 900;
+      }
+
+      &:nth-of-type(4) > label::after {
+        content: "";
+        position: absolute;
+        right: 50%;
+        top: 50%;
+        transform-origin: center;
+        transform: translate(50%, -50%);
+        width: 0em;
+        height: 0em;
+        border-radius: 50%;
+        filter: blur(5px);
+        background-color: cyan;
+        box-shadow: 0 0 30px cyan;
+        z-index: 1;
+
+        transition: right 0.8s ease, width 0.3s ease, height 0.3s ease, box-shadow 0.8s ease, filter 0.8s ease;
+      }
+
+      &:nth-of-type(4) > label:has(input:checked)::after {
+        background-color: white;
+        box-shadow: none;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+      }
+
+      &:nth-of-type(4) > label:hover::after {
+        width: 4em;
+        height: 2em;
+        background-color: white;
+      }
+
+
     }
     }
     
