@@ -204,7 +204,10 @@ p {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  filter: drop-shadow(0px 0px 20px rgb(102, 231, 93));
+  box-shadow:
+    0px 0px 40px var(--cyan),
+    0px 0px 20px var(--white),
+    0px 0px 20px var(--white) inset;
 
   border-radius: 50%;
   position: fixed;
@@ -395,8 +398,14 @@ html:has(#blackhole-toggle:checked) {
 }
 
 body:has(#blackhole-toggle:checked) .globe {
-  filter: drop-shadow(0 0 20px rgba(255 80 0 0.4));
-  content: url(../images/mars.svg);
+  filter:
+    brightness(0.5)
+    sepia(1)
+    saturate(9)
+    hue-rotate(-15deg);
+  box-shadow:
+    0px 0px 20px var(--white),
+    0px 0px 20px var(--white) inset;
 }
 
 @keyframes atmosphereBlackHole {
@@ -485,9 +494,11 @@ body:has(#auroraModeBtn:checked) #right {
 /* Globe effect */
 body:has(#auroraModeBtn:checked) .globe {
   filter: 
-  saturate(0) 
-  contrast(400%) 
-  drop-shadow(0 0 20px rgba(238, 236, 234, 0.4));
+    saturate(0) 
+    contrast(400%);
+  box-shadow:
+    0px 0px 20px #ffffff80,
+    0px 0px 20px #ffffff20 inset;
 }
 
 /* Lichtgroen 1 */
