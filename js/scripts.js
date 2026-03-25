@@ -207,11 +207,9 @@ function triggerAnimation() {
 setTimeout(triggerAnimation, getRandomDelay());
 
 // Bron: https://www.youtube.com/watch?v=2yJgwwDcgV8&t=10s
-const audio = new Audio("sfx/cat.mp3"); // replace with your file
-audio.loop = true;
-
-let audioCtx = null;
-let gainNode = null;
+let audio;
+let audioCtx;
+let gainNode;
 
 function initAudio() {
   if (audioCtx) return;
