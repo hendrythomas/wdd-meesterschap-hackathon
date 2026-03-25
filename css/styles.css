@@ -27,6 +27,8 @@ body {
   background-color: var(--darkblue);
   overflow-x: hidden;
   scroll-behavior: smooth;
+  animation: atmosphere;
+  animation-timeline: scroll(root);
 
   > header {
   display: flex;
@@ -232,8 +234,8 @@ p {
       position: fixed;
       display: flex;
 
-      animation: rotate linear;
-      animation-timeline: scroll(root);
+      animation: rotate, atmosphere-stars;
+      animation-timeline: scroll(root), scroll(root);
       animation-range-end: 600%;
       bottom: -150%;
     }
@@ -355,6 +357,19 @@ p {
   to {
     scale: 0.6;
   }
+}
+
+@keyframes atmosphere {
+    0% { background-color: var(--blue); }
+   50% { background-color: var(--darkblue); }
+   90% { background-color: black; }
+  100% { background-color: black; }
+}
+
+@keyframes atmosphere-stars {
+    0% { opacity: 0.1; }
+   25% { opacity: 1; }
+  100% { opacity: 1; }
 }
 
 
