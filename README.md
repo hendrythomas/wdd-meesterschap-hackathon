@@ -1,5 +1,5 @@
 # Web Design & Development Hackathon 2026
-Als onderdeel van de minor Web Design & Development hebben we vier dagen lang een Hackaton gedaan waarbij we een website moesten maken voor de NEBULA Xplorer, een satelliet die in 2023 gelanceerd wil worden. Hierbij konden we op verschillende dingen focussen en wij hebben de focus gelegd op een informatieve website over de satelliet zelf.
+Als onderdeel van de minor Web Design & Development hebben we vier dagen lang een Hackaton gedaan waarbij we een website moesten maken voor de NEBULA Xplorer, een satelliet die in 2030 gelanceerd wil worden. Hierbij konden we op verschillende dingen focussen en wij hebben de focus gelegd op een informatieve website over de satelliet zelf.
 
 Ons groepje bestaat uit Thomas, Braham, Melvin en Sela.
 
