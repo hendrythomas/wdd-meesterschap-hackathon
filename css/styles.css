@@ -945,8 +945,6 @@ body:has(#auroraModeBtn:checked) .globe {
   transition: transform 0.05s linear;
 }
 
-
-
 /*********************/
 /* H1 verschijn effect */
 /*********************/
@@ -1027,7 +1025,7 @@ body:has(#auroraModeBtn:checked) .globe {
   height: 50vh;
 
   overflow: hidden;
-  pointer-events: none; /* 👈 important to allow clicks through */
+  pointer-events: none;
 
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -1049,7 +1047,7 @@ body:has(#auroraModeBtn:checked) .globe {
 
   align-self: center;
   justify-self: center;
-  pointer-events: auto; /* 👈 allow clicks on invaders */
+  pointer-events: auto;
 }
 
 .invader.show {

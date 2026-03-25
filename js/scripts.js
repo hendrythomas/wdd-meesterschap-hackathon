@@ -7,7 +7,7 @@
 /* Black Hole Effect */
 /*********************/
 
-// SETTINGS
+// Instellingen
 const RADIUS = 150;
 const STRENGTH = 150;
 const SWIRL_STRENGTH = 15;
@@ -17,21 +17,21 @@ const EVENT_HORIZON = 10;
 const toggle = document.getElementById("blackhole-toggle");
 let enabled = false;
 
-// Select ALL paragraphs
+// Elk warpable text element pakken
 const paragraphs = document.querySelectorAll(".warpable-text");
 
-// Store all word elements
+// Originele woorden opslaan
 let words = [];
 
-// Convert paragraphs into WORD spans 
+// Elk woord een eigen span maken
 paragraphs.forEach((paragraph) => {
   const text = paragraph.innerText.trim();
 
-  // Accessibility
+  // Accesibel maken voor screenreaders zodat niet alles los wordt voorgelezen
   paragraph.setAttribute("aria-label", text);
   paragraph.setAttribute("role", "text");
 
-  // Clear content
+  // Reset
   paragraph.innerHTML = "";
 
   const wordList = text.split(" ");
@@ -44,14 +44,14 @@ paragraphs.forEach((paragraph) => {
 
     paragraph.appendChild(span);
 
-    // Add space between words
+    // Afstand tussen woorden creeëren
     if (i < wordList.length - 1) {
       paragraph.appendChild(document.createTextNode(" "));
     }
   });
 });
 
-// Toggle behavior
+// Toggle functie
 toggle?.addEventListener("change", () => {
   enabled = toggle.checked;
 
@@ -63,7 +63,7 @@ toggle?.addEventListener("change", () => {
   }
 });
 
-// Cache positions
+// Posities onthouden
 let basePositions = [];
 
 function cachePositions() {
@@ -80,15 +80,14 @@ function cachePositions() {
   });
 }
 
-// Initial cache
 setTimeout(cachePositions, 100);
 
-// Recalculate on resize
+// Herbereken op resize
 window.addEventListener("resize", () => {
   setTimeout(cachePositions, 100);
 });
 
-// Recalculate on scroll (important!)
+// Rekening houden met scrollen
 window.addEventListener("scroll", () => {
   cachePositions();
 });
@@ -104,7 +103,7 @@ document.addEventListener("mousemove", (e) => {
   mouse.y = e.clientY;
 });
 
-// Animation loop
+// Animatie loop
 function animate() {
   basePositions.forEach(obj => {
     const { el, x, y } = obj;
@@ -157,11 +156,10 @@ function getRandomDelay() {
   return Math.random() * (30000 - 12000) + 12000;
 }
 
-// Random vertical position
+// Random y positie
 function setRandomHeight() {
   const viewportHeight = window.innerHeight;
 
-  // Keep it within visible area (with margins)
   const min = viewportHeight * 0.2;
   const max = viewportHeight * 0.8;
 
@@ -170,12 +168,11 @@ function setRandomHeight() {
   img.style.top = `${randomY}px`;
 }
 
-const catAnimationDuration = 6000; // 6 seconds
+const catAnimationDuration = 6000; // 6 seconden
 
 function triggerAnimation() {
   img.classList.remove("animate");
 
-  // Stop previous audio (if running)
   fadeOut(500);
 
   setRandomHeight();
@@ -184,10 +181,10 @@ function triggerAnimation() {
 
   img.classList.add("animate");
 
-  // Start sound (slightly quieter)
+  // Fade in
   fadeIn(1000);
 
-  // Fade out BEFORE it reaches the end
+  // Fade out
   setTimeout(() => {
     fadeOut(1000);
   }, catAnimationDuration - 1000);
@@ -212,7 +209,7 @@ function initAudio() {
   const source = audioCtx.createMediaElementSource(audio);
 
   gainNode = audioCtx.createGain();
-  gainNode.gain.value = 0; // start silent
+  gainNode.gain.value = 0;
 
   source.connect(gainNode);
   gainNode.connect(audioCtx.destination);
@@ -343,20 +340,18 @@ function setRandomY() {
 }
 
 function restartAnimation() {
-  // Remove animation class
+  // Animatie class verwijderen
   container.classList.remove("ufo-animate");
-
-  // Force reflow (important)
+  
   void container.offsetWidth;
 
-  // Set new random vertical position BEFORE restarting
+  // Random Y positie instellen
   setRandomY();
 
-  // Re-add animation class
+  // Animatie class weer toevoegen
   container.classList.add("ufo-animate");
 }
 
-// Initial run
 restartAnimation();
 
 setInterval(restartAnimation, 40000);
@@ -380,8 +375,8 @@ alienBtn.addEventListener("change", () => {
 
 // 🎛️ SETTINGS (tweak these easily)
 const SETTINGS = {
-  spawnRate: 30,        // ms between spawns (higher = fewer aliens)
-  spawnCount: 1,        // aliens per spawn
+  spawnRate: 30,        // Tijd tussen spawns
+  spawnCount: 1,        // Aliens per spawn
   minSize: 60,
   maxSize: 90,
   minVelocity: 0.5,
@@ -389,7 +384,7 @@ const SETTINGS = {
   minUpward: 1.5,
   maxUpward: 2.5,
   gravity: 0.02,
-  life: 300             // how long particles live (frames)
+  life: 300             // Hoe lang de aliens blijven
 };
 
 let mouseX = window.innerWidth / 2;
@@ -428,12 +423,12 @@ function spawnAlien(x, y) {
 
   particle.appendChild(img);
 
-  // size 👽
+  // Grootte
   const size = Math.random() * (SETTINGS.maxSize - SETTINGS.minSize) + SETTINGS.minSize;
   particle.style.width = size + "px";
   particle.style.height = size + "px";
 
-  // position
+  // Positie
   let posX = x;
   let posY = y;
 
@@ -442,7 +437,7 @@ function spawnAlien(x, y) {
 
   document.body.appendChild(particle);
 
-  // movement 🐢
+  // Beweging
   const angle = (Math.random() - 0.5) * Math.PI;
 
   const velocity =
@@ -454,7 +449,7 @@ function spawnAlien(x, y) {
 
   let life = 0;
 
-  // rotation
+  // Rotatie
   const rotation = Math.random() * 360;
   particle.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
 
