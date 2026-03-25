@@ -32,6 +32,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: row-reverse;
   height: 6em;
   width: 100%;
   position: relative;
@@ -51,44 +52,69 @@ body {
     }
   }
   }
-  
+
   .eggs-hamburger {
-    all: unset;
     position: fixed;
-    left: 0;
-    top: 0;
-    width:  3rem;
+    left: 2rem;
+    top: 2rem;
+    background-color: transparent;
+    border: none;
+    width: 3.5rem;
     height: 3rem;
-    margin: 1rem;
-    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    z-index: 99999;
 
-    > svg {
-      width:  100%;
-      height: 100%;
-      color: var(--orange);
+    > span {
+      width: 100%;
+      height: 0.4rem;
+      background-color: var(--orange);
+      border-radius: 8px;
+      pointer-events: none;
+      cursor: pointer;
+      z-index: 9999999;
+      transition: transform 0.8s ease-in-out, width 0.6s ease-in-out, opacity 0.8s ease-in-out;
+    }
 
-      &:hover, &:focus-visible {
-        color: var(--white);
+    &.open {
+      > span:first-of-type {
+      transform: translateY(0.9rem) rotate(45deg);
+      }
+      > span:nth-of-type(2) {
+        width: 0;
+        opacity: 0;
+      }
+      > span:last-of-type {
+        transform: translateY(-0.9rem) rotate(-45deg);
       }
     }
   }
 
+
   .eggs-basket {
-    justify-content: center;
-    width:  50vw;
-    height: 50vw;
+    position: fixed;
+    top: 1em;
+    left: 0;
+    width:  0vw;
+    height: 0vw;
     min-height: min-content;
     background-color: var(--blue);
     color: var(--white);
     border: none;
+    border-radius: 8px;
     font-family: 'Space Grotesk';
-    padding: 1rem;
-    z-index: 1;
-    box-shadow: 0 0 0 max(100vw, 100vh) #00000080;
+    /* padding: 1rem; */
+    margin: 2em 2em;
+    z-index: 99990;
+    /* box-shadow: 0 0 0 max(100vw, 100vh) #00000080; */
+    display: flex;
+    justify-content: center;
+    opacity: 0;
+    overflow: hidden;
+    pointer-events: none;
 
-    &:popover-open {
-      display: flex;
-    }
+    transition: width 0.6s ease, height 0.2s ease, opacity 0.8s ease, margin 2s ease, top 1s ease;
 
     h2 {
       color: var(--orange);
@@ -261,6 +287,27 @@ p {
   color: var(--white);
   font-family: 'Space Mono';
 }
+
+
+.eggs-hamburger.open ~ .eggs-basket {
+      top: 3.5rem;
+      background-color: var(--blue);
+      opacity: 1;
+      width:  20vw;
+      height: auto;
+      pointer-events: all;
+
+      transition: width 0.6s ease, height 0.6s ease, opacity 0.4s ease, top 0.6s ease;
+    }
+
+
+
+
+
+
+
+
+
 
 @keyframes slideOutH1 {
   0% {
@@ -685,6 +732,7 @@ body{
   height: 50vh; /* 👈 top half of the screen */
 
   overflow: hidden;
+  pointer-events: none; /* 👈 important to allow clicks through */
 
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
@@ -706,6 +754,7 @@ body{
 
   align-self: center;
   justify-self: center;
+  pointer-events: auto; /* 👈 allow clicks on invaders */
 }
 
 .invader.show {
