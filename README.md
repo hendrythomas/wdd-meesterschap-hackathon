@@ -1,5 +1,14 @@
 # Web Design & Development Hackathon 2026
+Als onderdeel van de minor Web Design & Development hebben we vier dagen lang een Hackaton gedaan waarbij we een website moesten maken voor de NEBULA Xplorer, een satelliet die in 2030 gelanceerd wil worden. Hierbij konden we op verschillende dingen focussen en wij hebben de focus gelegd op een informatieve website over de satelliet zelf.
+
+Ons groepje bestaat uit Thomas, Braham, Melvin en Sela.
 
 ## Ontwerp
+Als eindontwerp hebben we een website gemaakt waar je de aarde onderin kunt zien en de NEBULA satelliet bovenin. Wanneer de gebruiker vervolgens naar beneden scrollt, draait de sterrenachtergrond naar rechts - evenals de aarde. De tekst met uitleg over de NEBULA satelliet komt van links binnen en verdwijnt rechts, waarop weer een tekst verschijnt en zo verder totdat alle informatie over de satelliet en het project getoont is. Tijdens het draaien van het scherm komen dingen in beeld als de nyan cat, een ufo met banner van het logo van NEBULA. We hebben ook wat easter eggs zoals Space Invaders (tevens onze teamnaam) dat verschijnt wanneer je op 'i' klikt, een zwart gat filter over de tekst bij het Black Hole thema en een raket als scrollbar. Verder hebben we een menu gemaakt met verschillende instellingen waar je bijvoorbeeld een aurora thema kunt instellen, een zwart gat thema of de aliens die uit de cursor komen.
 
 ## Reflectie
+Toen we op maandag over de opdracht hoorden moesten we eerst even op gang komen met het bedenken van wat we uiteindelijk wilden gaan maken. Na een tijdje begonnen de ideeën te stromen: ufo's, aliens, aurora's, zwarte gaten en allemaal andere thema's gerelateerd aan de ruimte. Al vrij snel kwamen we en waren we het eens over het eindidee van de website: dat je kunt scrollen en dat het lijkt alsof je om de aarde heendraait - waarbij de gebruiker dus als het ware naar beneden scrollt en vervolgens de atmosfeer van de aarde afgaat. Hier hebben we dinsdag, woensdag en nog een beetje van donderdag hard aan gewerkt. 
+
+Qua takenverdeling liep het heel soepel, we hadden een lijstje gemaakt met dingen die we wilden uitwerken. Hier pakte iedereen een onderdeel van zijn/ haar expertise over op wanneer het nodig was hielpen we elkaar hier ook mee. Nadat je iets had gemaakt vroegen we om feedback en soms moesten bepaalde onderdelen een paar keer aangepast worden. Dit kwam vooral door meningsverschillen over hoe iets eruit moest zien en hier lagen onze grootste uitdagingen, maar met dit bespreken kwamen we vaak tot iets wat voor iedereen goed was. 
+
+Voor een team dat nog nooit heeft samengewerkt en in zo'n korte tijd een werkende website neer moest zetten - vinden we dat we het goed hebben gedaan. Onderwerpen waar we ons meer in zouden willen verdiepen is het toevoegen van infographics en meer implementeren van content vanuit de artikelen van NEBULA. 
