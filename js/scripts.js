@@ -164,9 +164,9 @@ const img = document.getElementById("cat");
 
 function getRandomDelay() {
   return Math.random() * (30000 - 12000) + 12000;
-};
+}
 
-// Random y positie
+// Random vertical position
 function setRandomHeight() {
   const viewportHeight = window.innerHeight;
 
@@ -176,49 +176,23 @@ function setRandomHeight() {
   const randomY = Math.random() * (max - min) + min;
 
   img.style.top = `${randomY}px`;
-};
+}
 
-const catAnimationDuration = 6000;
+const catAnimationDuration = 6000; // 6 seconds
 
-function triggerAnimation() {
-  img.classList.remove("animate");
+// -------------------- AUDIO --------------------
 
-  fadeOut(500);
-
-  setRandomHeight();
-
-  void img.offsetWidth;
-
-  img.classList.add("animate");
-
-  // Start sound
-  fadeIn(1000);
-
-  // Fade out
-  setTimeout(() => {
-    fadeOut(1000);
-  }, catAnimationDuration - 1000);
-
-  setTimeout(triggerAnimation, getRandomDelay());
-};
-
-// Start
-setTimeout(triggerAnimation, getRandomDelay());
-
-// Bron: https://www.youtube.com/watch?v=2yJgwwDcgV8&t=10s
-const audio = new Audio("sfx/cat.mp3"); // replace with your file
-audio.loop = true;
-
-let audioCtx = null;
-let gainNode = null;
+let audioCtx;
+let audio;
+let gainNode;
 
 function initAudio() {
   if (audioCtx) return;
 
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-};
+}
 
-// Fade in
+// Start sound with fade in
 function startSound() {
   initAudio();
 
@@ -239,7 +213,7 @@ function startSound() {
 
   gainNode.gain.setValueAtTime(0, now);
   gainNode.gain.linearRampToValueAtTime(0.01, now + 1);
-};
+}
 
 // Fade out + stop + reset
 function stopSound() {
@@ -256,7 +230,9 @@ function stopSound() {
     audio.currentTime = 0;
     audio = null;
   }, 500);
-};
+}
+
+// -------------------- ANIMATION --------------------
 
 function triggerAnimation() {
   img.classList.remove("animate");
@@ -270,13 +246,16 @@ function triggerAnimation() {
 
   startSound();
 
-  // Fade out
+  // Fade out shortly before animation ends
   setTimeout(() => {
     stopSound();
   }, catAnimationDuration - 500);
 
+  // Schedule next run
   setTimeout(triggerAnimation, getRandomDelay());
-};
+}
+
+// -------------------- USER INTERACTION (REQUIRED) --------------------
 
 document.addEventListener(
   "click",
@@ -290,9 +269,10 @@ document.addEventListener(
       unlock.currentTime = 0;
     });
   },
-
   { once: true }
 );
+
+// -------------------- START --------------------
 
 setTimeout(triggerAnimation, getRandomDelay());
 
