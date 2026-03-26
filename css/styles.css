@@ -1158,11 +1158,17 @@ body {
   position: fixed;
   right: 2px;
   top: 2px;
-  width: 40px;
-  height: 60px;
-  background: url("../images/rocket.svg") no-repeat center / contain;
+  width: 35px;
+  height: 70px;
+  background: url("../images/rocket.png") no-repeat center / contain;
   pointer-events: none;
   z-index: 9999;
+  cursor: grab;
+  pointer-events: none;
+}
+
+.rocket-scroll.is-flying {
+  background: url("../images/rocket-with-fire.svg") no-repeat center /contain;
 }
 
 /************************/

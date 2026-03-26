@@ -512,28 +512,31 @@ window.addEventListener("scroll", () => {
 // });
 
 const mybutton = document.getElementById("terugNaarBoven");
+const rocketScroll = document.querySelector(".rocket-scroll");
 
 mybutton.addEventListener("click", function () {
   const start = window.scrollY;
-  const duration = 1200; // ⏱️ tijd in ms (pas aan voor sneller/langzamer)
+  const duration = 1200;
   let startTime = null;
+
+  rocketScroll.classList.add("is-flying");
 
   function scrollStep(timestamp) {
     if (!startTime) startTime = timestamp;
     const progress = timestamp - startTime;
 
-    // ease-out effect (voelt natuurlijker)
     const ease = 1 - Math.pow(1 - progress / duration, 3);
 
     window.scrollTo(0, start * (1 - ease));
 
     if (progress < duration) {
       requestAnimationFrame(scrollStep);
-    }
-  }
+    } else {
+      window.scrollTo(0, 0);
+
+      rocketScroll.classList.remove("is-flying");
+    };
+  };
 
   requestAnimationFrame(scrollStep);
 });
-
-
-
