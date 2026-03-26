@@ -2,6 +2,10 @@ let gameEnabled = false;
 
 const InvaderContainer = document.getElementById("invader-container");
 const shootSound = new Audio("sfx/invaderKilled.wav");
+
+// Rainbow objects
+const globe = document.querySelector(".globe");
+
 shootSound.volume = 0.3;
 
 // Elk soort invader aanmaken met bijbehorende score
@@ -28,6 +32,7 @@ function startGame() {
 
   InvaderContainer.style.display = "grid";
   scoreDisplay.style.display = "block";
+  resetButton.style.display = "block";
 
   createWave(3, 6);
 }
@@ -39,6 +44,7 @@ function stopGame() {
   InvaderContainer.classList.add("hidden");
   scoreDisplay.style.display = "none";
   scoreDisplay.classList.add("hidden");
+  resetButton.style.display = "none"; 
 }
 
 function createWave(rows = 3, cols = 6) {
@@ -97,7 +103,9 @@ function createWave(rows = 3, cols = 6) {
 
 createWave();
 
-let score = 0;
+let score = localStorage.getItem("invaderScore")
+  ? parseInt(localStorage.getItem("invaderScore"))
+  : 0;
 
 // Score display aanmaken
 const scoreDisplay = document.createElement("div");
@@ -110,6 +118,17 @@ document.body.appendChild(scoreDisplay);
 // Score steeds laten updaten
 function updateScore() {
   scoreDisplay.textContent = `Score: ${score}`;
+
+
+  // Save score
+  localStorage.setItem("invaderScore", score);
+
+  // Rainbow effect bij bepaalde score
+  if (score >= 10000) {
+    globe.classList.add("rainbow");
+  } else {
+    globe.classList.remove("rainbow");
+  }
 }
 
 function showFloatingScore(text, x, y) {
@@ -127,6 +146,32 @@ function showFloatingScore(text, x, y) {
   }, 800);
 }
 
+function resetScore() {
+  score = 0;
+  localStorage.removeItem("invaderScore");
+  updateScore();
+}
+
 InvaderContainer.style.display = "none";
 InvaderContainer.classList.add("hidden");
 scoreDisplay.classList.add("hidden");
+
+const resetButton = document.createElement("button");
+resetButton.id = "reset-button";
+resetButton.textContent = "Reset Score";
+
+resetButton.addEventListener("click", () => {
+  if (resetButton.classList.contains("open")) return;
+
+  resetButton.classList.add("open");
+  setTimeout(() => {
+    score = 0;
+    localStorage.removeItem("invaderScore");
+    updateScore();
+
+    resetButton.classList.remove("open");
+  }, 2000);
+});
+
+document.body.appendChild(resetButton);
+resetButton.style.display = "none";
