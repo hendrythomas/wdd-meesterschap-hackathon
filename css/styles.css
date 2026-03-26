@@ -1094,8 +1094,8 @@ body {
 @keyframes textSlide {
   0% {
     transform:
-      rotate(-45deg)
-      translate(-60em, 0em);
+      rotate(-90deg)
+      translate(-80em, 0em);
     opacity: 0;
   }
 
@@ -1116,7 +1116,7 @@ body {
   100% {
     transform:
       rotate(45deg)
-      translate(60em, 20em);
+      translate(80em, 20em);
     opacity: 0;
   }
 }
