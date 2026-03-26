@@ -114,7 +114,8 @@ body {
     cursor: text;
   }
 
-  h3 {
+  h3,
+  a {
     font-family: var(--font-Mono);
     color: var(--orange);
     font-size: clamp(1.5em, 8vw, 2em);
@@ -131,6 +132,16 @@ body {
     cursor: text;
     width: fit-content;
     padding: 0;
+  }
+
+  a{
+    margin-bottom: 9em;
+    cursor: pointer;
+  }
+
+  a:hover{
+    color: var(--darkorange);
+    transition: .3 ease;
   }
 
   /* Hamburger menu styling */
@@ -742,106 +753,106 @@ body {
         }
       }
 
-    .globe {
-      width:  50em;
-      height: 50em;
-      margin: 0 auto;
-      z-index: 1000;
-      pointer-events: none;
-      user-select: none;
+      .globe {
+        width:  50em;
+        height: 50em;
+        margin: 0 auto;
+        z-index: 1000;
+        pointer-events: none;
+        user-select: none;
 
-      background-image: url(../images/earth.svg);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      box-shadow:
-        0px 0px 40px var(--cyan),
-        0px 0px 20px var(--white),
-        0px 0px 20px var(--white) inset;
-
-      border-radius: 50%;
-      position: fixed;
-      display: flex;
-
-      animation: shrink linear, rotate linear;
-      animation-timeline: scroll(root), scroll(root);
-      top: 75%;
-    }
-
-    .stars {
-      width: 175em;
-      height: 175em;
-      margin: 0 auto;
-      z-index: 1000;
-      pointer-events: none;
-      user-select: none;
-
-      opacity: 0.5;
-      filter:
-        drop-shadow(0 0  5px white)
-        drop-shadow(0 0 10px white)
-        drop-shadow(0 0 15px white);
-      background-image: url(../images/stars.svg);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-
-      border-radius: 50%;
-      position: fixed;
-      display: flex;
-
-      animation: rotate, atmosphere-stars;
-      animation-timeline: scroll(root), scroll(root);
-      animation-range-end: 800%;
-      top: -10em;
-    }
-
-    /**************/
-    /* UFO Banner */
-    /**************/
-    .ufo-with-banner {
-      display: flex;
-      align-items: center;
-      position: fixed;
-      scale: 2;
-      right: 0;
-      transform: translateX(110%);
-      pointer-events: none;
-      user-select: none;
-      filter: drop-shadow(0px 0px 3px white);
-
-      #banner-ufo {
-        background-image: url("../images/ufo.svg");
+        background-image: url(../images/earth.svg);
+        background-size: cover;
+        background-position: center;
         background-repeat: no-repeat;
-        width: 50px;
-        height: 50px;
+        box-shadow:
+          0px 0px 40px var(--cyan),
+          0px 0px 20px var(--white),
+          0px 0px 20px var(--white) inset;
+
+        border-radius: 50%;
+        position: fixed;
+        display: flex;
+
+        animation: shrink linear, rotate linear;
+        animation-timeline: scroll(root), scroll(root);
+        top: 75%;
       }
 
-      #banner-fire {
-        background-image: url("../images/fire.svg");
+      .stars {
+        width: 175em;
+        height: 175em;
+        margin: 0 auto;
+        z-index: 1000;
+        pointer-events: none;
+        user-select: none;
+
+        opacity: 0.5;
+        filter:
+          drop-shadow(0 0  5px white)
+          drop-shadow(0 0 10px white)
+          drop-shadow(0 0 15px white);
+        background-image: url(../images/stars.svg);
+        background-size: cover;
+        background-position: center;
         background-repeat: no-repeat;
-        width: 10px;
-        aspect-ratio: 1;
+
+        border-radius: 50%;
+        position: fixed;
+        display: flex;
+
+        animation: rotate, atmosphere-stars;
+        animation-timeline: scroll(root), scroll(root);
+        animation-range-end: 800%;
+        top: -10em;
+      }
+
+      /**************/
+      /* UFO Banner */
+      /**************/
+      .ufo-with-banner {
+        display: flex;
+        align-items: center;
+        position: fixed;
         scale: 2;
-        animation: fireRotate 0.2s ease-in-out infinite alternate;
-        transform-origin: 10% 50%;
-      }
+        right: 0;
+        transform: translateX(110%);
+        pointer-events: none;
+        user-select: none;
+        filter: drop-shadow(0px 0px 3px white);
 
-      #banner {
-        width: 100px;
-        background: white;
-        padding: 5px;
+        #banner-ufo {
+          background-image: url("../images/ufo.svg");
+          background-repeat: no-repeat;
+          width: 50px;
+          height: 50px;
+        }
 
-        clip-path: shape(
-          from 0% 10%,
-          curve to 100% 10% with 33% 0% / 66% 20%,
-          line to 100% 90%,
-          curve to 0% 90% with 66% 100% / 33% 80%,
-          line to 0% 10%
-        );
+        #banner-fire {
+          background-image: url("../images/fire.svg");
+          background-repeat: no-repeat;
+          width: 10px;
+          aspect-ratio: 1;
+          scale: 2;
+          animation: fireRotate 0.2s ease-in-out infinite alternate;
+          transform-origin: 10% 50%;
+        }
 
-        margin-left: 20px;
-      }
+        #banner {
+          width: 100px;
+          background: white;
+          padding: 5px;
+
+          clip-path: shape(
+            from 0% 10%,
+            curve to 100% 10% with 33% 0% / 66% 20%,
+            line to 100% 90%,
+            curve to 0% 90% with 66% 100% / 33% 80%,
+            line to 0% 10%
+          );
+
+          margin-left: 20px;
+        }
     }
 
     .ufo-animate {

@@ -497,3 +497,43 @@ window.addEventListener("scroll", () => {
   const maxMove = window.innerHeight - 100;
   rocket.style.transform = `translateY(${progress * maxMove}px)`;
 });
+
+/**********************/
+/* Back to top button */
+/**********************/
+
+// const mybutton = document.getElementById("terugNaarBoven");
+
+// mybutton.addEventListener("click", function() {
+//   window.scrollTo({
+//     top: 0,
+//     behavior: "smooth" 
+//   });
+// });
+
+const mybutton = document.getElementById("terugNaarBoven");
+
+mybutton.addEventListener("click", function () {
+  const start = window.scrollY;
+  const duration = 1200; // ⏱️ tijd in ms (pas aan voor sneller/langzamer)
+  let startTime = null;
+
+  function scrollStep(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const progress = timestamp - startTime;
+
+    // ease-out effect (voelt natuurlijker)
+    const ease = 1 - Math.pow(1 - progress / duration, 3);
+
+    window.scrollTo(0, start * (1 - ease));
+
+    if (progress < duration) {
+      requestAnimationFrame(scrollStep);
+    }
+  }
+
+  requestAnimationFrame(scrollStep);
+});
+
+
+
