@@ -481,3 +481,19 @@ function spawnAlien(x, y) {
 
   animate();
 };
+
+/********************/
+/* Custom Scrollbar */
+/********************/
+
+const rocket = document.querySelector(".rocket-scroll");
+
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+  const progress = scrollTop / docHeight;
+
+  const maxMove = window.innerHeight - 100;
+  rocket.style.transform = `translateY(${progress * maxMove}px)`;
+});

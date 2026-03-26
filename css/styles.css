@@ -645,7 +645,7 @@ body {
   /* Black hole cursor change */
   &:has(#blackhole-toggle:checked) {
     cursor: url("../images/black-hole.png") 16 16, auto;
-    background-color: var(--darkblue);
+    background-color: var(--darkblue) !important;
   }
 
   /* Black hole effect */
@@ -1137,20 +1137,21 @@ body {
 /* Bronnen */
 /* https://www.youtube.com/watch?v=GvyGNcUiJGQ */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::-webkit-scrollbar */
-
+/* Met bovenstaande bronnen bleef er maar een achtergrond ontstaan met kleur. Dit was niet op te lossen via css dus heb ik met chatGPT gevraagd en hebben we een workaround via JavaScript gemaakt */
+/* Prompt: is er een manier om met javascript een custom scrollbar te maken? */
 ::-webkit-scrollbar {
-  width: 25px;
-}
-
-::-webkit-scrollbar:horizontal {
   display: none;
 }
 
-::-webkit-scrollbar-thumb {
-  background-image: url("../images/rocket.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
-  cursor: grab;
+.rocket-scroll {
+  position: fixed;
+  right: 2px;
+  top: 2px;
+  width: 40px;
+  height: 60px;
+  background: url("../images/rocket.svg") no-repeat center / contain;
+  pointer-events: none;
+  z-index: 9999;
 }
 
 /************************/
