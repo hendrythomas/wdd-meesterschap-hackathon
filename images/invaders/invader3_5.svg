@@ -1,0 +1,16 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect x="15" y="5" width="5" height="10" transform="rotate(-90 15 5)" fill="#EB1CEB"/>
+<rect x="10" y="30" width="5" height="5" transform="rotate(-90 10 30)" fill="#EB1CEB"/>
+<rect x="25" y="30" width="5" height="5" transform="rotate(-90 25 30)" fill="#EB1CEB"/>
+<rect x="15" y="35" width="5" height="10" transform="rotate(-90 15 35)" fill="#EB1CEB"/>
+<rect x="5" y="35" width="5" height="5" transform="rotate(-90 5 35)" fill="#EB1CEB"/>
+<rect x="30" y="35" width="5" height="5" transform="rotate(-90 30 35)" fill="#EB1CEB"/>
+<rect x="25" y="40" width="5" height="5" transform="rotate(-90 25 40)" fill="#EB1CEB"/>
+<rect x="10" y="40" width="5" height="5" transform="rotate(-90 10 40)" fill="#EB1CEB"/>
+<rect x="15" y="20" width="5" height="10" transform="rotate(-90 15 20)" fill="#EB1CEB"/>
+<rect y="20" width="5" height="10" transform="rotate(-90 0 20)" fill="#EB1CEB"/>
+<rect x="30" y="20" width="5" height="10" transform="rotate(-90 30 20)" fill="#EB1CEB"/>
+<rect y="25" width="5" height="40" transform="rotate(-90 0 25)" fill="#EB1CEB"/>
+<rect x="10" y="10" width="5" height="20" transform="rotate(-90 10 10)" fill="#EB1CEB"/>
+<rect x="5" y="15" width="5" height="30" transform="rotate(-90 5 15)" fill="#EB1CEB"/>
+</svg>
