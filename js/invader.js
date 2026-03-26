@@ -60,6 +60,7 @@ function startGame() {
   resetButton.style.display = "block";
   invaderMusic.play();
   startInvaderAnimation();
+  document.body.classList.add("game-active");
 
   createWave(3, 6);
 }
@@ -75,6 +76,7 @@ function stopGame() {
   invaderMusic.pause();
   invaderMusic.currentTime = 0;
   clearInterval(animationInterval);
+  document.body.classList.remove("game-active");
 }
 
 function createWave(rows = 3, cols = 6) {

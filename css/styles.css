@@ -1280,6 +1280,10 @@ body {
   }
 }
 
+body.game-active * {
+  cursor: url("/images/invaders/spaceship.svg") 16 16, auto;
+}
+
 /********************************************/
 /* Easter egg: Alien spam particle uit muis */
 /********************************************/
