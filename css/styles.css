@@ -207,6 +207,7 @@ body {
     opacity: 0;
     overflow: hidden;
     pointer-events: none;
+    user-select: none;
 
     transition: width 0.6s ease, height 0.8s ease, opacity 0.8s ease, margin 2s ease, top 1s ease, box-shadow 0.8s ease;
 
@@ -692,6 +693,7 @@ body {
         satelliteHoveringAnimation 10s ease-in-out 4s infinite;
 
         pointer-events: none;
+        user-select: none;
       }
 
       /* Stylen van de sections met tekst */
@@ -737,6 +739,7 @@ body {
       margin: 0 auto;
       z-index: 1000;
       pointer-events: none;
+      user-select: none;
 
       background-image: url(../images/earth.svg);
       background-size: cover;
@@ -762,6 +765,7 @@ body {
       margin: 0 auto;
       z-index: 1000;
       pointer-events: none;
+      user-select: none;
 
       opacity: 0.5;
       filter:
@@ -794,6 +798,7 @@ body {
       right: 0;
       transform: translateX(110%);
       pointer-events: none;
+      user-select: none;
 
       #banner-ufo {
         background-image: url("../images/ufo.svg");
@@ -1146,6 +1151,7 @@ body {
   transform: translate(-120%, -50%);
   width: 100px;
   pointer-events: none;
+  user-select: none;
 }
 
 .animate {
