@@ -1,13 +1,3 @@
-/********************/
-/* Menu toggle klik */
-/********************/
-
-const btn = document.querySelector('.eggs-hamburger');
-
-btn.addEventListener('click', () => {
-  btn.classList.toggle('open');
-});
-
 // Blackhole effect is gemaakt met ChatGPT, waardes zijn zelf ingevoerd
 // Prompt: Could you create a fish eye lens?
 // Prompt 2: Could you make it look more like it gets sucked up like a blackhole, the blackhole being the mouse. I am kind of aiming for a fish lens kind of effect
@@ -481,3 +471,62 @@ function spawnAlien(x, y) {
 
   animate();
 };
+
+/********************/
+/* Custom Scrollbar */
+/********************/
+
+const rocket = document.querySelector(".rocket-scroll");
+
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+
+  const progress = scrollTop / docHeight;
+
+  const maxMove = window.innerHeight - 100;
+  rocket.style.transform = `translateY(${progress * maxMove}px)`;
+});
+
+/**********************/
+/* Back to top button */
+/**********************/
+
+// const mybutton = document.getElementById("terugNaarBoven");
+
+// mybutton.addEventListener("click", function() {
+//   window.scrollTo({
+//     top: 0,
+//     behavior: "smooth" 
+//   });
+// });
+
+const mybutton = document.getElementById("terugNaarBoven");
+const rocketScroll = document.querySelector(".rocket-scroll");
+
+mybutton.addEventListener("click", function () {
+  const start = window.scrollY;
+  const duration = 1200;
+  let startTime = null;
+
+  rocketScroll.classList.add("is-flying");
+
+  function scrollStep(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const progress = timestamp - startTime;
+
+    const ease = 1 - Math.pow(1 - progress / duration, 3);
+
+    window.scrollTo(0, start * (1 - ease));
+
+    if (progress < duration) {
+      requestAnimationFrame(scrollStep);
+    } else {
+      window.scrollTo(0, 0);
+
+      rocketScroll.classList.remove("is-flying");
+    };
+  };
+
+  requestAnimationFrame(scrollStep);
+});

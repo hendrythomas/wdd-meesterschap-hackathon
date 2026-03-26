@@ -197,9 +197,16 @@ resetButton.id = "reset-button";
 resetButton.textContent = "Reset Score";
 
 resetButton.addEventListener("click", () => {
-  score = 0;
-  localStorage.removeItem("invaderScore");
-  updateScore();
+  if (resetButton.classList.contains("open")) return;
+
+  resetButton.classList.add("open");
+  setTimeout(() => {
+    score = 0;
+    localStorage.removeItem("invaderScore");
+    updateScore();
+
+    resetButton.classList.remove("open");
+  }, 2000);
 });
 
 document.body.appendChild(resetButton);

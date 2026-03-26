@@ -15,11 +15,10 @@
   --cyan: #44aabd;
   --link: #292f6b;
   --link-hover: #212656;
-
-  scroll-timeline: --main-timeline;
-
   --font-Grotesk: 'Space Grotesk', sans-serif;
   --font-Mono: 'Space Mono', monospace;
+
+  scroll-timeline: --main-timeline;
 }
 
 body {
@@ -50,6 +49,7 @@ body {
       color: var(--orange);
       text-wrap: nowrap;
       cursor: text;
+      margin-top: 2em;
 
       animation: slideOutH1 10s ease-out forwards 3.5s;
 
@@ -103,23 +103,24 @@ body {
     }
   }
 
-  /* Teksten styling */
+  /* Kopjes en teksten styling */
   h2 {
     font-family: var(--font-Mono);
     color: var(--orange);
     font-size: clamp(0.7em, 10vw, 2.5em);
     font-weight: 100;
     margin: 0 auto;
+    width: 20em;
     cursor: text;
   }
-  
-  h3 {
+
+  h3,
+  a {
     font-family: var(--font-Mono);
     color: var(--orange);
     font-size: clamp(1.5em, 8vw, 2em);
     font-weight: 100;
     margin: 0.2em 0;
-    cursor: text;
   }
   
   p {
@@ -128,6 +129,18 @@ body {
     font-size: clamp(0.8em, 2.5vw, 1em);
     letter-spacing: 0.05em;
     cursor: text;
+    width: fit-content;
+    padding: 0;
+  }
+
+  a{
+    margin-bottom: 9em;
+    cursor: pointer;
+  }
+
+  a:hover{
+    color: var(--darkorange);
+    transition: .3 ease;
   }
 
   /* Hamburger menu styling */
@@ -206,8 +219,6 @@ body {
 
     opacity: 0;
     overflow: hidden;
-    pointer-events: none;
-    user-select: none;
 
     transition: width 0.6s ease, height 0.8s ease, opacity 0.8s ease, margin 2s ease, top 1s ease, box-shadow 0.8s ease;
 
@@ -229,15 +240,20 @@ body {
     }
 
     h2 {
+      width: 7em;
       margin: 1em auto;
       color: var(--orange);
       font-size: 16px;
       letter-spacing: normal;
-      cursor: default;
 
       transition: font-size 1.2s ease, letter-spacing 1.5s ease;
     }
 
+    label {
+      user-select: none;
+    }
+
+    /* Menu */
     ul {
       display: flex;
       flex-direction: column;
@@ -443,7 +459,10 @@ body {
           border-radius: 50%;
           filter: blur(5px);
           background-color: cyan;
-          box-shadow: 0 0 30px cyan;
+          box-shadow:
+          0px 0px 40px var(--white),
+          0px 0px 20px var(--white),
+          0px 0px 20px var(--white) inset;
           z-index: 1;
 
           transition: right 0.8s ease, width 0.3s ease, height 0.3s ease, box-shadow 0.8s ease, filter 0.8s ease;
@@ -637,7 +656,7 @@ body {
   /* Black hole cursor change */
   &:has(#blackhole-toggle:checked) {
     cursor: url("../images/black-hole.png") 16 16, auto;
-    background-color: var(--darkblue);
+    background-color: var(--darkblue) !important;
   }
 
   /* Black hole effect */
@@ -660,19 +679,21 @@ body {
       sepia(1)
       saturate(9)
       hue-rotate(-15deg);
-    box-shadow:
+      box-shadow:
+      0px 0px 40px var(--white),
       0px 0px 20px var(--white),
       0px 0px 20px var(--white) inset;
   }
 
   > main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
+
+    position: relative;
     width: 100%;
     padding: 40px;
-    position: relative;
 
       /* Satelliet */
       .satellite {
@@ -700,7 +721,6 @@ body {
       .textstyling {
         display: flex;
         flex-direction: column;
-        justify-content: center;
 
         margin-bottom: 100vh;
 
@@ -709,6 +729,7 @@ body {
         z-index: 1001;
 
         animation: textSlide 1s linear both;
+        animation-delay: 0.5s;
         animation-timeline: view();
         animation-range: cover 0% cover 100%;
 
@@ -733,53 +754,53 @@ body {
         }
       }
 
-    .globe {
-      width:  50em;
-      height: 50em;
-      margin: 0 auto;
-      z-index: 1000;
-      pointer-events: none;
-      user-select: none;
+      .globe {
+        width:  50em;
+        height: 50em;
+        margin: 0 auto;
+        z-index: 1000;
+        pointer-events: none;
+        user-select: none;
 
-      background-image: url(../images/earth.svg);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      box-shadow:
-        0px 0px 40px var(--cyan),
-        0px 0px 20px var(--white),
-        0px 0px 20px var(--white) inset;
+        background-image: url(../images/earth.svg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        box-shadow:
+          0px 0px 40px var(--cyan),
+          0px 0px 20px var(--white),
+          0px 0px 20px var(--white) inset;
 
-      border-radius: 50%;
-      position: fixed;
-      display: flex;
+        border-radius: 50%;
+        position: fixed;
+        display: flex;
 
-      animation: shrink linear, rotate linear;
-      animation-timeline: scroll(root), scroll(root);
-      top: 75%;
-    }
+        animation: shrink linear, rotate linear;
+        animation-timeline: scroll(root), scroll(root);
+        top: 75%;
+      }
 
-    .stars {
-      width: 175em;
-      height: 175em;
-      margin: 0 auto;
-      z-index: 1000;
-      pointer-events: none;
-      user-select: none;
+      .stars {
+        width: 175em;
+        height: 175em;
+        margin: 0 auto;
+        z-index: 1000;
+        pointer-events: none;
+        user-select: none;
 
-      opacity: 0.5;
-      filter:
-        drop-shadow(0 0  5px white)
-        drop-shadow(0 0 10px white)
-        drop-shadow(0 0 15px white);
-      background-image: url(../images/stars.svg);
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
+        opacity: 0.5;
+        filter:
+          drop-shadow(0 0  5px white)
+          drop-shadow(0 0 10px white)
+          drop-shadow(0 0 15px white);
+        background-image: url(../images/stars.svg);
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
 
-      border-radius: 50%;
-      position: fixed;
-      display: flex;
+        border-radius: 50%;
+        position: fixed;
+        display: flex;
 
       animation: rotate, atmosphere-stars;
       animation-timeline: scroll(root), scroll(root);
@@ -787,51 +808,119 @@ body {
       top: -10em;
     }
 
-    /**************/
-    /* UFO Banner */
-    /**************/
-    .ufo-with-banner {
-      display: flex;
-      align-items: center;
+    .fallingStars {
       position: fixed;
-      scale: 2;
-      right: 0;
-      transform: translateX(110%);
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       pointer-events: none;
-      user-select: none;
+      z-index: 999;
+      overflow: hidden;
 
-      #banner-ufo {
-        background-image: url("../images/ufo.svg");
-        background-repeat: no-repeat;
-        width: 50px;
-        height: 50px;
-      }
-
-      #banner-fire {
-        background-image: url("../images/fire.svg");
-        background-repeat: no-repeat;
-        width: 10px;
-        aspect-ratio: 1;
-        scale: 2;
-        animation: fireRotate 0.2s ease-in-out infinite alternate;
-        transform-origin: 10% 50%;
-      }
-
-      #banner {
-        width: 100px;
+      > span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 2px;
+        height: 2px;
         background: white;
-        padding: 5px;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3),
+                    0 0 10px rgba(255, 255, 255, 0.5),
+                    0 0 15px rgba(255, 255, 255, 0.7);
+        border-radius: 50%;
+        opacity: 0;
 
-        clip-path: shape(
-          from 0% 10%,
-          curve to 100% 10% with 33% 0% / 66% 20%,
-          line to 100% 90%,
-          curve to 0% 90% with 66% 100% / 33% 80%,
-          line to 0% 10%
-        );
+        animation: starsFalling 1s linear infinite forwards;
 
-        margin-left: 20px;
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translateY(-50%);
+          width: 200px;
+          height: 1px;
+          background: linear-gradient(90deg, #fff, transparent);
+          filter: blur(2px);
+        }
       }
+
+      > span:first-of-type {
+        top: 0%;
+        left: 20%;
+        animation-delay: 0s;
+        animation-duration: 4s;
+      }
+
+      > span:nth-of-type(2) {
+        top: 10%;
+        left: 80%;
+        animation-delay: 1.5s;
+        animation-duration: 3s;
+      }
+
+      > span:nth-of-type(3) {
+        top: 20%;
+        left: 50%;
+        animation-delay: 2.3s;
+        animation-duration: 5s;
+      }
+
+      > span:nth-of-type(4) {
+        top: 30%;
+        left: 30%;
+        animation-delay: 3.1s;
+        animation-duration: 3.6s;
+      }
+    }
+
+      /**************/
+      /* UFO Banner */
+      /**************/
+      .ufo-with-banner {
+        display: flex;
+        align-items: center;
+        position: fixed;
+        scale: 2;
+        right: 0;
+        transform: translateX(110%);
+        pointer-events: none;
+        user-select: none;
+        filter: drop-shadow(0px 0px 3px white);
+
+        #banner-ufo {
+          background-image: url("../images/ufo.svg");
+          background-repeat: no-repeat;
+          width: 50px;
+          height: 50px;
+        }
+
+        #banner-fire {
+          background-image: url("../images/fire.svg");
+          background-repeat: no-repeat;
+          width: 10px;
+          aspect-ratio: 1;
+          scale: 2;
+          animation: fireRotate 0.2s ease-in-out infinite alternate;
+          transform-origin: 10% 50%;
+        }
+
+        #banner {
+          width: 100px;
+          background: white;
+          padding: 5px;
+
+          clip-path: shape(
+            from 0% 10%,
+            curve to 100% 10% with 33% 0% / 66% 20%,
+            line to 100% 90%,
+            curve to 0% 90% with 66% 100% / 33% 80%,
+            line to 0% 10%
+          );
+
+          margin-left: 20px;
+        }
     }
 
     .ufo-animate {
@@ -998,6 +1087,7 @@ body {
     font-size: clamp(1.2em, 5vw, 3.5em);
     transform: translateY(0);
   }
+
   100% {
     font-size: 0.1em;
     opacity: 0;
@@ -1007,43 +1097,45 @@ body {
 }
 
 @keyframes textSlide {
-
   0% {
+    transform:
+      rotate(-45deg)
+      translate(-60em, 0em);
     opacity: 0;
-    transform: translate(-100vw, -20em);
   }
+
   25% {
     opacity: 1;
-    transform: translate(0, -20em);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(0, 0em);
-  }
-  75% {
-    opacity: 1;
-    transform: translate(0, 20em);
-  }
-  100% {
-    opacity: 1;
-    transform: translate(100vw, 60em);
+    transform:
+      rotate(0deg)
+      translate(0em, 0em);
   }
 
+  75% {
+    opacity: 1;
+    transform:
+      rotate(0deg)
+      translate(0em, 20em);
+  }
+
+  100% {
+    transform:
+      rotate(45deg)
+      translate(60em, 20em);
+    opacity: 0;
+  }
 }
 
 /* Satelliet */
 @keyframes satelliteAnimation {
-
   0% {
-    transform: translateX(-50%) scale(5);
-    top: 20em;
+    transform: translateX(-50%) scale(0.2);
+    top: 30em;
   }
-  
   100% {
     transform: translateX(-50%) scale(1);
     top: 0em;
   }
-
 }
 
 @keyframes satelliteAnimationOnDelay {
@@ -1116,32 +1208,52 @@ body {
   100% { opacity: 1; }
 }
 
+@keyframes starsFalling {
+  0% {
+    transform: rotate(-45deg) translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-45deg) translate(-800px, 0px);
+    opacity: 0;
+  }
+}
+
 /********************/
 /* Custom Scrollbar */
 /********************/
 /* Bronnen */
 /* https://www.youtube.com/watch?v=GvyGNcUiJGQ */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Selectors/::-webkit-scrollbar */
-
+/* Met bovenstaande bronnen bleef er maar een achtergrond ontstaan met kleur. Dit was niet op te lossen via css dus heb ik met chatGPT gevraagd en hebben we een workaround via JavaScript gemaakt */
+/* Prompt: is er een manier om met javascript een custom scrollbar te maken? */
 ::-webkit-scrollbar {
-  width: 40px;
-  height: 30px;
-}
-
-::-webkit-scrollbar:horizontal {
   display: none;
 }
 
-::-webkit-scrollbar-thumb {
-  background-image: url("../images/rocket.svg");
-  background-size: contain;
-  background-repeat: no-repeat;
+.rocket-scroll {
+  position: fixed;
+  right: 2px;
+  top: 2px;
+  width: 35px;
+  height: 70px;
+  background: url("../images/rocket.png") no-repeat center / contain;
+  pointer-events: none;
+  z-index: 9999;
   cursor: grab;
+  pointer-events: none;
 }
 
-/*******************/
-/* Easter egg: Cat */
-/*******************/
+.rocket-scroll.is-flying {
+  background: url("../images/rocket-with-fire.svg") no-repeat center /contain;
+}
+
+/************************/
+/* Easter egg: Nyan Cat */
+/************************/
 
 #cat {
   position: fixed;
@@ -1152,6 +1264,8 @@ body {
   width: 100px;
   pointer-events: none;
   user-select: none;
+
+  filter: drop-shadow(0px 0px 3px white);
 }
 
 .animate {
@@ -1235,25 +1349,89 @@ body {
 }
 
 #reset-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   bottom: 20px;
   left: 20px;
+  transform-origin: center;
 
   padding: 10px 16px;
-  font-size: 14px;
+  font-size: 22px;
 
   background-color: #222;
+  box-shadow: 0 0 10px var(--orange);
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  overflow: hidden;
 
   cursor: pointer;
   z-index: 1000;
-  transition: background 0.2s ease;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.8s ease, transform 0.3s ease;
+
+  &::after {
+      content: "RESETTING...";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.1);
+      color: white;
+      opacity: 0;
+
+      transition: transform 0.8s ease, opacity 0.3s ease, box-shadow 0.8s ease;
+    }
+
+  &::before {
+    content: "";
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    opacity: 0;
+
+    transition: transform 0.8s ease, left 0.8s ease, width 2s ease, height 2s ease, border-radius 3s ease, opacity 0.3s ease;
+  }
 }
 
+#reset-button.open {
+    background-color: var(--blue);
+    color: transparent;
+    box-shadow: 0 0 100px var(--orange);
+    /* width: 200em; */
+
+    &::after {
+      content: "RESETTING...";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      color: white;
+      opacity: 1;
+    }
+
+    &::before {
+    content: "";
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 150%;
+    height: 300%;
+    border-radius: inherit;
+    opacity: 1;
+  }
+  }
+
 #reset-button:hover {
-  background-color: #444;
+  box-shadow: 0 0 100px var(--orange);
+  transform: scale(1.05);
 }
 
 .hidden {
