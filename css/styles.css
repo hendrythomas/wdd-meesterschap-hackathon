@@ -121,7 +121,6 @@ body {
     font-size: clamp(1.5em, 8vw, 2em);
     font-weight: 100;
     margin: 0.2em 0;
-    cursor: text;
   }
   
   p {
@@ -220,8 +219,6 @@ body {
 
     opacity: 0;
     overflow: hidden;
-    pointer-events: none;
-    user-select: none;
 
     transition: width 0.6s ease, height 0.8s ease, opacity 0.8s ease, margin 2s ease, top 1s ease, box-shadow 0.8s ease;
 
@@ -248,9 +245,12 @@ body {
       color: var(--orange);
       font-size: 16px;
       letter-spacing: normal;
-      cursor: default;
 
       transition: font-size 1.2s ease, letter-spacing 1.5s ease;
+    }
+
+    label {
+      user-select: none;
     }
 
     /* Menu */
@@ -729,6 +729,7 @@ body {
         z-index: 1001;
 
         animation: textSlide 1s linear both;
+        animation-delay: 0.5s;
         animation-timeline: view();
         animation-range: cover 0% cover 100%;
 
@@ -801,11 +802,78 @@ body {
         position: fixed;
         display: flex;
 
-        animation: rotate, atmosphere-stars;
-        animation-timeline: scroll(root), scroll(root);
-        animation-range-end: 800%;
-        top: -10em;
+      animation: rotate, atmosphere-stars;
+      animation-timeline: scroll(root), scroll(root);
+      animation-range-end: 800%;
+      top: -10em;
+    }
+
+    .fallingStars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 999;
+      overflow: hidden;
+
+      > span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 2px;
+        height: 2px;
+        background: white;
+        box-shadow: 0 0 5px rgba(255, 255, 255, 0.3),
+                    0 0 10px rgba(255, 255, 255, 0.5),
+                    0 0 15px rgba(255, 255, 255, 0.7);
+        border-radius: 50%;
+        opacity: 0;
+
+        animation: starsFalling 1s linear infinite forwards;
+
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translateY(-50%);
+          width: 200px;
+          height: 1px;
+          background: linear-gradient(90deg, #fff, transparent);
+          filter: blur(2px);
+        }
       }
+
+      > span:first-of-type {
+        top: 0%;
+        left: 20%;
+        animation-delay: 0s;
+        animation-duration: 4s;
+      }
+
+      > span:nth-of-type(2) {
+        top: 10%;
+        left: 80%;
+        animation-delay: 1.5s;
+        animation-duration: 3s;
+      }
+
+      > span:nth-of-type(3) {
+        top: 20%;
+        left: 50%;
+        animation-delay: 2.3s;
+        animation-duration: 5s;
+      }
+
+      > span:nth-of-type(4) {
+        top: 30%;
+        left: 30%;
+        animation-delay: 3.1s;
+        animation-duration: 3.6s;
+      }
+    }
 
       /**************/
       /* UFO Banner */
@@ -1029,47 +1097,45 @@ body {
 }
 
 @keyframes textSlide {
-
   0% {
+    transform:
+      rotate(-45deg)
+      translate(-60em, 0em);
     opacity: 0;
-    transform: translate(-100vw, -20em);
   }
 
   25% {
     opacity: 1;
-    transform: translate(0, -20em);
-  }
-
-  50% {
-    opacity: 1;
-    transform: translate(0, 0em);
+    transform:
+      rotate(0deg)
+      translate(0em, 0em);
   }
 
   75% {
     opacity: 1;
-    transform: translate(0, 20em);
+    transform:
+      rotate(0deg)
+      translate(0em, 20em);
   }
 
   100% {
-    opacity: 1;
-    transform: translate(100vw, 60em);
+    transform:
+      rotate(45deg)
+      translate(60em, 20em);
+    opacity: 0;
   }
-
 }
 
 /* Satelliet */
 @keyframes satelliteAnimation {
-
   0% {
-    transform: translateX(-50%) scale(5);
-    top: 20em;
+    transform: translateX(-50%) scale(0.2);
+    top: 30em;
   }
-  
   100% {
     transform: translateX(-50%) scale(1);
     top: 0em;
   }
-
 }
 
 @keyframes satelliteAnimationOnDelay {
@@ -1140,6 +1206,20 @@ body {
   0% { opacity: 0.1; }
   25% { opacity: 1; }
   100% { opacity: 1; }
+}
+
+@keyframes starsFalling {
+  0% {
+    transform: rotate(-45deg) translate(0, 0);
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-45deg) translate(-800px, 0px);
+    opacity: 0;
+  }
 }
 
 /********************/
@@ -1268,8 +1348,103 @@ body {
   animation: floatUp 0.8s ease-out forwards;
 }
 
+#reset-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  transform-origin: center;
+
+  padding: 10px 16px;
+  font-size: 22px;
+
+  background-color: #222;
+  box-shadow: 0 0 10px var(--orange);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  overflow: hidden;
+
+  cursor: pointer;
+  z-index: 1000;
+  transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.8s ease, transform 0.3s ease;
+
+  &::after {
+      content: "RESETTING...";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.1);
+      color: white;
+      opacity: 0;
+
+      transition: transform 0.8s ease, opacity 0.3s ease, box-shadow 0.8s ease;
+    }
+
+  &::before {
+    content: "";
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 1em;
+    height: 1em;
+    border-radius: 50%;
+    opacity: 0;
+
+    transition: transform 0.8s ease, left 0.8s ease, width 2s ease, height 2s ease, border-radius 3s ease, opacity 0.3s ease;
+  }
+}
+
+#reset-button.open {
+    background-color: var(--blue);
+    color: transparent;
+    box-shadow: 0 0 100px var(--orange);
+    /* width: 200em; */
+
+    &::after {
+      content: "RESETTING...";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0.8);
+      color: white;
+      opacity: 1;
+    }
+
+    &::before {
+    content: "";
+    background-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 150%;
+    height: 300%;
+    border-radius: inherit;
+    opacity: 1;
+  }
+  }
+
+#reset-button:hover {
+  box-shadow: 0 0 100px var(--orange);
+  transform: scale(1.05);
+}
+
 .hidden {
   display: none;
+}
+
+.globe.rainbow {
+  animation: rainbowFilter 2s linear infinite;
+}
+
+@keyframes rainbowFilter {
+  0%   { filter: hue-rotate(0deg); }
+  100% { filter: hue-rotate(360deg); }
 }
 
 @keyframes floatUp {

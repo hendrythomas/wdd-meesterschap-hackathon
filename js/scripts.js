@@ -1,13 +1,3 @@
-/********************/
-/* Menu toggle klik */
-/********************/
-
-const btn = document.querySelector('.eggs-hamburger');
-
-btn.addEventListener('click', () => {
-  btn.classList.toggle('open');
-});
-
 // Blackhole effect is gemaakt met ChatGPT, waardes zijn zelf ingevoerd
 // Prompt: Could you create a fish eye lens?
 // Prompt 2: Could you make it look more like it gets sucked up like a blackhole, the blackhole being the mouse. I am kind of aiming for a fish lens kind of effect
