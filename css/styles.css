@@ -49,6 +49,7 @@ body {
       color: var(--orange);
       text-wrap: nowrap;
       cursor: text;
+      margin-top: 2em;
 
       animation: slideOutH1 10s ease-out forwards 3.5s;
 
@@ -108,7 +109,7 @@ body {
     color: var(--orange);
     font-size: clamp(0.7em, 10vw, 2.5em);
     font-weight: 100;
-    margin: 0.2em 0;
+    margin: 0 auto;
     width: 20em;
     cursor: text;
   }
@@ -130,8 +131,6 @@ body {
     cursor: text;
     width: fit-content;
     padding: 0;
-
-    border: 2px solid green;
   }
 
   /* Hamburger menu styling */
@@ -233,6 +232,7 @@ body {
     }
 
     h2 {
+      width: 7em;
       margin: 1em auto;
       color: var(--orange);
       font-size: 16px;
@@ -675,6 +675,11 @@ body {
   }
 
   > main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
     position: relative;
     width: 100%;
     padding: 40px;
@@ -1003,6 +1008,7 @@ body {
     font-size: clamp(1.2em, 5vw, 3.5em);
     transform: translateY(0);
   }
+
   100% {
     font-size: 0.1em;
     opacity: 0;
@@ -1017,18 +1023,22 @@ body {
     opacity: 0;
     transform: translate(-100vw, -20em);
   }
+
   25% {
     opacity: 1;
     transform: translate(0, -20em);
   }
+
   50% {
     opacity: 1;
     transform: translate(0, 0em);
   }
+
   75% {
     opacity: 1;
     transform: translate(0, 20em);
   }
+
   100% {
     opacity: 1;
     transform: translate(100vw, 60em);
