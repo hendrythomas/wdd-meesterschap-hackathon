@@ -203,8 +203,6 @@ body {
 
     opacity: 0;
     overflow: hidden;
-    pointer-events: none;
-    user-select: none;
 
     transition: width 0.6s ease, height 0.8s ease, opacity 0.8s ease, margin 2s ease, top 1s ease, box-shadow 0.8s ease;
 
@@ -233,6 +231,10 @@ body {
       cursor: default;
 
       transition: font-size 1.2s ease, letter-spacing 1.5s ease;
+    }
+
+    label {
+      user-select: none;
     }
 
     ul {
@@ -1103,17 +1105,14 @@ body {
 
 /* Satelliet */
 @keyframes satelliteAnimation {
-
   0% {
-    transform: translateX(-50%) scale(5);
-    top: 20em;
+    transform: translateX(-50%) scale(0.2);
+    top: 30em;
   }
-  
   100% {
     transform: translateX(-50%) scale(1);
     top: 0em;
   }
-
 }
 
 @keyframes satelliteAnimationOnDelay {
