@@ -123,8 +123,8 @@ function updateScore() {
   // Save score
   localStorage.setItem("invaderScore", score);
 
-  // Trigger rainbow effect at 1000+
-  if (score >= 1000) {
+  // Rainbow effect bij bepaalde score
+  if (score >= 10000) {
     globe.classList.add("rainbow");
   } else {
     globe.classList.remove("rainbow");
