@@ -772,7 +772,7 @@ body {
         drop-shadow(0 0  5px white)
         drop-shadow(0 0 10px white)
         drop-shadow(0 0 15px white);
-      background-image: url(../images/stars.svg);
+      background-image: url(/images/stars.svg);
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
