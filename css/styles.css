@@ -709,6 +709,7 @@ body {
         z-index: 1001;
 
         animation: textSlide 1s linear both;
+        animation-delay: 0.5s;
         animation-timeline: view();
         animation-range: cover 0% cover 100%;
 
@@ -1074,28 +1075,31 @@ body {
 }
 
 @keyframes textSlide {
-
   0% {
+    transform-origin: 0 0;
+    transform:
+      rotate(-45deg)
+      translate(-60em, 0em);
     opacity: 0;
-    transform: translate(-100vw, -20em);
   }
   25% {
     opacity: 1;
-    transform: translate(0, -20em);
-  }
-  50% {
-    opacity: 1;
-    transform: translate(0, 0em);
+    transform:
+      rotate(0deg)
+      translate(0em, 0em);
   }
   75% {
     opacity: 1;
-    transform: translate(0, 20em);
+    transform:
+      rotate(0deg)
+      translate(0em, 15em);
   }
   100% {
-    opacity: 1;
-    transform: translate(100vw, 60em);
+    transform:
+      rotate(45deg)
+      translate(60em, 15em);
+    opacity: 0;
   }
-
 }
 
 /* Satelliet */
