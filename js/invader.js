@@ -1,18 +1,43 @@
 let gameEnabled = false;
 
 const InvaderContainer = document.getElementById("invader-container");
+
+// Bron sfx: https://classicgaming.cc/classics/space-invaders/sounds
 const shootSound = new Audio("sfx/invaderKilled.wav");
+
+// Bron music theme: https://www.youtube.com/watch?v=k9oyDTR0EwQ&t=29s
+const invaderMusic = new Audio("sfx/invaderTheme.mp3");
+invaderMusic.loop = true;
+invaderMusic.volume = 1;
 
 // Rainbow objects
 const globe = document.querySelector(".globe");
 
-shootSound.volume = 0.3;
+let animationInterval;
+let animationSpeed = 500;
+
+shootSound.volume = 0.1;
 
 // Elk soort invader aanmaken met bijbehorende score
 const invaderTypes = [
-  { img: "images/invaders/invader1.svg", points: 100, type: "invader1" },
-  { img: "images/invaders/invader2.svg", points: 250, type: "invader2" },
-  { img: "images/invaders/invader3.svg", points: 400, type: "invader3" }
+  { 
+    img1: "images/invaders/invader1.svg",
+    img2: "images/invaders/invader1_5.svg",
+    points: 100,
+    type: "invader1"
+  },
+  { 
+    img1: "images/invaders/invader2.svg",
+    img2: "images/invaders/invader2_5.svg",
+    points: 250,
+    type: "invader2"
+  },
+  { 
+    img1: "images/invaders/invader3.svg",
+    img2: "images/invaders/invader3_5.svg",
+    points: 400,
+    type: "invader3"
+  }
 ];
 
 document.addEventListener("keydown", (e) => {
@@ -33,6 +58,9 @@ function startGame() {
   InvaderContainer.style.display = "grid";
   scoreDisplay.style.display = "block";
   resetButton.style.display = "block";
+  invaderMusic.play();
+  startInvaderAnimation();
+  document.body.classList.add("game-active");
 
   createWave(3, 6);
 }
@@ -45,6 +73,10 @@ function stopGame() {
   scoreDisplay.style.display = "none";
   scoreDisplay.classList.add("hidden");
   resetButton.style.display = "none"; 
+  invaderMusic.pause();
+  invaderMusic.currentTime = 0;
+  clearInterval(animationInterval);
+  document.body.classList.remove("game-active");
 }
 
 function createWave(rows = 3, cols = 6) {
@@ -58,7 +90,11 @@ function createWave(rows = 3, cols = 6) {
 
     const random = invaderTypes[Math.floor(Math.random() * invaderTypes.length)];
 
-    invader.style.backgroundImage = `url(${random.img})`;
+    invader.style.backgroundImage = `url(${random.img1})`;
+
+    invader.dataset.img1 = random.img1;
+    invader.dataset.img2 = random.img2;
+    invader.dataset.frame = "1";
 
     invader.dataset.points = random.points;
     invader.dataset.type = random.type;
@@ -175,3 +211,24 @@ resetButton.addEventListener("click", () => {
 
 document.body.appendChild(resetButton);
 resetButton.style.display = "none";
+
+function startInvaderAnimation() {
+  clearInterval(animationInterval);
+
+  animationInterval = setInterval(() => {
+    const invaders = document.querySelectorAll(".invader");
+
+    invaders.forEach(invader => {
+      if (invader.style.visibility === "hidden") return;
+
+      if (invader.dataset.frame === "1") {
+        invader.style.backgroundImage = `url(${invader.dataset.img2})`;
+        invader.dataset.frame = "2";
+      } else {
+        invader.style.backgroundImage = `url(${invader.dataset.img1})`;
+        invader.dataset.frame = "1";
+      }
+    });
+
+  }, animationSpeed);
+}
